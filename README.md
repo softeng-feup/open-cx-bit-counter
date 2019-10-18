@@ -1,6 +1,5 @@
 # Bit Counter ™
-Contar pessoas numa palestra.  
-
+Counting people in conferences, since 2019.
 **BIT - Best Interactive Team**  
 * Bruno Micaelo
 * Manuel Monteiro
@@ -8,27 +7,34 @@ Contar pessoas numa palestra.
 * Simão Oliveira  
  
 ## Vision  
-Web app capaz de dar informação, tanto à organização como aos participantes, sobre se uma sala está cheia ou não. Caso não esteja é possível dizer quantas pessoas foram a essa sessão.  
-Desta forma pretendemos agilizar a conferência, com o objetivo final de aumentar a participação nas palestras e assim diminuir o número de lugares vagos.  
+Web app capable of giving information to both the organization and participants on wether the room is full or not. If it isn't full it's also possible to say how many people are in the session.
+The goal is to increase the number of participants in talks and decrease the number of empty seats.  
 
 ## Elevator Pitch
+We want to know how full a room is during a talk. To accomplish this we use image recognition to count people's head and so we get the number of attendees. With this data we can know our target audience better and be more efective in the marketing campaign of the upcoming edition.  
 Queremos saber quantas pessoas frequentaram uma dada palestra. Utilizamos reconhecimento de imagem para contar pessoas e assim obter números concretos relativos à conferência. Com base nestes números podemos conhecer melhor o nosso público alvo e sermos mais efetivos no nosso marketing e publicidade.  
 
 ## Use Cases
 ![Use Case Diagram][useCase_diagram]
 
-### 
+### Check rooms occupation
+Actor: Participant
+Description: By selecting a day of the conference, a participant can see the current ocupation of the rooms in which talks may be ocurring, so as to know if they can attend any talk they might be interested in.
+Normal flow: A participant selects a day 
+
+### Check the talks timetable
+Actor: Participant
 
 ## User Stories  
 [Trello](https://trello.com/b/AaikinSY/bit-counter)  
 
-Como participante da conferência, eu pretendo saber o número de lugares disponíveis numa palestra para saber se posso comparecer.  
+As a conference atendee, I want to know the number of seats available at a talk toif I can show up.
 
-Como organizador pretendo saber a utilização da sala ao longo da palestra, de forma a ter informação para preparar uma melhor edição futura.  
+As an organizer, I want to know the room ocupation during the conference, this way I'll be able to get the data needed to better prepare a future edition.
 
-Como organizador pretendo ter acesso aos dados de todas as palestras de forma a conseguir concluir de forma mais precisa a afluencia e popularidade da conferencia.  
+As an organizer, I want to have access to data of all talks so that I can understand in a more precise way the affluence and popularity of a conference.
 
-Como organizador pretendo saber qual a palestra com mais afluencia de forma a repetir ou apronfundar mais o tema na edição seguinte.  
+As an organizer, I want to know which talk has more affluence so that I can repeat or deepen the theme on the next edition.
 
 Como organizador pretendo saber qual a palestra com menor afluencia e perceber o motivo para tal afluencia e resolver este problema na próxima edição.  
 
@@ -47,6 +53,22 @@ Como organizador predendo saber o calendario das palestras para saber as salas q
 
 ## Domain analysis
 ![Domain analysis][domain_diagram]
+
+## Architecture and Design
+
+The architecture must adapt to a simple web app, meaning it will need a simple scheme where it uses these layers: frontend, backend and database.
+To achieve that we will be using an Architecture with a Layered Pattern.
+On top we will, however, add a diferent layer for the counting software/hardware.
+“This Layered Pattern can be used to structure programs that can be decomposed into groups of subtasks, each of which is at a particular level of abstraction. Each layer provides services to the next higher layer.”
+Our layers will be:
+
+- Presentation layer (UI layer)(front-end)
+- Counting layer (domain layer)(back-end)
+- Application layer (service layer)(back-end)
+- Business logic layer (domain layer)
+- Data access layer (database layer)(database)
+
+![](https://i.imgur.com/KE9heEx.png)
 
 
 
