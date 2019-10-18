@@ -17,6 +17,8 @@ Queremos saber quantas pessoas frequentaram uma dada palestra. Utilizamos reconh
 ## Use Cases
 ![Use Case Diagram][useCase_diagram]
 
+### 
+
 ## User Stories  
 [Trello](https://trello.com/b/AaikinSY/bit-counter)  
 
@@ -32,12 +34,15 @@ Como organizador pretendo saber qual a palestra com menor afluencia e perceber o
 
 Como organizador pretendo utilizar os dados recolhidos para poder estudar uma possivel edição futura com melhor fiabilidade e um melhor modelo estatistico.  
 
+### Mockups
+![Mockup 1][mockup1]  
+![Mockup 2][mockup2]  
+
 #### *User Stories relacionadas com horario/calendario*
 
 Como organizador pretendo saber o horario das palestras para identificar as salas que estao a ser usadas e indicar ao participante as salas com palestras.  
 
 Como organizador predendo saber o calendario das palestras para saber as salas que vão ser usadas naquele dia e assim não induzir o participante em erro.  
-
 
 
 ## Domain analysis
@@ -46,7 +51,9 @@ Como organizador predendo saber o calendario das palestras para saber as salas q
 
 
 
+[mockup1]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/Imagens/Mockup%201.png?token=AFUQTMLB7YKPGGEOL7ZA7D25WKZ3Y
 
+[mockup2]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/Imagens/Mockup%202.png?token=AFUQTMOYNWE4QAJX6Z6724C5WKZ5E
 
 [useCase_diagram]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/UML/Use%20Cases.png?token=AFUQTMMXEF6LYS7ZOA3MPAC5WKWCS
 
