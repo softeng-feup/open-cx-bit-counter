@@ -14,6 +14,9 @@ Desta forma pretendemos agilizar a conferência, com o objetivo final de aumenta
 ## Elevator Pitch
 Queremos saber quantas pessoas frequentaram uma dada palestra. Utilizamos reconhecimento de imagem para contar pessoas e assim obter números concretos relativos à conferência. Com base nestes números podemos conhecer melhor o nosso público alvo e sermos mais efetivos no nosso marketing e publicidade.  
 
+## Use Cases
+![Use Case Diagram][useCase_diagram]
+
 ## User Stories  
 [Trello](https://trello.com/b/AaikinSY/bit-counter)  
 
@@ -45,5 +48,6 @@ Como organizador predendo saber o calendario das palestras para saber as salas q
 
 
 
+[useCase_diagram]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/UML/Use%20Cases.png?token=AFUQTMMXEF6LYS7ZOA3MPAC5WKWCS
 
 [domain_diagram]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/domain/domain_diagram.png?token=AFUQTMNYCEGOQWC72L7GT525VF5RI
