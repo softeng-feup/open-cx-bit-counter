@@ -79,4 +79,4 @@ Our layers will be:
 
 [useCase_diagram]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/UML/Use%20Cases.png?token=AFUQTMMXEF6LYS7ZOA3MPAC5WKWCS
 
-[domain_diagram]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/domain/domain_diagram.png?token=AFUQTMNYCEGOQWC72L7GT525VF5RI
+[domain_diagram]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/domain/domain_diagram.png?token=AFUQTMNYCEGOQWC72L7GT525VF5RI 
