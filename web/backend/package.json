@@ -13,10 +13,6 @@
     "pre:commit": "npm run lint && npm run test",
     "test": "jest "
   },
-  "husky": {
-    "hooks": {
-    }
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
