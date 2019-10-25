@@ -30,5 +30,17 @@ module.exports = {
           resolve(room)
         });
     })
+  },
+
+  updateRoomOccupation: function (name, occupation) {
+    return new Promise(function (resolve, reject) {
+      Room.findOneAndUpdate({ name: name }, { $set:{occupation: occupation }}, { new: true,  useFindAndModify: false }, (error, room) => {
+        if (error) {
+          reject(error);
+        }
+        resolve(room);
+        
+      });
+    })
   }
 };
