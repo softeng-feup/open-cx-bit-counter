@@ -15,7 +15,7 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 Queremos saber quantas pessoas frequentaram uma dada palestra. Utilizamos reconhecimento de imagem para contar pessoas e assim obter números concretos relativos à conferência. Com base nestes números podemos conhecer melhor o nosso público alvo e sermos mais efetivos no nosso marketing e publicidade.  
 
 ## Use Cases
-![Use Case Diagram][useCase_diagram]
+![Use Case Diagram](docs/UML/use_cases.png "Use Cases")
 
 ### Check rooms occupation
 Actor: Participant
@@ -41,8 +41,8 @@ Como organizador pretendo saber qual a palestra com menor afluencia e perceber o
 Como organizador pretendo utilizar os dados recolhidos para poder estudar uma possivel edição futura com melhor fiabilidade e um melhor modelo estatistico.  
 
 ### Mockups
-![Mockup 1][mockup1]  
-![Mockup 2][mockup2]  
+![Mockup 1](docs/Imagens/mockup_1.png "Mockup 1")
+![Mockup 2](docs/Imagens/mockup_2.png "Mockup 2") 
 
 #### *User Stories relacionadas com horario/calendario*
 
@@ -52,7 +52,7 @@ Como organizador predendo saber o calendario das palestras para saber as salas q
 
 
 ## Domain analysis
-![Domain analysis][domain_diagram]
+![Domain analysis](docs/domain/domain_diagram.png "Domain Diagram")
 
 ## Architecture and Design
 
@@ -77,6 +77,6 @@ Our layers will be:
 
 [mockup2]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/Imagens/Mockup%202.png?token=AFUQTMOYNWE4QAJX6Z6724C5WKZ5E
 
-[useCase_diagram]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/UML/Use%20Cases.png?token=AFUQTMMXEF6LYS7ZOA3MPAC5WKWCS
+[useCase_diagram]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/UML/Use%20Cases.png?token=AJA6WDBVCAYLQJ6GFH3K5OK5XP2E2
 
 [domain_diagram]: https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/master/docs/domain/domain_diagram.png?token=AFUQTMNYCEGOQWC72L7GT525VF5RI 
