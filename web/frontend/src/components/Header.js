@@ -38,10 +38,12 @@ export default function ButtonAppBar() {
 
   const handleClickPop = () => {
     setOpen(true);
+    setAnchorEl(null);
   }
 
   const handleClose = () => {
     setAnchorEl(null);
+    setOpen(false);
   };
 
   return (
@@ -49,7 +51,7 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
-            <MenuIcon aria-controls="main-menu" aria-haspopup="true" onClick={handleClick}/>
+            <MenuIcon aria-controls="main-menu" aria-haspopup="true" onClick={handleClick} />
             <Menu
               id="main-menu"
               anchorEl={anchorEl}
@@ -69,19 +71,18 @@ export default function ButtonAppBar() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <SimpleDialog
-        open={open}
-      />
+      <SimpleDialog open={open} setOpen={setOpen}/>
     </div>
   );
 }
 
 SimpleDialog.propTypes = {
-  open: PropTypes.bool.isRequired
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired
 };
 
 function SimpleDialog(props) {
-  const { open } = props;
+  const { open, setOpen } = props;
 
   return (
     <Dialog
@@ -89,7 +90,7 @@ function SimpleDialog(props) {
       open={open}
     >
       <DialogTitle id="simple-dialog-title">
-        <AddTalk />
+        <AddTalk open={open} setOpen={setOpen}/>
       </DialogTitle>
     </Dialog>
   );

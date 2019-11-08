@@ -3,6 +3,8 @@ import React from 'react';
 export default class AddTalkForm extends React.Component {
     constructor(props) {
       super(props);
+      const { open, setOpen } = props;
+
       this.state = {title: '',
                     orator: '',
                     date: '',
@@ -17,6 +19,10 @@ export default class AddTalkForm extends React.Component {
       this.handleEnd = this.handleEnd.bind(this);
       this.handleRoom = this.handleRoom.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+
+      this.handleClose = () => {
+        setOpen(false);
+      };
     }
   
     handleTitle(event) {
@@ -46,6 +52,7 @@ export default class AddTalkForm extends React.Component {
             ' and finishing at ' + this.state.end +
             ' in ' + this.state.room);
       event.preventDefault();
+      this.handleClose();
     }
   
     render() {
