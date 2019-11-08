@@ -41,8 +41,8 @@ Como organizador pretendo saber qual a palestra com menor afluencia e perceber o
 Como organizador pretendo utilizar os dados recolhidos para poder estudar uma possivel edição futura com melhor fiabilidade e um melhor modelo estatistico.  
 
 ### Mockups
-![Mockup 1](docs/Imagens/mockup_1.png "Mockup 1")
-![Mockup 2](docs/Imagens/mockup_2.png "Mockup 2") 
+[Trello](https://trello.com/b/AaikinSY/bit-counter)  
+
 
 #### *User Stories relacionadas com horario/calendario*
 
