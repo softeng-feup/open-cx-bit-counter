@@ -13,29 +13,6 @@ import Box from '@material-ui/core/Box';
 
 import axios from 'axios';
 
-
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-    overflowX: 'auto',
-  },
-  table: {
-    minWidth: 650,
-  },
-});
-
-function createData(title, orator, time, room, occupation) {
-  return { title, orator, time, room, occupation };
-}
-
-const rows = [
-  createData('Talk 1', 'Orator A', '10:00 - 11:00', 'B301', '90'),
-  createData('Talk 2', 'Orator B', '10:00 - 10:30', 'B302', '80'),
-  createData('Talk 3', 'Orator C', '11:00 - 12:30', 'B301', '--'),
-  createData('Talk 4', 'Orator D', '11:40 - 12:30', 'B306', '--'),
-  createData('Talk 5', 'Orator E', '12:00 - 13:00', 'B309', '--'),
-];
-
 export default class Home extends Component {
 
 
@@ -51,7 +28,6 @@ export default class Home extends Component {
 
 
   onChange = date => {
-    console.log(date)
     this.setState({ date })
   }
 
@@ -65,8 +41,30 @@ export default class Home extends Component {
           let talkList = room[i].talk;
           for (let j = 0; j < talkList.length; j++) {
             const mTalk = talkList[j];
+            const talkStartDate = new Date(mTalk.start);
+            const talkEndDate = new Date(mTalk.end);
+            const talkDate = talkStartDate.toDateString();
+
+            let startTime = '';
+
+            startTime  += talkStartDate.getHours().toString() 
+            if(talkStartDate.getHours() < 10){
+              startTime  += '0';
+            }
+            startTime  += ':' + talkStartDate.getMinutes().toString() 
+            if(talkStartDate.getMinutes() < 10){
+              startTime  += '0';
+            }
+            startTime  += ' - ' + talkEndDate.getHours().toString() 
+            if(talkEndDate.getHours() < 10){
+              startTime  += '0';
+            }
+            startTime  += ':' + talkEndDate.getMinutes().toString() 
+            if(talkEndDate.getMinutes() < 10){
+              startTime  += '0';
+            }
             mTalk.room = room[i].name
-            const talkDate = new Date(mTalk.start).toDateString();
+            mTalk.hour = startTime
             let newDate = true;
             for (let k = 0; k < daysArray.length; k++) {
               if (daysArray[k].date == talkDate) {
@@ -86,10 +84,7 @@ export default class Home extends Component {
           }
         }
 
-        console.log(daysArray)
-        this.setState({
-          daysArray: daysArray
-        });
+        this.setState({daysArray: daysArray});
       }).catch(() => {
       });
   }
@@ -102,8 +97,11 @@ export default class Home extends Component {
     for (let i = 0; i < daysArray.length; i++) {
       if (daysArray[i].date == date.toDateString()) {
         talkArray = daysArray[i].talk;
+        i = daysArray.length
       }
     }
+
+    console.log(daysArray)
     
     return (
       <>
@@ -112,8 +110,6 @@ export default class Home extends Component {
             onChange={this.onChange}
             value={this.state.date} />
         </Box>
-
-
 
         <Box boxShadow={10} className="rooms-container">
           <Table aria-label="simple table">
@@ -132,7 +128,7 @@ export default class Home extends Component {
                   <TableRow key={talk._id}>
                     <TableCell component="th" scope="row">{talk.title}</TableCell>
                     <TableCell align="right">{talk.orator}</TableCell>
-                    <TableCell align="right">{talk.start}</TableCell>
+                    <TableCell align="right">{talk.hour}</TableCell>
                     <TableCell align="right">{talk.room}</TableCell>
                     <TableCell align="right">{talk.occupation}</TableCell>
                   </TableRow>

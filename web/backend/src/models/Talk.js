@@ -6,7 +6,8 @@ var Talk = new Schema({
     orator: String,
     start: Date,
     end: Date,
-
+    occupation: {type: Number, default: 0},
+    occupation_list : [{value : {type : Number}, date : {type: Date, default: Date.now }}],
     _room: {type: Schema.Types.ObjectId, ref: 'Room'}
 });
 
