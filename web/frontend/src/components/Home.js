@@ -31,62 +31,65 @@ export default class Home extends Component {
     this.setState({ date })
   }
 
-  componentDidMount() {
+  updateTalkList(){
     axios.get('http://127.0.0.1:6200/api/room/list')
-      .then((res) => {
-        const { room } = res.data;
-        let daysArray = [];
+    .then((res) => {
+      const { room } = res.data;
+      let daysArray = [];
+      for (let i = 0; i < room.length; i++) {
+        let talkList = room[i].talk;
+        for (let j = 0; j < talkList.length; j++) {
+          const mTalk = talkList[j];
+          const talkStartDate = new Date(mTalk.start);
+          const talkEndDate = new Date(mTalk.end);
+          const talkDate = talkStartDate.toDateString();
 
-        for (let i = 0; i < room.length; i++) {
-          let talkList = room[i].talk;
-          for (let j = 0; j < talkList.length; j++) {
-            const mTalk = talkList[j];
-            const talkStartDate = new Date(mTalk.start);
-            const talkEndDate = new Date(mTalk.end);
-            const talkDate = talkStartDate.toDateString();
+          let startTime = '';
 
-            let startTime = '';
-
-            startTime  += talkStartDate.getHours().toString() 
-            if(talkStartDate.getHours() < 10){
-              startTime  += '0';
-            }
-            startTime  += ':' + talkStartDate.getMinutes().toString() 
-            if(talkStartDate.getMinutes() < 10){
-              startTime  += '0';
-            }
-            startTime  += ' - ' + talkEndDate.getHours().toString() 
-            if(talkEndDate.getHours() < 10){
-              startTime  += '0';
-            }
-            startTime  += ':' + talkEndDate.getMinutes().toString() 
-            if(talkEndDate.getMinutes() < 10){
-              startTime  += '0';
-            }
-            mTalk.room = room[i].name
-            mTalk.hour = startTime
-            let newDate = true;
-            for (let k = 0; k < daysArray.length; k++) {
-              if (daysArray[k].date == talkDate) {
-                daysArray[k].talk.push(mTalk)
-                newDate = false;
-              }
-            }
-
-            if (newDate && mTalk.start !== undefined) {
-              const newDay = new Object({
-                date: talkDate,
-                talk: []
-              })
-              newDay.talk.push(mTalk)
-              daysArray.push(newDay);
+          startTime  += talkStartDate.getHours().toString() 
+          if(talkStartDate.getHours() < 10){
+            startTime  += '0';
+          }
+          startTime  += ':' + talkStartDate.getMinutes().toString() 
+          if(talkStartDate.getMinutes() < 10){
+            startTime  += '0';
+          }
+          startTime  += ' - ' + talkEndDate.getHours().toString() 
+          if(talkEndDate.getHours() < 10){
+            startTime  += '0';
+          }
+          startTime  += ':' + talkEndDate.getMinutes().toString() 
+          if(talkEndDate.getMinutes() < 10){
+            startTime  += '0';
+          }
+          mTalk.room = room[i].name
+          mTalk.hour = startTime
+          let newDate = true;
+          for (let k = 0; k < daysArray.length; k++) {
+            if (daysArray[k].date == talkDate) {
+              daysArray[k].talk.push(mTalk)
+              newDate = false;
             }
           }
-        }
 
-        this.setState({daysArray: daysArray});
-      }).catch(() => {
-      });
+          if (newDate && mTalk.start !== undefined) {
+            const newDay = new Object({
+              date: talkDate,
+              talk: []
+            })
+            newDay.talk.push(mTalk)
+            daysArray.push(newDay);
+          }
+        }
+      }
+
+      this.setState({daysArray: daysArray});
+    }).catch(() => {
+    });
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => this.updateTalkList(), 1000);
   }
 
   render() {
@@ -119,7 +122,7 @@ export default class Home extends Component {
                 <TableCell align="right">Orator</TableCell>
                 <TableCell align="right">Hour</TableCell>
                 <TableCell align="right">Room</TableCell>
-                <TableCell align="right">Ocupation (%)</TableCell>
+                <TableCell align="right">Ocupation</TableCell>
               </TableRow>
             </TableHead>
             {talkArray !== undefined ? (
