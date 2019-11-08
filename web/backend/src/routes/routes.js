@@ -1,11 +1,9 @@
 const router =require('express').Router();
 
-const main = require('../main/main');
+const main = require('../main/room');
+const talk = require('../main/talk');
 
-//Schema
-var Measure = require('../models/Room');
-
-router.route('/api/list/room').get(function(req,res){
+router.route('/api/room/list').get(function(req,res){
     let {name} = req.query;
     if(name !== undefined){
         main.findRoomByName(name)
@@ -26,8 +24,10 @@ router.route('/api/list/room').get(function(req,res){
     }
 })
 
-router.route('/api/create/room').get(function(req,res){
-    main.createRoom(req.query)
+router.route('/api/room/create').get(function(req,res){
+    let { name } = data;
+
+    main.createRoom(name)
     .then(function(result) {
         res.json({
             code: 200,
@@ -36,7 +36,7 @@ router.route('/api/create/room').get(function(req,res){
     })
 })
 
-router.route('/api/update/room/occupation').get(function(req,res){
+router.route('/api/room/update').get(function(req,res){
     let {name} = req.query;
     let {occupation} = req.query;
     main.updateRoomOccupation(name, occupation)
@@ -48,4 +48,29 @@ router.route('/api/update/room/occupation').get(function(req,res){
     })
 })
 
+
+router.route('/api/talk/create').get(function(req,res){
+    let {title} = req.query;
+    let {orator} = req.query;
+    let {room} = req.query;
+    let {start} = req.query;
+    let {end} = req.query;
+    talk.createTalk(title, orator, room, start, end)
+    .then(function(result) {
+        res.json({
+            code: 200,
+            room: result
+        });
+    })
+})
+
+router.route('/api/talk/list').get(function(req,res){
+    talk.listAll()
+    .then(function(result) {
+        res.json({
+            code: 200,
+            room: result
+        });
+    })
+})
 module.exports = router;

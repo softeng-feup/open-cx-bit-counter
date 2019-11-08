@@ -1,11 +1,9 @@
-const Talk = require('../models/Talk');
 const Room = require('../models/Room');
 
 
 module.exports = {
-  createRoom: function (data) {
+  createRoom: function (name) {
     return new Promise(function (resolve, reject) {
-      let { name } = data;
       new Room({ name: name }).save(function (err, room) {
         resolve(room)
       });
@@ -15,6 +13,7 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       Room
         .find()
+        .populate('talk', 'title orator start end', null, { sort: { 'start': -1 } } )
         .exec(function (err, room) {
           console.log(room)
           resolve(room)
@@ -39,7 +38,6 @@ module.exports = {
           reject(error);
         }
         resolve(room);
-        
       });
     })
   }
