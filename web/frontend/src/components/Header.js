@@ -38,8 +38,8 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" aria-controls="main-menu" aria-haspopup="true" onClick={handleClick}>
-            <MenuIcon />
+          <IconButton edge="start" className={classes.menuButton} color="inherit" >
+            <MenuIcon aria-label="menu" aria-controls="main-menu" aria-haspopup="true" onClick={handleClick}/>
             <Menu
               id="main-menu"
               anchorEl={anchorEl}
