@@ -13,7 +13,7 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       Room
         .find()
-        .populate('talk', 'title orator start end')
+        .populate('talk', 'title orator start end', null, { sort: { 'start': -1 } } )
         .exec(function (err, room) {
           console.log(room)
           resolve(room)
