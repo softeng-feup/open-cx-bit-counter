@@ -3,7 +3,7 @@ import React from 'react';
 export default class AddTalkForm extends React.Component {
     constructor(props) {
       super(props);
-      const { open, setOpen } = props;
+      const { setOpen } = props;
 
       this.state = {title: '',
                     orator: '',

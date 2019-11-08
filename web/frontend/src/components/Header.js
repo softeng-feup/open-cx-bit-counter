@@ -77,7 +77,6 @@ export default function ButtonAppBar() {
 }
 
 SimpleDialog.propTypes = {
-  open: PropTypes.bool.isRequired,
   setOpen: PropTypes.func.isRequired
 };
 
@@ -90,7 +89,7 @@ function SimpleDialog(props) {
       open={open}
     >
       <DialogTitle id="simple-dialog-title">
-        <AddTalk open={open} setOpen={setOpen}/>
+        <AddTalk setOpen={setOpen}/>
       </DialogTitle>
     </Dialog>
   );
