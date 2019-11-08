@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,15 +24,37 @@ const useStyles = makeStyles(theme => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" aria-controls="main-menu" aria-haspopup="true" onClick={handleClick}>
             <MenuIcon />
+            <Menu
+              id="main-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Manage talks</MenuItem>
+            </Menu>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             News
+          </Typography>
+          <Typography variant="h6" className={classes.title}>
+            BIT Counter
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
@@ -38,3 +62,4 @@ export default function ButtonAppBar() {
     </div>
   );
 }
+
