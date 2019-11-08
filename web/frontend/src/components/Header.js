@@ -9,9 +9,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import PropTypes from "prop-types";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Dialog from "@material-ui/core/Dialog";
+import PropTypes from 'prop-types';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import AddTalk from './AddTalkForm';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -87,7 +88,9 @@ function SimpleDialog(props) {
       aria-labelledby="simple-dialog-title"
       open={open}
     >
-      <DialogTitle id="simple-dialog-title">Add a talk to the system</DialogTitle>
+      <DialogTitle id="simple-dialog-title">
+        <AddTalk />
+      </DialogTitle>
     </Dialog>
   );
 }
