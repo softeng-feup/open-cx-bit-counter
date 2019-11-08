@@ -43,7 +43,7 @@ router.route('/api/room/update').get(function(req,res){
     .then(function(result) {
         res.json({
             code: 200,
-            room: result
+            talk: result
         });
     })
 })
