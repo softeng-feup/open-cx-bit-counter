@@ -9,6 +9,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import PropTypes from "prop-types";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Dialog from "@material-ui/core/Dialog";
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -25,10 +29,15 @@ export default function ButtonAppBar() {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
+
+  const handleClickPop = () => {
+    setOpen(true);
+  }
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -38,8 +47,8 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" >
-            <MenuIcon aria-label="menu" aria-controls="main-menu" aria-haspopup="true" onClick={handleClick}/>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
+            <MenuIcon aria-controls="main-menu" aria-haspopup="true" onClick={handleClick}/>
             <Menu
               id="main-menu"
               anchorEl={anchorEl}
@@ -47,7 +56,7 @@ export default function ButtonAppBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Manage talks</MenuItem>
+              <MenuItem onClick={handleClickPop}>Manage talks</MenuItem>
             </Menu>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
@@ -59,7 +68,27 @@ export default function ButtonAppBar() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
+      <SimpleDialog
+        open={open}
+      />
     </div>
+  );
+}
+
+SimpleDialog.propTypes = {
+  open: PropTypes.bool.isRequired
+};
+
+function SimpleDialog(props) {
+  const { open } = props;
+
+  return (
+    <Dialog
+      aria-labelledby="simple-dialog-title"
+      open={open}
+    >
+      <DialogTitle id="simple-dialog-title">Add a talk to the system</DialogTitle>
+    </Dialog>
   );
 }
 
