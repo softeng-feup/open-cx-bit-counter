@@ -61,9 +61,13 @@ export default class AddTalkForm extends React.Component {
         end: this.state.end
       }
     
-      let res = axios.post('http://127.0.0.1:6200/api/talk/create', params);
-    
-      console.log(res.data);
+      axios.post('http://127.0.0.1:6200/api/talk/create', params)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(error => {
+      console.log(error.message);
+      });
     }
   
     handleSubmit(event) {
@@ -74,7 +78,7 @@ export default class AddTalkForm extends React.Component {
             ' and finishing at ' + this.state.end +
             ' in ' + this.state.room);
       event.preventDefault();
-      //this.addTalkToDataBase();
+      this.addTalkToDataBase();
       this.handleClose();
     }
   
