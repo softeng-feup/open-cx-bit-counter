@@ -33,7 +33,7 @@ export default class AddTalkForm extends React.Component {
       this.setState({orator: event.target.value});
     }
     handleDate(event) {
-      let date_s = new Date(event.target.value).getTime() / 1000;
+      let date_s = new Date(event.target.value).getTime();
       this.setState({date: date_s});
     }
     handleStart(event) {

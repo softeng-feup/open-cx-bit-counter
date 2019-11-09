@@ -58,7 +58,7 @@ router.route('/api/room/list').get(function(req,res){
  * 
  */
 router.route('/api/room/create').post(function(req,res){
-    let { name, maxOccupation } = data;
+    let { name, maxOccupation } = req.query;
 
     main.createRoom(name)
     .then(function(result) {
