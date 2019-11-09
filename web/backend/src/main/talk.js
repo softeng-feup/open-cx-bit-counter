@@ -20,7 +20,7 @@ module.exports = {
           });
           return;
         }
-        Room.findOneAndUpdate({ name: room }, { $push: { talk: talk } }, { new: true, upsert: true, useFindAndModify: false }, (error, doc) => {
+        Room.findOneAndUpdate({ name: room }, { $push: { talk: talk } }, { new: true, upsert: true, useFindAndModify: false }, (error, talk) => {
           if (error) {
             console.log(error)
             reject({
@@ -30,7 +30,7 @@ module.exports = {
           }
           resolve({
             code: 200,
-            message: 'talk created'
+            talk: talk
           })
         });
       })
@@ -42,7 +42,10 @@ module.exports = {
         .find()
         .exec(function (err, talkList) {
           console.log(talkList)
-          resolve(talkList)
+          resolve({
+            code: 200,
+            talk: talkList
+          })
         });
     })
   },

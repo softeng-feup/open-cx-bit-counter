@@ -3,9 +3,9 @@ const Talk = require('../models/Talk');
 
 
 module.exports = {
-  createRoom: function (name) {
+  createRoom: function (name, maxOccupation) {
     return new Promise(function (resolve, reject) {
-      new Room({ name: name }).save(function (err, room) {
+      new Room({ name, maxOccupation }).save(function (err, room) {
         resolve(room)
       });
     })
@@ -15,8 +15,8 @@ module.exports = {
       Room
         .find()
         .populate('talk', null, null, { sort: { 'start': -1 } })
-        .exec(function (err, room) {
-          resolve(room)
+        .exec(function (err, roomList) {
+          resolve(roomList)
         });
     })
   },
@@ -40,16 +40,24 @@ module.exports = {
         .exec(function (err, room) {
           if(room.talk[0] == undefined){
             reject(
-              {code:404,
+              {
+                code:404,
                 message : "no talks running at this time"
               }
             )
           }
           Talk.findOneAndUpdate({ _id:  room.talk[0]._id}, {$set: { occupation: value }, $push : { occupation_list: {value, date} }}, { new: true, useFindAndModify: false }, (error, talk) => {
             if (error) {
-              reject(error);
+              reject(
+                {
+                  code:404,
+                  message : error
+                });
             }
-            resolve(talk);
+            resolve({
+              code: 200,
+              talk: talk
+            });
           });
         });
     })
