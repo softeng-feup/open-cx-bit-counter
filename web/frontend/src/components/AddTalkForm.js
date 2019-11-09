@@ -33,19 +33,19 @@ export default class AddTalkForm extends React.Component {
       this.setState({orator: event.target.value});
     }
     handleDate(event) {
-      let date_s = new Date(event.target.value).getTime();
+      let date_s = new Date(event.target.value).getTime()/1000;
       this.setState({date: date_s});
     }
     handleStart(event) {
       let start_time = event.target.value;
       let aux = start_time.split(':');
-      start_time = aux[0] * 3600 + aux[1] * 60 + this.state.date;
+      start_time = (aux[0] * 3600 + aux[1] * 60 + this.state.date)*1000;
       this.setState({start: start_time});
     }
     handleEnd(event) {
       let end_time = event.target.value;
       let aux = end_time.split(':');
-      end_time = aux[0] * 3600 + aux[1] * 60 + this.state.date;
+      end_time = (aux[0] * 3600 + aux[1] * 60 + this.state.date)*1000;
       this.setState({end: end_time});
     }
     handleRoom(event) {
@@ -61,7 +61,7 @@ export default class AddTalkForm extends React.Component {
         end: this.state.end
       }
     
-      axios.post('http://127.0.0.1:6200/api/talk/create', params)
+      axios.post('http://127.0.0.1:6200/api/talk/create', null, {params})
       .then((response) => {
         console.log(response);
       })
