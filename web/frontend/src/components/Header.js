@@ -39,7 +39,7 @@ export default function ButtonAppBar() {
   const handleClickPop = () => {
     setOpen(true);
     setAnchorEl(null);
-  }
+  };
 
   const handleClose = () => {
     setAnchorEl(null);

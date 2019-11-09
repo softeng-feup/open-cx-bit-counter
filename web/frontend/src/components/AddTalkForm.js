@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class AddTalkForm extends React.Component {
     constructor(props) {
@@ -43,6 +44,21 @@ export default class AddTalkForm extends React.Component {
     handleRoom(event) {
       this.setState({room: event.target.value});
     }
+
+    /*addTalkToDataBase(){
+      let params = {
+        title: this.state.title,
+        orator: this.state.orator,
+        date: this.state.date,
+        start: this.state.start,
+        end: this.state.end,
+        room: this.state.room
+      }
+    
+      let res = axios.post('http://127.0.0.1:6200/api/talk/create', params);
+    
+      console.log(res.data);
+    }*/
   
     handleSubmit(event) {
       alert('Added talk: ' + this.state.title + 
@@ -52,6 +68,7 @@ export default class AddTalkForm extends React.Component {
             ' and finishing at ' + this.state.end +
             ' in ' + this.state.room);
       event.preventDefault();
+      //this.addTalkToDataBase();
       this.handleClose();
     }
   
@@ -89,4 +106,4 @@ export default class AddTalkForm extends React.Component {
         </form>
       );
     }
-  }
+}
