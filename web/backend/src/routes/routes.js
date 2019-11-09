@@ -24,7 +24,7 @@ router.route('/api/room/list').get(function(req,res){
     }
 })
 
-router.route('/api/room/create').get(function(req,res){
+router.route('/api/room/create').post(function(req,res){
     let { name } = data;
 
     main.createRoom(name)
@@ -36,7 +36,7 @@ router.route('/api/room/create').get(function(req,res){
     })
 })
 
-router.route('/api/room/update').get(function(req,res){
+router.route('/api/room/update').post(function(req,res){
     let {name} = req.query;
     let {occupation} = req.query;
     main.updateRoomOccupation(name, occupation)
@@ -49,7 +49,7 @@ router.route('/api/room/update').get(function(req,res){
 })
 
 
-router.route('/api/talk/create').get(function(req,res){
+router.route('/api/talk/create').post(function(req,res){
     let {title} = req.query;
     let {orator} = req.query;
     let {room} = req.query;
