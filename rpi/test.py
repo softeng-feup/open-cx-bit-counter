@@ -5,8 +5,16 @@ import cvlib as cv
 import threading
 import time
 from PIL import Image
+import requests
+import os
+
+
+os.environ['NO_PROXY'] = '127.0.0.1'
 
 frames = []
+
+ROOM_NAME = 'B350'
+faces = []
 
 class ImageGrabber(threading.Thread):
     def __init__(self, ID):
@@ -35,6 +43,13 @@ class ImageGrabber(threading.Thread):
 
 
 
+#send to the database
+def printit():
+  r = requests.post('http://127.0.0.1:6200/api/room/update?name=' + ROOM_NAME + '&occupation=' + str(len(faces)))
+  print(r.status_code, r.reason, len(faces))
+  threading.Timer(1.0, printit).start()
+
+printit()
 
 grabber = ImageGrabber(0)
 grabber.start()
@@ -49,12 +64,13 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 
 time.sleep(2)
 
+
 while True:
-    print("new frame")
+    #print("new frame")
     # Capture frame-by-frame
     im = frames[0]
     faces, confidences = cv.detect_face(im)
-    print(faces)
+    #print(faces)
 	# loop through detected faces and add bounding box
     for face in faces:
         (startX,startY) = face[0],face[1]
@@ -71,6 +87,8 @@ while True:
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
+
+
 
 # When everything is done, release the capture
 video_capture.release()
