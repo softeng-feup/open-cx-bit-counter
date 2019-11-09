@@ -14,6 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import AddTalk from './AddTalkForm';
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -39,12 +40,13 @@ export default function ButtonAppBar() {
   const handleClickPop = () => {
     setOpen(true);
     setAnchorEl(null);
-  }
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
     setOpen(false);
   };
+
 
   return (
     <div className={classes.root}>
