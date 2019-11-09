@@ -33,32 +33,38 @@ export default class AddTalkForm extends React.Component {
       this.setState({orator: event.target.value});
     }
     handleDate(event) {
-      this.setState({date: event.target.value});
+      let date_s = new Date(event.target.value).getTime() / 1000;
+      this.setState({date: date_s});
     }
     handleStart(event) {
-      this.setState({start: event.target.value});
+      let start_time = event.target.value;
+      let aux = start_time.split(':');
+      start_time = aux[0] * 3600 + aux[1] * 60 + this.state.date;
+      this.setState({start: start_time});
     }
     handleEnd(event) {
-      this.setState({end: event.target.value});
+      let end_time = event.target.value;
+      let aux = end_time.split(':');
+      end_time = aux[0] * 3600 + aux[1] * 60 + this.state.date;
+      this.setState({end: end_time});
     }
     handleRoom(event) {
       this.setState({room: event.target.value});
     }
 
-    /*addTalkToDataBase(){
+    addTalkToDataBase(){
       let params = {
         title: this.state.title,
         orator: this.state.orator,
-        date: this.state.date,
+        room: this.state.room,
         start: this.state.start,
-        end: this.state.end,
-        room: this.state.room
+        end: this.state.end
       }
     
       let res = axios.post('http://127.0.0.1:6200/api/talk/create', params);
     
       console.log(res.data);
-    }*/
+    }
   
     handleSubmit(event) {
       alert('Added talk: ' + this.state.title + 
