@@ -50,18 +50,18 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
-            <MenuIcon aria-controls="main-menu" aria-haspopup="true" onClick={handleClick} />
-            <Menu
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
+            <MenuIcon aria-controls="main-menu" aria-haspopup="true" />
+          </IconButton>
+          <Menu
               id="main-menu"
               anchorEl={anchorEl}
               keepMounted
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClickPop}>Manage talks</MenuItem>
-            </Menu>
-          </IconButton>
+            <MenuItem onClick={handleClickPop}>Manage talks</MenuItem>
+          </Menu>
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
