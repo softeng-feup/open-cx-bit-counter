@@ -46,23 +46,31 @@ export default class Home extends Component {
           const talkDate = talkStartDate.toDateString();
 
           let startTime = '';
-
-          startTime  += talkStartDate.getHours().toString() 
+          
           if(talkStartDate.getHours() < 10){
             startTime  += '0';
           }
-          startTime  += ':' + talkStartDate.getMinutes().toString() 
+          startTime  += talkStartDate.getHours().toString()
+
+          startTime  += ':';
           if(talkStartDate.getMinutes() < 10){
             startTime  += '0';
           }
-          startTime  += ' - ' + talkEndDate.getHours().toString() 
+          startTime  +=  talkStartDate.getMinutes().toString() 
+          
+          startTime  += ' - '
+          
           if(talkEndDate.getHours() < 10){
             startTime  += '0';
           }
-          startTime  += ':' + talkEndDate.getMinutes().toString() 
+          startTime += talkEndDate.getHours().toString() 
+          
+          startTime  += ':' 
+          
           if(talkEndDate.getMinutes() < 10){
             startTime  += '0';
           }
+          startTime += talkEndDate.getMinutes().toString() 
           mTalk.room = room[i].name
           mTalk.hour = startTime
           let newDate = true;
