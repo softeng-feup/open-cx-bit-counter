@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import CloseButton from '@material-ui/core/Button';
 
 export default class AddTalkForm extends React.Component {
     constructor(props) {
@@ -84,7 +85,10 @@ export default class AddTalkForm extends React.Component {
   
     render() {
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} >
+          <CloseButton className="close-button" onClick={this.handleClose} >
+            <legend>X</legend>
+          </CloseButton>
           <fieldset>
             <legend>Add a talk</legend>
             <label>
