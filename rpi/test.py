@@ -12,6 +12,7 @@ import os
 os.environ['NO_PROXY'] = '127.0.0.1'
 
 frames = []
+lastImg
 
 ROOM_NAME = 'B350'
 faces = []
@@ -35,10 +36,11 @@ class ImageGrabber(threading.Thread):
                 frames.append(im)
                 count=1
 # show the frame
+            lastImg = im
             frames[0]=im
             #cv2.imshow("Frame", image)
             
-
+ 
 # clear the stream in preparation for the next frame
 
 
@@ -47,7 +49,7 @@ class ImageGrabber(threading.Thread):
 def printit():
   r = requests.post('http://127.0.0.1:6200/api/room/update?name=' + ROOM_NAME + '&occupation=' + str(len(faces)))
   print(r.status_code, r.reason, len(faces))
-  threading.Timer(1.0, printit).start()
+  threading.Timer(5.0, printit).start()
 
 printit()
 

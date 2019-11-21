@@ -3,15 +3,12 @@ import Calendar from 'react-calendar';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 
 import axios from 'axios';
+
+import Table from'./Table'
 
 
 export default class Home extends Component {
@@ -90,7 +87,8 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.updateTalkList(), 1000);
+    this.updateTalkList();
+    this.interval = setInterval(() => this.updateTalkList(), 5000);
   }
 
   render() {
@@ -105,7 +103,6 @@ export default class Home extends Component {
       }
     }
 
-    console.log(daysArray)
     
     return (
       <>
@@ -115,31 +112,9 @@ export default class Home extends Component {
             value={this.state.date} />
         </Box>
 
+
         <Box boxShadow={10} className="rooms-container">
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Title</TableCell>
-                <TableCell align="right">Orator</TableCell>
-                <TableCell align="right">Hour</TableCell>
-                <TableCell align="right">Room</TableCell>
-                <TableCell align="right">Ocupation</TableCell>
-              </TableRow>
-            </TableHead>
-            {talkArray !== undefined ? (
-              <TableBody>
-                {talkArray.map(talk => (
-                  <TableRow key={talk._id}>
-                    <TableCell component="th" scope="row">{talk.title}</TableCell>
-                    <TableCell align="right">{talk.orator}</TableCell>
-                    <TableCell align="right">{talk.hour}</TableCell>
-                    <TableCell align="right">{talk.room}</TableCell>
-                    <TableCell align="right">{talk.occupation}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            ) : null}
-          </Table>
+          <Table talkArray={talkArray}/>
         </Box>
       </>
     )
