@@ -5,6 +5,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ReactApexChart from "react-apexcharts";
 const styles = theme => ({
@@ -115,6 +116,7 @@ class Table extends React.Component {
                       <Typography align="left" style={{padding:'10px'}}><b>Room - </b>{talk.room}</Typography>
                       <Typography align="left" style={{padding:'10px'}}><b>Occupation - </b>{talk.occupation}</Typography>
                     </div>
+                    <Button align="right" style={{padding:'10px'}}>Delete</Button>
                   </div>
 
                 </ExpansionPanelDetails>
