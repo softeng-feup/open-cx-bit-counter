@@ -16,7 +16,7 @@ module.exports = {
         if (error) {
           reject({
             code: 409,
-            message: 'Dupliacte Data',
+            message: 'Duplicate Data',
           });
           return;
         }
@@ -35,6 +35,20 @@ module.exports = {
         });
       })
     })
+  },
+  deleteTalk: function (title, orator, room, start, end) {
+    return new Promise(function (resolve, reject) {
+    
+      Talk.deleteOne({title:title, orator:orator, room:room, start:start, end:end}, function (error) {
+        if (error) {
+          reject({
+            code: 409,
+            message: 'Duplicate Data',
+          });
+          return;
+        }
+      });
+    });
   },
   listAll: function () {
     return new Promise(function (resolve, reject) {

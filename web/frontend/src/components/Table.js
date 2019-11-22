@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ReactApexChart from "react-apexcharts";
+import axios from 'axios';
+
 const styles = theme => ({
   root: {
     width: '100%'
@@ -63,6 +65,16 @@ class Table extends React.Component {
     });
   };
 
+  handleDelete(talk) {
+    axios.post('http://127.0.0.1:6200/api/talk/delete', null, {talk})
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(error => {
+      console.log(error.message);
+      });
+  };
+
   componentDidUpdate(prevProps) {
     if (prevProps.talkArray !== this.props.talkArray) {
       for (let i = 0; i < this.props.talkArray.length; i++) {
@@ -98,7 +110,7 @@ class Table extends React.Component {
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography component="th" scope="row" style={{fontSize:'24px'}}><b>{talk.title}</b></Typography>
                 </ExpansionPanelSummary>
-                <Button class="delete-button">Delete</Button>
+                <Button class="delete-button" onClick={this.handleDelete(talk)}>Delete</Button>
                 <ExpansionPanelDetails>
                   <div class="col-md-12" style={{ display: 'flex' }}>
                     <div class="col-md-6">
