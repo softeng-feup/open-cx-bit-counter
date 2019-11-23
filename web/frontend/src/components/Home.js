@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import axios from 'axios';
 
 import Table from'./Table'
-
+import Statistics from './Statistics'
 
 export default class Home extends Component {
 
@@ -123,6 +123,10 @@ export default class Home extends Component {
 
         <Box boxShadow={10} className="rooms-container">
           <Table talkArray={talkArray}/>
+        </Box>
+
+        <Box boxShadow={10} className="rooms-container">
+          <Statistics talkArray={talkArray}/>
         </Box>
       </>
     )
