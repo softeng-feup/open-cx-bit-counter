@@ -96,7 +96,7 @@ export default class AddTalkForm extends React.Component {
               <input type="text" title={this.state.title} onChange={this.handleTitle}/>
             </label>
             <label>
-              Spealer:
+              Speaker:
               <input type="text" speaker={this.state.speaker} onChange={this.handleSpeaker}/>
             </label>
             <label>

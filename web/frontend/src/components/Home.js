@@ -120,14 +120,14 @@ export default class Home extends Component {
             value={this.state.date} />
         </Box>
 
-
         <Box boxShadow={10} className="rooms-container">
           <Table talkArray={talkArray}/>
         </Box>
-
-        <Box boxShadow={10} className="rooms-container">
-          <Statistics talkArray={talkArray}/>
-        </Box>
+        {talkArray.length != 0 ? (
+          <Box boxShadow={10} className="rooms-container">
+            <Statistics talkArray={talkArray}/>
+          </Box>
+        ) : null}
       </>
     )
   }
