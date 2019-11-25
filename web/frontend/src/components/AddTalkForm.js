@@ -8,14 +8,14 @@ export default class AddTalkForm extends React.Component {
       const { setOpen } = props;
 
       this.state = {title: '',
-                    orator: '',
+                    speaker: '',
                     date: '',
                     start: '',
                     end: '',
                     room: ''};
   
       this.handleTitle = this.handleTitle.bind(this);
-      this.handleOrator = this.handleOrator.bind(this);
+      this.handleSpeaker = this.handleSpeaker.bind(this);
       this.handleDate = this.handleDate.bind(this);
       this.handleStart = this.handleStart.bind(this);
       this.handleEnd = this.handleEnd.bind(this);
@@ -30,8 +30,8 @@ export default class AddTalkForm extends React.Component {
     handleTitle(event) {
       this.setState({title: event.target.value});
     }
-    handleOrator(event) {
-      this.setState({orator: event.target.value});
+    handleSpeaker(event) {
+      this.setState({speaker: event.target.value});
     }
     handleDate(event) {
       let date_s = new Date(event.target.value).getTime()/1000;
@@ -56,7 +56,7 @@ export default class AddTalkForm extends React.Component {
     addTalkToDataBase(){
       let params = {
         title: this.state.title,
-        orator: this.state.orator,
+        speaker: this.state.speaker,
         room: this.state.room,
         start: this.state.start,
         end: this.state.end
@@ -73,7 +73,7 @@ export default class AddTalkForm extends React.Component {
   
     handleSubmit(event) {
       alert('Added talk: ' + this.state.title + 
-            ' by ' + this.state.orator +
+            ' by ' + this.state.speaker +
             ' in ' + this.state.date +
             ' starting at ' + this.state.start + 
             ' and finishing at ' + this.state.end +
@@ -96,8 +96,8 @@ export default class AddTalkForm extends React.Component {
               <input type="text" title={this.state.title} onChange={this.handleTitle}/>
             </label>
             <label>
-              Orator:
-              <input type="text" orator={this.state.orator} onChange={this.handleOrator}/>
+              Spealer:
+              <input type="text" speaker={this.state.speaker} onChange={this.handleSpeaker}/>
             </label>
             <label>
               Date:

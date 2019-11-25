@@ -103,7 +103,7 @@ router.route('/api/room/update').post(function(req,res){
  * @apiDescription This route is responsible for a talk
  * 
  * @apiParam  {String} title - The title of the talk
- * @apiParam  {String} orator - The orator's name of the talk
+ * @apiParam  {String} speaker - The speaker's name of the talk
  * @apiParam  {String} room - The room of the talk
  * @apiParam  {Number} start - The starting time of the talk in unix (ex: 1573306076000) 13 numbers
  * @apiParam  {Number} end - The ending time of the talk in unix (ex: 1573306076000) 13 numbers
@@ -116,11 +116,11 @@ router.route('/api/room/update').post(function(req,res){
  */
 router.route('/api/talk/create').post(function(req,res){
     let {title} = req.query;
-    let {orator} = req.query;
+    let {speaker} = req.query;
     let {room} = req.query;
     let {start} = req.query;
     let {end} = req.query;
-    talk.createTalk(title, orator, room, start, end)
+    talk.createTalk(title, speaker, room, start, end)
     .then(function(result) {
         res.json(result);
     })

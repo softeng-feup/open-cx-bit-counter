@@ -53,12 +53,12 @@ class Statistics extends React.Component {
             if(maxAux >= max) {
                 max = maxAux
                 room = this.props.talkArray[i].room;
-                speaker = this.props.talkArray[i].orator;
+                speaker = this.props.talkArray[i].speaker;
                 min = Math.min(...this.props.talkArray[i].occupation_list.map(s => s.value));
                 title = this.props.talkArray[i].title;
             }
         }
-        this.orator = speaker;
+        this.speaker = speaker;
         this.max = max;
         this.room = room;
         this.min = min;
@@ -86,7 +86,7 @@ class Statistics extends React.Component {
                   <div class="col-md-12" style={{ display: 'flex' }}>
                     <div class="col-md-6 float-left" style={{ alignSelf: 'center' }}>
                       <Typography align="left" style={{padding:'10px'}}><b>Title - </b>{this.title}</Typography>
-                      <Typography align="left" style={{padding:'10px'}}><b>Orator - </b>{this.orator}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Speaker - </b>{this.speaker}</Typography>
                       <Typography align="left" style={{padding:'10px'}}><b>Room - </b>{this.room}</Typography>
                       <Typography align="left" style={{padding:'10px'}}><b>Max Atendees - </b>{this.max}</Typography>
                       <Typography align="left" style={{padding:'10px'}}><b>Min Atendees- </b>{this.min}</Typography>

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var Talk = new Schema({
     title: String,
-    orator: String,
+    speaker: String,
     start: Date,
     end: Date,
     occupation: {type: Number, default: 0},
