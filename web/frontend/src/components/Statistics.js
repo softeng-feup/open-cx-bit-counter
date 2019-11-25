@@ -50,12 +50,20 @@ class Statistics extends React.Component {
               max = maxAux;
               this.max = maxAux
               this.room = this.props.talkArray[i].room;
+
               this.speaker = this.props.talkArray[i].speaker;
               this.min = Math.min(...this.props.talkArray[i].occupation_list.map(s => s.value));
               this.title = this.props.talkArray[i].title;
+              
               let sum  = this.props.talkArray[i].occupation_list.map(item => item.value).reduce((prev, next) => prev + next);
-              console.log(sum);
               this.average = sum / this.props.talkArray[i].occupation_list.length;
+
+              let res = this.props.talkArray[i].occupation_list.filter(obj => obj.value == max);
+              let dateAux = res[0].date;
+              let day = dateAux.split('T');
+              let time = day[1].split('.');
+              
+              this.timeAtMax = time[0];
             }
         }
     }
@@ -88,7 +96,7 @@ class Statistics extends React.Component {
                     </div>
                     <div class="col-md-6 float-right">
                         <Typography align="left" style={{padding:'10px'}}><b>Average - </b>{this.average}</Typography>
-                        <Typography align="left" style={{padding:'10px'}}><b>Time @ Max Atendees - </b></Typography>
+                        <Typography align="left" style={{padding:'10px'}}><b>Time @ Max Atendees - </b>{this.timeAtMax}</Typography>
                     </div>
                   </div>
 
