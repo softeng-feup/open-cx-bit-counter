@@ -170,7 +170,7 @@ module.exports = router;
  * @apiError (404) {Number} code - the updated talk
  * @apiError (404) {String} message - error message
  */
-router.route('/api/talk/delete').post(function(req,res){
+router.route('/api/talk/delete').delete(function(req,res){
     let {title} = req.query;
     let {orator} = req.query;
     let {room} = req.query;

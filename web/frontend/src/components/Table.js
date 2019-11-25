@@ -66,7 +66,7 @@ class Table extends React.Component {
   };
 
   handleDelete(talk) {
-    axios.post('http://127.0.0.1:6200/api/talk/delete', null, {talk})
+    axios.delete('http://127.0.0.1:6200/api/talk/delete', null, {talk})
       .then((response) => {
         console.log(response);
       })
