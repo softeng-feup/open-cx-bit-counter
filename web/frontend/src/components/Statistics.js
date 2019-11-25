@@ -41,22 +41,28 @@ class Statistics extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
+    console.log(this.props.talkArray);
     if(prevProps.talkArray !== this.props.talkArray) {
         let max = -1;
-        // let min = 90000;
+        let min = 0;
         let speaker = '';
         let room = '';
+        let title = '';
         for (let i = 0; i < this.props.talkArray.length; i++) {
-            let maxAux = Math.max(this.props.talkArray[i].occupation_list);
-            if(maxAux > max) {
+            let maxAux =  Math.max(...this.props.talkArray[i].occupation_list.map(s => s.value));
+            if(maxAux >= max) {
                 max = maxAux
-                room = this.props.talkArray[i]._room;
-                speaker = this.props.orator;
+                room = this.props.talkArray[i].room;
+                speaker = this.props.talkArray[i].orator;
+                min = Math.min(...this.props.talkArray[i].occupation_list.map(s => s.value));
+                title = this.props.talkArray[i].title;
             }
         }
         this.orator = speaker;
         this.max = max;
         this.room = room;
+        this.min = min;
+        this.title = title;
     }
   }
 
@@ -66,8 +72,6 @@ class Statistics extends React.Component {
 
     const { talkArray } = this.state;
 
-    console.log(talkArray)
-
     return (
 
       <>
@@ -75,16 +79,17 @@ class Statistics extends React.Component {
           <div className={classes.root}>
               <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography component="th" scope="row" style={{fontSize:'24px'}}><b>Statistics</b></Typography>
+                  <Typography component="th" scope="row" style={{fontSize:'24px'}}><b>Best Talk</b></Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
 
                   <div class="col-md-12" style={{ display: 'flex' }}>
                     <div class="col-md-6 float-left" style={{ alignSelf: 'center' }}>
-                      <Typography align="left" style={{padding:'10px'}}><b>MaxOrator - </b>{this.orator}</Typography>
-                      <Typography align="left" style={{padding:'10px'}}><b>MaxRoom - </b>{this.room}</Typography>
-                      <Typography align="left" style={{padding:'10px'}}><b>Max - </b>{this.max}</Typography>
-                      <Typography align="left" style={{padding:'10px'}}><b>Min - </b>{this.min}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Title - </b>{this.title}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Orator - </b>{this.orator}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Room - </b>{this.room}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Max Atendees - </b>{this.max}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Min Atendees- </b>{this.min}</Typography>
                     </div>
                   </div>
 

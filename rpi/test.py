@@ -12,7 +12,7 @@ import os
 os.environ['NO_PROXY'] = '127.0.0.1'
 
 frames = []
-lastImg
+lastImg = None
 
 ROOM_NAME = 'B350'
 faces = []

@@ -85,7 +85,7 @@ class Table extends React.Component {
 
     const { talkArray, date } = this.state;
 
-    console.log(talkArray)
+    // console.log(talkArray)
 
     return (
 
