@@ -110,10 +110,10 @@ class Table extends React.Component {
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography component="th" scope="row" style={{fontSize:'24px'}}><b>{talk.title}</b></Typography>
                 </ExpansionPanelSummary>
-                <Button class="delete-button" onClick={this.handleDelete(talk)}>Delete</Button>
+                <Button className="delete-button" onClick={this.handleDelete(talk)}>Delete</Button>
                 <ExpansionPanelDetails>
-                  <div class="col-md-12" style={{ display: 'flex' }}>
-                    <div class="col-md-6">
+                  <div className="col-md-12" style={{ display: 'flex' }}>
+                    <div className="col-md-6">
                       <ReactApexChart
                         style={{ width: '100%' }}
                         options={talk.series.options}
@@ -122,7 +122,7 @@ class Table extends React.Component {
                         width="100%"
                       />
                     </div>
-                    <div class="col-md-6 float-left" style={{ alignSelf: 'center' }}>
+                    <div className="col-md-6 float-left" style={{ alignSelf: 'center' }}>
                       <Typography align="left" style={{padding:'10px'}}><b>Orator - </b>{talk.orator}</Typography>
                       <Typography align="left" style={{padding:'10px'}}><b>Hour - </b>{talk.hour}</Typography>
                       <Typography align="left" style={{padding:'10px'}}><b>Room - </b>{talk.room}</Typography>
