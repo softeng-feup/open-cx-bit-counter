@@ -91,7 +91,9 @@ router.route('/api/room/update').post(function(req,res){
     main.updateRoomOccupation(name, occupation)
     .then(function(result) {
         res.json(result);
-    })
+    }).catch((error) => {
+        res.json(result);
+    });
 })
 
 
