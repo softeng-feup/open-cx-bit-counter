@@ -170,11 +170,14 @@ router.route('/api/talk/list').get(function(req,res){
  * @apiError (404) {String} message - error message
  */
 router.route('/api/talk/delete').delete(function(req,res){
+    console.log("Delete request");
+    console.log(req.query);
     let {title} = req.query;
     let {orator} = req.query;
     let {room} = req.query;
     let {start} = req.query;
     let {end} = req.query;
+    console.log(title, orator, room, start, end);
     talk.deleteTalk(title, orator, room, start, end)
     .then(function(result) {
         res.json(result);

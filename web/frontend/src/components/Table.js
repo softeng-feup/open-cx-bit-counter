@@ -123,6 +123,7 @@ class Table extends React.Component {
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography component="th" scope="row" style={{fontSize:'24px'}}><b>{talk.title}</b></Typography>
                 </ExpansionPanelSummary>
+                <Button class="delete-button" onClick={this.handleDelete.bind(this,talk)}>Delete</Button>
                 <ExpansionPanelDetails>
                   <div className="col-md-12" style={{ display: 'flex' }}>
                     <div className="col-md-6">
@@ -143,7 +144,6 @@ class Table extends React.Component {
                   </div>
                  
                 </ExpansionPanelDetails>
-                <Button className="delete-button" onClick={this.handleDelete(talk)}>Delete</Button>
               </ExpansionPanel>
             ))}
 
