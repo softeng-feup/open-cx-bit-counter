@@ -65,20 +65,12 @@ class Table extends React.Component {
     });
   };
 
-  handleDelete = talk => () => {
+  handleDelete(talk, event){
     let params = {
-      title: talk.title,
-      orator: talk.orator,
-      room: talk.room,
-      start: talk.start,
-      end: talk.end
+      talk: talk
     }
     console.log('delete');
-    console.log(talk.title);
-    console.log(talk.orator);
-    console.log(talk.room);
-    console.log(talk.start);
-    console.log(talk.end);
+    console.log(talk);
     axios.delete('http://127.0.0.1:6200/api/talk/delete', null, {params})
       .then((response) => {
         console.log(response);
@@ -111,8 +103,6 @@ class Table extends React.Component {
 
     const { talkArray, date } = this.state;
 
-    console.log(talkArray)
-
     return (
 
       <>
@@ -123,7 +113,7 @@ class Table extends React.Component {
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography component="th" scope="row" style={{fontSize:'24px'}}><b>{talk.title}</b></Typography>
                 </ExpansionPanelSummary>
-                <Button class="delete-button" onClick={this.handleDelete.bind(this,talk)}>Delete</Button>
+                <Button class="delete-button" onClick={this.handleDelete.bind(this, talk)}>Delete</Button>
                 <ExpansionPanelDetails>
                   <div className="col-md-12" style={{ display: 'flex' }}>
                     <div className="col-md-6">
