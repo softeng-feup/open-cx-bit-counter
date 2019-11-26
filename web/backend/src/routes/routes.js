@@ -169,7 +169,7 @@ router.route('/api/talk/list').get(function(req,res){
  * @apiError (404) {Number} code - the updated talk
  * @apiError (404) {String} message - error message
  */
-router.route('/api/talk/delete').delete(function(req,res){
+router.route('/api/talk/delete').post(function(req,res){
     console.log("Delete request");
     console.log(req.query);
     let {id} = req.query;

@@ -38,7 +38,7 @@ module.exports = {
   },
   deleteTalk: function (id) {
     return new Promise(function (resolve, reject) {
-      Talk.deleteById(id, function (error) {
+      Talk.deleteOne(id, function (error) { //need to see which function of mangoose to use
         if (error) {
           reject({
             code: 409,

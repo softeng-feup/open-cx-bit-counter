@@ -65,13 +65,11 @@ class Table extends React.Component {
     });
   };
 
-  handleDelete(talk, event){
+  handleDelete(talk){
     let params = {
-      talk: talk
+      id: talk._id
     }
-    console.log('delete');
-    console.log(talk);
-    axios.delete('http://127.0.0.1:6200/api/talk/delete', null, {params})
+    axios.post('http://127.0.0.1:6200/api/talk/delete', null, {params})
       .then((response) => {
         console.log(response);
       })
