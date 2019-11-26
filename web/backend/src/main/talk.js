@@ -38,7 +38,7 @@ module.exports = {
   },
   deleteTalk: function (id) {
     return new Promise(function (resolve, reject) {
-      Talk.deleteOne({id:id}, function (error) {
+      Talk.deleteById(id, function (error) {
         if (error) {
           reject({
             code: 409,
