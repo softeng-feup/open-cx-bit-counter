@@ -36,9 +36,9 @@ module.exports = {
       })
     })
   },
-  deleteTalk: function (title, orator, room, start, end) {
+  deleteTalk: function (id) {
     return new Promise(function (resolve, reject) {
-      Talk.deleteOne({title:title, orator:orator, room:room, start:start, end:end}, function (error) {
+      Talk.deleteOne({id:id}, function (error) {
         if (error) {
           reject({
             code: 409,
