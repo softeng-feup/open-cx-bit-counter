@@ -37,7 +37,7 @@ module.exports = {
     })
   },
   deleteTalk: function (title, orator, room, start, end) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (reject) {
     
       Talk.deleteOne({title:title, orator:orator, room:room, start:start, end:end}, function (error) {
         if (error) {
