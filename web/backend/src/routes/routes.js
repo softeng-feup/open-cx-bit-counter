@@ -149,7 +149,6 @@ router.route('/api/talk/list').get(function(req,res){
         });
     })
 })
-module.exports = router;
 
 /**
  * 
@@ -181,3 +180,7 @@ router.route('/api/talk/delete').delete(function(req,res){
         res.json(result);
     })
 })
+
+module.exports = router;
+
+

@@ -37,8 +37,7 @@ module.exports = {
     })
   },
   deleteTalk: function (title, orator, room, start, end) {
-    return new Promise(function (reject) {
-    
+    return new Promise(function (resolve, reject) {
       Talk.deleteOne({title:title, orator:orator, room:room, start:start, end:end}, function (error) {
         if (error) {
           reject({
@@ -47,6 +46,10 @@ module.exports = {
           });
           return;
         }
+        resolve({
+          code: 200,
+          talk: talk
+        })
       });
     });
   },
