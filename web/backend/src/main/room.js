@@ -46,6 +46,14 @@ module.exports = {
               }
             )
           }
+          if(room.talk[0] === undefined){
+            return reject(
+              {
+                code:404,
+                message : "no talks running at this time"
+              }
+            )
+          }
           Talk.findOneAndUpdate({ _id:  room.talk[0]._id}, {$set: { occupation: value }, $push : { occupation_list: {value, date} }}, { new: true, useFindAndModify: false }, (error, talk) => {
             if (error) {
               reject(
