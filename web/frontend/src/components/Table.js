@@ -68,7 +68,6 @@ class Table extends React.Component {
     if (prevProps.talkArray !== this.props.talkArray) {
       for (let i = 0; i < this.props.talkArray.length; i++) {
         let series = JSON.parse(JSON.stringify(chartJson));
-        console.log(series)
         this.props.talkArray[i].series = [];
         for (let j = 0; j < this.props.talkArray[i].occupation_list.length; j++) {
           series.series[0].data.push(this.props.talkArray[i].occupation_list[j].value)
@@ -76,7 +75,6 @@ class Table extends React.Component {
         }
         this.props.talkArray[i].series = series;
       }
-      console.log(this.props.talkArray)
 
       this.setState({
         talkArray: this.props.talkArray
@@ -90,7 +88,7 @@ class Table extends React.Component {
 
     const { talkArray, date } = this.state;
 
-    // console.log(talkArray)
+    console.log(talkArray)
 
     return (
 
@@ -117,7 +115,7 @@ class Table extends React.Component {
                       />
                     </div>
                     <div class="col-md-6 float-left" style={{ alignSelf: 'center' }}>
-                      <Typography align="left" style={{ padding: '10px' }}><b>Speaker - </b>{talk.speaker}</Typography>
+                      <Typography align="left" style={{ padding: '10px' }}><b>Orator - </b>{talk.orator}</Typography>
                       <Typography align="left" style={{ padding: '10px' }}><b>Hour - </b>{talk.hour}</Typography>
                       <Typography align="left" style={{ padding: '10px' }}><b>Room - </b>{talk.room}</Typography>
                       <Typography align="left" style={{ padding: '10px' }}><b>Occupation - </b>{talk.occupation}</Typography>
