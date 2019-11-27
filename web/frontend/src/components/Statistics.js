@@ -60,10 +60,7 @@ class Statistics extends React.Component {
 
               let res = this.props.talkArray[i].occupation_list.filter(obj => obj.value == max);
               let dateAux = res[0].date;
-              let day = dateAux.split('T');
-              let time = day[1].split('.');
-              
-              this.timeAtMax = time[0];
+              this.timeAtMax = dateAux.split('T').join('.').split('.')[1];
             }
         }
     }
@@ -95,7 +92,7 @@ class Statistics extends React.Component {
                       <Typography align="left" style={{padding:'10px'}}><b>Min Atendees- </b>{this.min}</Typography>
                     </div>
                     <div class="col-md-6 float-right">
-                        <Typography align="left" style={{padding:'10px'}}><b>Average - </b>{this.average}</Typography>
+                        <Typography align="left" style={{padding:'10px'}}><b>Average Atendees - </b>{this.average}</Typography>
                         <Typography align="left" style={{padding:'10px'}}><b>Time @ Max Atendees - </b>{this.timeAtMax}</Typography>
                     </div>
                   </div>
