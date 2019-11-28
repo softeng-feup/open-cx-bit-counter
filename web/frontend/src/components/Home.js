@@ -114,7 +114,7 @@ export default class Home extends Component {
     
     return (
       <>
-      {daysArray.length == 1  ? (
+      {daysArray.length != 0  ? (
         <Box boxShadow={10} className="rooms-container"> 
           <Statistics daysArray={daysArray} type="all"/>
         </Box>
@@ -128,7 +128,7 @@ export default class Home extends Component {
         <Box boxShadow={10} className="rooms-container">
           <Table talkArray={talkArray}/>
         </Box>
-        {(talkArray.length != 0 && daysArray.length != 1) ? (
+        {talkArray.length != 0 ? (
           <Box boxShadow={10} className="rooms-container">
             <Statistics talkArray={talkArray} type="talk"/>
           </Box>
