@@ -16,7 +16,7 @@ module.exports = {
         if (error) {
           reject({
             code: 409,
-            message: 'Dupliacte Data',
+            message: 'Duplicate Data',
           });
           return;
         }
@@ -35,6 +35,19 @@ module.exports = {
         });
       })
     })
+  },
+  deleteTalk: function (id) {
+    return new Promise(function (resolve, reject) {
+      Talk
+        .findById(id)
+        .remove() 
+        .exec(function (talk) { //need to see which function of mangoose to use
+        resolve({
+          code: 200,
+          talk: talk
+        })
+      });
+    });
   },
   listAll: function () {
     return new Promise(function (resolve, reject) {

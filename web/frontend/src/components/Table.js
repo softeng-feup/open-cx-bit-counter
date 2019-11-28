@@ -5,8 +5,11 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ReactApexChart from "react-apexcharts";
+import axios from 'axios';
+
 const styles = theme => ({
   root: {
     width: '100%'
@@ -63,6 +66,19 @@ class Table extends React.Component {
     });
   };
 
+  handleDelete(talk){
+    let params = {
+      id: talk._id
+    }
+    axios.post('http://127.0.0.1:6200/api/talk/delete', null, {params})
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(error => {
+      console.log(error.message);
+      });
+  };
+
   componentDidUpdate(prevProps) {
 
     if (prevProps.talkArray !== this.props.talkArray) {
@@ -88,8 +104,6 @@ class Table extends React.Component {
 
     const { talkArray, date } = this.state;
 
-    console.log(talkArray)
-
     return (
 
       <>
@@ -100,12 +114,10 @@ class Table extends React.Component {
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography component="th" scope="row" style={{ fontSize: '24px' }}><b>{talk.title}</b></Typography>
                 </ExpansionPanelSummary>
+                <Button className="delete-button" onClick={this.handleDelete.bind(this, talk)}>Delete</Button>
                 <ExpansionPanelDetails>
-
-                  {console.log(talk)}
-
-                  <div class="col-md-12" style={{ display: 'flex' }}>
-                    <div class="col-md-6">
+                  <div className="col-md-12" style={{ display: 'flex' }}>
+                    <div className="col-md-6">
                       <ReactApexChart
                         style={{ width: '100%' }}
                         options={talk.series.options}
@@ -114,14 +126,14 @@ class Table extends React.Component {
                         width="100%"
                       />
                     </div>
-                    <div class="col-md-6 float-left" style={{ alignSelf: 'center' }}>
-                      <Typography align="left" style={{ padding: '10px' }}><b>Orator - </b>{talk.orator}</Typography>
-                      <Typography align="left" style={{ padding: '10px' }}><b>Hour - </b>{talk.hour}</Typography>
-                      <Typography align="left" style={{ padding: '10px' }}><b>Room - </b>{talk.room}</Typography>
-                      <Typography align="left" style={{ padding: '10px' }}><b>Occupation - </b>{talk.occupation}</Typography>
+                    <div className="col-md-6 float-left" style={{ alignSelf: 'center' }}>
+                      <Typography align="left" style={{padding:'10px'}}><b>Orator - </b>{talk.orator}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Hour - </b>{talk.hour}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Room - </b>{talk.room}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Occupation - </b>{talk.occupation}</Typography>
                     </div>
                   </div>
-
+                 
                 </ExpansionPanelDetails>
               </ExpansionPanel>
             ))}
