@@ -131,7 +131,7 @@ router.route('/api/talk/create').post(function(req,res){
 
 /**
  * 
- * @api {Post} /api/talk/create - Update room
+ * @api {Post} /api/talk/list - Update room
  * @apiName GetTalks
  * @apiGroup talk
  * @apiDescription This route is responsible for giving a list of all talks
@@ -151,4 +151,37 @@ router.route('/api/talk/list').get(function(req,res){
         });
     })
 })
+
+/**
+ * 
+ * @api {Post} /api/talk/delete - Delete talk
+ * @apiName DeleteTalk
+ * @apiGroup talk
+ * @apiDescription This route is responsible for deleting a talk
+ * 
+ * @apiParam  {String} title - The title of the talk
+ * @apiParam  {String} speaker - The speaker's name of the talk
+ * @apiParam  {String} room - The room of the talk
+ * @apiParam  {Number} start - The starting time of the talk in unix (ex: 1573306076000) 13 numbers
+ * @apiParam  {Number} end - The ending time of the talk in unix (ex: 1573306076000) 13 numbers
+ * 
+ * @apiSuccess (200) {Object} talk - the created talk
+ * @apiSuccess (200) {Number} code - code result
+ * 
+ * @apiError (404) {Number} code - the updated talk
+ * @apiError (404) {String} message - error message
+ */
+router.route('/api/talk/delete').post(function(req,res){
+    console.log("Delete request");
+    console.log(req.query);
+    let {id} = req.query;
+    console.log(id);
+    talk.deleteTalk(id)
+    .then(function(result) {
+        res.json(result);
+    })
+})
+
 module.exports = router;
+
+

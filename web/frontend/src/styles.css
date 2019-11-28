@@ -20,4 +20,7 @@
 .statistics-container {
   margin-top: 40px;
   margin-bottom: 40px;
+  
+.delete-button {
+  float:right;
 }

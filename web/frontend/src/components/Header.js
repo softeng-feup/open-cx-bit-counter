@@ -60,7 +60,7 @@ export default function ButtonAppBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-            <MenuItem onClick={handleClickPop}>Manage talks</MenuItem>
+            <MenuItem onClick={handleClickPop}>Add talks</MenuItem>
           </Menu>
           <Typography variant="h6" className={classes.title}>
             News

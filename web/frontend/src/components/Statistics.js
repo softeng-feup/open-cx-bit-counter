@@ -134,15 +134,15 @@ class Statistics extends React.Component {
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
 
-                  <div class="col-md-12" style={{ display: 'flex' }}>
-                    <div class="col-md-6 float-left" style={{ alignSelf: 'center' }}>
+                  <div className="col-md-12" style={{ display: 'flex' }}>
+                    <div className="col-md-6 float-left" style={{ alignSelf: 'center' }}>
                       <Typography align="left" style={{padding:'10px'}}><b>Title - </b>{this.title}</Typography>
                       <Typography align="left" style={{padding:'10px'}}><b>Speaker - </b>{this.speaker}</Typography>
                       <Typography align="left" style={{padding:'10px'}}><b>Room - </b>{this.room}</Typography>
                       <Typography align="left" style={{padding:'10px'}}><b>Max Atendees - </b>{this.max}</Typography>
                       <Typography align="left" style={{padding:'10px'}}><b>Min Atendees- </b>{this.min}</Typography>
                     </div>
-                    <div class="col-md-6 float-right">
+                    <div className="col-md-6 float-right">
                         <Typography align="left" style={{padding:'10px'}}><b>Average Atendees - </b>{this.average}</Typography>
                         <Typography align="left" style={{padding:'10px'}}><b>Time @ Max Atendees - </b>{this.timeAtMax}</Typography>
                     </div>
