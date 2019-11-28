@@ -28,8 +28,11 @@ class Statistics extends React.Component {
 
   constructor(props) {
     super(props);
-    
-    this.displayEx = true;
+
+    this.max = 0;
+    this.min = 0;
+    this.average = 0;
+    this.timeAtMax = "";
 
     this.state = {
       talkArray: this.props.talkArray
@@ -43,17 +46,11 @@ class Statistics extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    this.displayEx = true;
-
     if (prevProps === this.props)
       return;
 
     let max = -1;
     if(this.props.type === "talk") {
-      if(this.props.talkArray.length == 1 && this.props.talkArray[0].occupation_list.length == 0){
-        this.displayEx = false;
-        return;
-      }
 
       this.expansionTitle = "Best Talk of the Day";
 
@@ -74,6 +71,14 @@ class Statistics extends React.Component {
           let res = this.props.talkArray[i].occupation_list.filter(obj => obj.value === maxAux);
           let dateAux = res[0].date;
           this.timeAtMax = dateAux.split('T').join('.').split('.')[1];
+
+          continue;
+        }
+
+        if(maxAux == -Infinity) {
+          this.room = this.props.talkArray[i].room;
+          this.speaker = this.props.talkArray[i].speaker;
+          this.title = this.props.talkArray[i].title;
         }
       }
 
@@ -83,9 +88,11 @@ class Statistics extends React.Component {
     if (this.props.type === "all") {
       this.expansionTitle = "Best talk overall";
       for(let i = 0; i < this.props.daysArray.length; i++) {
-        let talkArray = this.props.daysArray[i];
-        for(let j = 0; j < talkArray.length; i++) {
+        let talkArray = this.props.daysArray[i].talk;
+
+        for(let j = 0; j < talkArray.length; j++) {
           let maxAux =  Math.max(...talkArray[j].occupation_list.map(s => s.value));
+          
           if(maxAux >= max) {
             max = maxAux;
             this.max = maxAux
@@ -99,9 +106,16 @@ class Statistics extends React.Component {
             this.average = sum / talkArray[j].occupation_list.length;
 
             this.timeAtMax = this.props.daysArray[i].date;
+
+            continue;
+          }
+
+          if(maxAux == -Infinity) {
+            this.room = talkArray[j].room;
+            this.speaker = talkArray[j].speaker;
+            this.title = talkArray[j].title;
           }
         }
-
       }
     }
   }
@@ -109,9 +123,6 @@ class Statistics extends React.Component {
   render() {
     const { classes } = this.props;
     const { expanded } = this.state;
-
-    if(!this.displayEx)
-      return null;
 
     return (
 
