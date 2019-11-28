@@ -160,7 +160,7 @@ router.route('/api/talk/list').get(function(req,res){
  * @apiDescription This route is responsible for deleting a talk
  * 
  * @apiParam  {String} title - The title of the talk
- * @apiParam  {String} orator - The orator's name of the talk
+ * @apiParam  {String} speaker - The speaker's name of the talk
  * @apiParam  {String} room - The room of the talk
  * @apiParam  {Number} start - The starting time of the talk in unix (ex: 1573306076000) 13 numbers
  * @apiParam  {Number} end - The ending time of the talk in unix (ex: 1573306076000) 13 numbers
