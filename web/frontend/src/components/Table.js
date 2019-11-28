@@ -68,7 +68,6 @@ class Table extends React.Component {
     if (prevProps.talkArray !== this.props.talkArray) {
       for (let i = 0; i < this.props.talkArray.length; i++) {
         let series = JSON.parse(JSON.stringify(chartJson));
-        console.log(series)
         this.props.talkArray[i].series = [];
         for (let j = 0; j < this.props.talkArray[i].occupation_list.length; j++) {
           series.series[0].data.push(this.props.talkArray[i].occupation_list[j].value)
@@ -76,7 +75,6 @@ class Table extends React.Component {
         }
         this.props.talkArray[i].series = series;
       }
-      console.log(this.props.talkArray)
 
       this.setState({
         talkArray: this.props.talkArray
@@ -90,8 +88,6 @@ class Table extends React.Component {
 
     const { talkArray, date } = this.state;
 
-    // console.log(talkArray)
-
     return (
 
       <>
@@ -103,9 +99,6 @@ class Table extends React.Component {
                   <Typography component="th" scope="row" style={{ fontSize: '24px' }}><b>{talk.title}</b></Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-
-                  {console.log(talk)}
-
                   <div class="col-md-12" style={{ display: 'flex' }}>
                     <div class="col-md-6">
                       <ReactApexChart

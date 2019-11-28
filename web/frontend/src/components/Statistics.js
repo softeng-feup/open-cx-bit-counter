@@ -28,6 +28,8 @@ class Statistics extends React.Component {
 
   constructor(props) {
     super(props);
+    
+    this.displayEx = true;
 
     this.state = {
       talkArray: this.props.talkArray
@@ -41,9 +43,17 @@ class Statistics extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    console.log(this.props.talkArray);
+    console.log(this.displayEx);
+    this.displayEx = true;
     if(prevProps.talkArray !== this.props.talkArray) {
-        let max = -1;
+      let max = -1;
+      if(this.props.type === "talk") {
+        this.expansionTitle = "Best Talk of the Day";
+        if(this.props.talkArray.length == 1 && this.props.talkArray[0].occupation_list.length == 0){
+          this.displayEx = false;
+          return;
+        }
+
         for (let i = 0; i < this.props.talkArray.length; i++) {
             let maxAux =  Math.max(...this.props.talkArray[i].occupation_list.map(s => s.value));
             if(maxAux >= max) {
@@ -58,11 +68,38 @@ class Statistics extends React.Component {
               let sum  = this.props.talkArray[i].occupation_list.map(item => item.value).reduce((prev, next) => prev + next);
               this.average = sum / this.props.talkArray[i].occupation_list.length;
 
-              let res = this.props.talkArray[i].occupation_list.filter(obj => obj.value == max);
+              let res = this.props.talkArray[i].occupation_list.filter(obj => obj.value === maxAux);
               let dateAux = res[0].date;
               this.timeAtMax = dateAux.split('T').join('.').split('.')[1];
             }
         }
+
+        return;
+      }
+
+      if (this.props.type === "all") {
+        this.expansionTitle = "Best talk overall";
+        for(let i = 0; i < this.props.daysArray.length; i++) {
+          for(let j = 0; j < this.props.daysArray[i].talkArray.length; i++) {
+            let maxAux =  Math.max(...this.props.daysArray[i].talkArray[i].occupation_list.map(s => s.value));
+            if(maxAux >= max) {
+              max = maxAux;
+              this.max = maxAux
+              this.room = this.props.daysArray[i].talkArray[i].room;
+
+              this.speaker = this.props.daysArray[i].talkArray[j].speaker;
+              this.min = Math.min(...this.props.daysArray[i].talkArray[j].occupation_list.map(s => s.value));
+              this.title = this.props.daysArray[i].talkArray[j].title;
+              
+              let sum  = this.props.daysArray[i].talkArray[j].occupation_list.map(item => item.value).reduce((prev, next) => prev + next);
+              this.average = sum / this.props.daysArray[i].talkArray[j].occupation_list.length;
+
+              this.timeAtMax = this.props.daysArray[i].date;
+            }
+          }
+
+        }
+      }
     }
   }
 
@@ -70,16 +107,16 @@ class Statistics extends React.Component {
     const { classes } = this.props;
     const { expanded } = this.state;
 
-    const { talkArray } = this.state;
+    if(!this.displayEx)
+      return null;
 
     return (
 
       <>
-        {talkArray !== undefined ? (
           <div className={classes.root}>
               <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography component="th" scope="row" style={{fontSize:'24px'}}><b>Best Talk</b></Typography>
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+                  <Typography component="th" scope="row" style={{fontSize:'24px'}}><b>{this.expansionTitle}</b></Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
 
@@ -100,7 +137,6 @@ class Statistics extends React.Component {
                 </ExpansionPanelDetails>
               </ExpansionPanel>
           </div>
-        ) : null}
       </>
     )
   }
