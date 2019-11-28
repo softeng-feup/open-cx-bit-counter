@@ -25,6 +25,26 @@ const styles = theme => ({
   }
 });
 
+const chartJson = {
+    options: {
+      chart: {
+        id: "basic-bar"
+      },
+      xaxis: {
+        categories: []
+      },
+      dataLabels: {
+        enabled: false
+      },
+    },
+    series: [
+      {
+        name: "series-1",
+        data: []
+      }
+    ]
+  
+}
 class Table extends React.Component {
   state = {
     expanded: null
@@ -36,25 +56,6 @@ class Table extends React.Component {
     this.state = {
       talkArray: this.props.talkArray,
       date: new Date(),
-      chart: {
-        options: {
-          chart: {
-            id: "basic-bar"
-          },
-          xaxis: {
-            categories: []
-          },
-          dataLabels: {
-            enabled: false
-          },
-        },
-        series: [
-          {
-            name: "series-1",
-            data: []
-          }
-        ]
-      }
     };
 
   }
@@ -79,9 +80,10 @@ class Table extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
+
     if (prevProps.talkArray !== this.props.talkArray) {
       for (let i = 0; i < this.props.talkArray.length; i++) {
-        let series = this.state.chart;
+        let series = JSON.parse(JSON.stringify(chartJson));
         this.props.talkArray[i].series = [];
         for (let j = 0; j < this.props.talkArray[i].occupation_list.length; j++) {
           series.series[0].data.push(this.props.talkArray[i].occupation_list[j].value)
@@ -89,6 +91,7 @@ class Table extends React.Component {
         }
         this.props.talkArray[i].series = series;
       }
+
       this.setState({
         talkArray: this.props.talkArray
       });
@@ -109,7 +112,7 @@ class Table extends React.Component {
             {talkArray.map(talk => (
               <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography component="th" scope="row" style={{fontSize:'24px'}}><b>{talk.title}</b></Typography>
+                  <Typography component="th" scope="row" style={{ fontSize: '24px' }}><b>{talk.title}</b></Typography>
                 </ExpansionPanelSummary>
                 <Button className="delete-button" onClick={this.handleDelete.bind(this, talk)}>Delete</Button>
                 <ExpansionPanelDetails>

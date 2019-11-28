@@ -3,12 +3,12 @@ const Room = require('../models/Room');
 
 
 module.exports = {
-  createTalk: function (title, orator, room, start, end) {
+  createTalk: function (title, speaker, room, start, end) {
     return new Promise(function (resolve, reject) {
 
       mTalk = new Talk({
         title: title,
-        orator: orator,
+        speaker: speaker,
         start: start,
         end: end
       });
