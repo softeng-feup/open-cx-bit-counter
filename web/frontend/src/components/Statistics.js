@@ -114,6 +114,7 @@ class Statistics extends React.Component {
             this.room = talkArray[j].room;
             this.speaker = talkArray[j].speaker;
             this.title = talkArray[j].title;
+            this.timeAtMax = this.props.daysArray[i].date;
           }
         }
       }

@@ -72,12 +72,6 @@ export default class AddTalkForm extends React.Component {
     }
   
     handleSubmit(event) {
-      alert('Added talk: ' + this.state.title + 
-            ' by ' + this.state.speaker +
-            ' in ' + this.state.date +
-            ' starting at ' + this.state.start + 
-            ' and finishing at ' + this.state.end +
-            ' in ' + this.state.room);
       event.preventDefault();
       this.addTalkToDataBase();
       this.handleClose();
