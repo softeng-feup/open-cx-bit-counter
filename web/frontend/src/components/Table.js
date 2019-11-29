@@ -61,8 +61,7 @@ class Table extends React.Component {
 
   }
 
-  handleChange = panel => (event, expanded) => {
-    console.log(expanded);
+  handleChange = () => (event, expanded) => {
     this.setState({
       ...this.state.panels,
       [expanded]: !this.state.panels[expanded]
