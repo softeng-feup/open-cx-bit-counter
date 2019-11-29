@@ -114,6 +114,11 @@ export default class Home extends Component {
     
     return (
       <>
+      {daysArray.length != 0  ? (
+        <Box boxShadow={10} className="statistics-container"> 
+          <Statistics daysArray={daysArray} type="all"/>
+        </Box>
+      ): null }
         <Box boxShadow={10}>
           <Calendar
             onChange={this.onChange}
@@ -124,8 +129,8 @@ export default class Home extends Component {
           <Table talkArray={talkArray}/>
         </Box>
         {talkArray.length != 0 ? (
-          <Box boxShadow={10} className="rooms-container">
-            <Statistics talkArray={talkArray}/>
+          <Box boxShadow={10} className="statistics-container">
+            <Statistics talkArray={talkArray} type="talk"/>
           </Box>
         ) : null}
       </>
