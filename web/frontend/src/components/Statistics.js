@@ -103,7 +103,7 @@ class Statistics extends React.Component {
             this.title = talkArray[j].title;
             
             let sum  = talkArray[j].occupation_list.map(item => item.value).reduce((prev, next) => prev + next);
-            this.average = sum / talkArray[j].occupation_list.length;
+            this.average = Math.ceil(sum / talkArray[j].occupation_list.length);
 
             this.timeAtMax = this.props.daysArray[i].date;
 
@@ -137,15 +137,15 @@ class Statistics extends React.Component {
 
                   <div className="col-md-12" style={{ display: 'flex' }}>
                     <div className="col-md-6 float-left" style={{ alignSelf: 'center' }}>
-                      <Typography align="left" style={{padding:'10px'}}><b>Title - </b>{this.title}</Typography>
-                      <Typography align="left" style={{padding:'10px'}}><b>Speaker - </b>{this.speaker}</Typography>
-                      <Typography align="left" style={{padding:'10px'}}><b>Room - </b>{this.room}</Typography>
-                      <Typography align="left" style={{padding:'10px'}}><b>Max Atendees - </b>{this.max}</Typography>
-                      <Typography align="left" style={{padding:'10px'}}><b>Min Atendees- </b>{this.min}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Title: </b>{this.title}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Speaker: </b>{this.speaker}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Room: </b>{this.room}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Max Atendees: </b>{this.max}</Typography>
+                      <Typography align="left" style={{padding:'10px'}}><b>Min Atendees: </b>{this.min}</Typography>
                     </div>
                     <div className="col-md-6 float-right">
-                        <Typography align="left" style={{padding:'10px'}}><b>Average Atendees - </b>{this.average}</Typography>
-                        <Typography align="left" style={{padding:'10px'}}><b>Time @ Max Atendees - </b>{this.timeAtMax}</Typography>
+                        <Typography align="left" style={{padding:'10px'}}><b>Average Atendees: </b>{this.average}</Typography>
+                        <Typography align="left" style={{padding:'10px'}}><b>Time @ Max Atendees: </b>{this.timeAtMax}</Typography>
                     </div>
                   </div>
 
