@@ -56,13 +56,16 @@ class Table extends React.Component {
     this.state = {
       talkArray: this.props.talkArray,
       date: new Date(),
+      panels: {}
     };
 
   }
 
   handleChange = panel => (event, expanded) => {
+    console.log(expanded);
     this.setState({
-      expanded: expanded ? panel : false
+      ...this.state.panels,
+      [expanded]: !this.state.panels[expanded]
     });
   };
 
@@ -110,7 +113,7 @@ class Table extends React.Component {
         {talkArray !== undefined ? (
           <div className={classes.root}>
             {talkArray.map(talk => (
-              <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
+              <ExpansionPanel expanded={this.state.panels[talk._id]} onChange={this.handleChange.bind(this,talk._id)}>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography component="th" scope="row" style={{ fontSize: '24px' }}><b>{talk.title}</b></Typography>
                 </ExpansionPanelSummary>
