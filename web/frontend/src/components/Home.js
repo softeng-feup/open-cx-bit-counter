@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import Calendar from 'react-calendar';
-import Card from '@material-ui/core/Card';
-import { makeStyles } from '@material-ui/core/styles';
-
-import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 
 import axios from 'axios';
@@ -23,7 +19,6 @@ export default class Home extends Component {
     };
 
   }
-
 
   onChange = date => {
     this.setState({ date })
