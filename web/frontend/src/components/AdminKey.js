@@ -15,15 +15,15 @@ export default class AdminKey extends React.Component {
       this.handleClose = () => {
         setOpenAdmin(false);
       };
+
+      this.handleSubmit = event => {
+        event.preventDefault();
+        this.handleClose();
+      }
     }
   
     handleKey(event) {
       this.setState({key: event.target.value});
-    }
-  
-    handleSubmit(event) {
-      event.preventDefault();
-      this.handleClose();
     }
   
     render() {

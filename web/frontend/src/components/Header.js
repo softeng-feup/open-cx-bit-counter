@@ -38,7 +38,7 @@ export default function ButtonAppBar() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClickAdmin = event => {
+  const handleClickAdmin = () => {
     setOpenAdmin(true);
   };
 
