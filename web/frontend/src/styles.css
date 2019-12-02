@@ -23,7 +23,6 @@
 }
 
 .delete-button {
-  display: none;
   float:right;
 }
 
@@ -34,7 +33,3 @@
 #key_text {
   padding: 0.2em;
 }
-
-/*#menu {
-  display: none;
-}*/
