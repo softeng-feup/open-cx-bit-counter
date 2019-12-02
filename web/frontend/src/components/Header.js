@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import AddTalk from './AddTalkForm';
+import AdminKey from './AdminKey';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,9 +32,14 @@ export default function ButtonAppBar() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
+  const [openAdmin, setOpenAdmin] = React.useState(false);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleClickAdmin = event => {
+    setOpenAdmin(true);
   };
 
   const handleClickPop = () => {
@@ -44,6 +50,7 @@ export default function ButtonAppBar() {
   const handleClose = () => {
     setAnchorEl(null);
     setOpen(false);
+    setOpenAdmin(false);
   };
 
   return (
@@ -68,10 +75,11 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             BIT Counter
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" aria-haspopup="true" onClick={handleClickAdmin}>Admin</Button>
         </Toolbar>
       </AppBar>
       <SimpleDialog open={open} setOpen={setOpen}/>
+      <AdminDialog openAdmin={openAdmin} setOpenAdmin={setOpenAdmin}/>
     </div>
   );
 }
@@ -85,11 +93,30 @@ function SimpleDialog(props) {
 
   return (
     <Dialog
-      aria-labelledby="simple-dialog-title"
+      aria-labelledby="simple-dialog"
       open={open}
     >
-      <DialogTitle id="simple-dialog-title">
+      <DialogTitle id="simple-dialog">
         <AddTalk setOpen={setOpen}/>
+      </DialogTitle>
+    </Dialog>
+  );
+}
+
+AdminDialog.propTypes = {
+  setOpenAdmin: PropTypes.func.isRequired
+};
+
+function AdminDialog(props) {
+  const { openAdmin, setOpenAdmin } = props;
+
+  return (
+    <Dialog
+      aria-labelledby="admin-dialog"
+      open={openAdmin}
+    >
+      <DialogTitle id="admin-dialog">
+        <AdminKey setOpenAdmin={setOpenAdmin}/>
       </DialogTitle>
     </Dialog>
   );
