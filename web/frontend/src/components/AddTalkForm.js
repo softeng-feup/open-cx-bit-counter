@@ -106,14 +106,61 @@ export default class AddTalkForm extends React.Component {
           </DialogTitle>
           <form onSubmit={this.handleSubmit}>
           <DialogContent>
-            <TextField autoFocus margin="dense" id="Title" label="Title" value={this.title} type="string" onChange={this.handleTitle} fullWidth />
-            <TextField margin="dense" id="Speaker" label="Speaker" type="string" value={this.speaker} onChange={this.handleSpeaker} fullWidth />
+            <TextField 
+              autoFocus 
+              margin="normal"
+              required={true}
+              id="Title" label="Title" 
+              value={this.title} onChange={this.handleTitle} 
+              type="string" fullWidth 
+            />
+            <TextField 
+              margin="normal"
+              required={true}
+              id="Speaker" label="Speaker" 
+              value={this.speaker} onChange={this.handleSpeaker} 
+              type="string" fullWidth 
+            />
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardDatePicker disablePast={true} openTo="year" format="dd/MM/yyyy" margin="dense" id="Date" label="Date" value={null} onChange={date => this.handleDate(date)} fullWidth />
-              <KeyboardTimePicker clearable ampm={false} margin="dense" id="Start" label="Start" value={null} onChange={date => this.handleStart(date)} />
-              <KeyboardTimePicker clearable ampm={false} margin="dense" id="End" label="End" value={null} onChange={date => this.handleEnd(date)} />
+              <KeyboardDatePicker
+                margin="dense" 
+                required={true}
+                disablePast={true} 
+                format="dd/MM/yyyy" 
+                id="Date" label="Date" 
+                value={null} onChange={date => this.handleDate(date)} 
+                fullWidth 
+              />
+              <KeyboardTimePicker 
+                margin="dense" 
+                required={true}
+                size="small"
+                clearable 
+                ampm={false} 
+                id="Start" label="Start" 
+                value={null} onChange={date => this.handleStart(date)} 
+                fullWidth 
+                />
+              <KeyboardTimePicker 
+                margin="dense" 
+                required={true} 
+                size="small"             
+                clearable 
+                ampm={false} 
+                id="End" label="End" 
+                value={null} onChange={date => this.handleEnd(date)} 
+                fullWidth 
+                />
             </MuiPickersUtilsProvider>
-            <TextField margin="dense" id="Room" label="Room" type="string" value={this.room} onChange={this.handleRoom} fullWidth />
+            <TextField 
+              margin="normal" 
+              required={true}
+              size="small"
+              id="Room" label="Room" 
+              type="string" 
+              value={this.room} onChange={this.handleRoom} 
+              fullWidth
+            />
           </DialogContent>
           <DialogActions>
             <Button type="submit" label="submit" color="primary">
