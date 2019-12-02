@@ -34,7 +34,7 @@ export default class AdminKey extends React.Component {
           </CloseButton>
           <fieldset className="login-form">
             <legend>Insert admin key</legend>
-            <TextField id="key_text" label="Key" />
+            <TextField onChange={this.handleKey} id="key_text" label="Key" />
             <Button className="submit-button" variant="contained" color="primary" onClick={this.handleSubmit}>
                 Submit
             </Button>
