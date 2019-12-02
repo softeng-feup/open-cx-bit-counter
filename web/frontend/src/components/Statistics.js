@@ -52,7 +52,7 @@ class Statistics extends React.Component {
     let max = -1;
     if(this.props.type === "talk") {
 
-      this.expansionTitle = "Best Talk of the Day";
+      this.expansionTitle = "Most Popular Talk of the Day";
 
       for (let i = 0; i < this.props.talkArray.length; i++) {
         let maxAux =  Math.max(...this.props.talkArray[i].occupation_list.map(s => s.value));
@@ -86,7 +86,7 @@ class Statistics extends React.Component {
     }
 
     if (this.props.type === "all") {
-      this.expansionTitle = "Best talk overall";
+      this.expansionTitle = "Most Popular Talk";
       for(let i = 0; i < this.props.daysArray.length; i++) {
         let talkArray = this.props.daysArray[i].talk;
 
