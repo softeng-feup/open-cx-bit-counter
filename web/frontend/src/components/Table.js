@@ -116,7 +116,7 @@ class Table extends React.Component {
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography component="th" scope="row" style={{ fontSize: '24px' }}><b>{talk.title}</b></Typography>
                 </ExpansionPanelSummary>
-                <Button className="delete-button" onClick={this.handleDelete.bind(this, talk)}>Delete</Button>
+                <Button className="delete-button" variant="contained" color="primary" onClick={this.handleDelete.bind(this, talk)}>Delete</Button>
                 <ExpansionPanelDetails>
                   <div className="col-md-12" style={{ display: 'flex' }}>
                     <div className="col-md-6">
