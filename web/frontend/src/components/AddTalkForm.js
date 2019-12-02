@@ -81,7 +81,7 @@ export default class AddTalkForm extends React.Component {
       return (
         <form onSubmit={this.handleSubmit} >
           <CloseButton className="close-button" onClick={this.handleClose} >
-            <legend>X</legend>
+            X
           </CloseButton>
           <fieldset>
             <legend>Add a talk</legend>

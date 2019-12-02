@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
 import CloseButton from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 
 export default class AdminKey extends React.Component {
     constructor(props) {
@@ -29,15 +30,14 @@ export default class AdminKey extends React.Component {
       return (
         <form onSubmit={this.handleSubmit} >
           <CloseButton className="close-button" onClick={this.handleClose} >
-            <legend>X</legend>
+            X
           </CloseButton>
-          <fieldset>
+          <fieldset className="login-form">
             <legend>Insert admin key</legend>
-            <label>
-              Key:
-              <input type="text" title={this.state.key} onChange={this.handleKey}/>
-            </label>
-            <input type="submit" value="Submit" />
+            <TextField id="key_text" label="Key" />
+            <Button className="submit-button" variant="contained" color="primary" onClick={this.handleSubmit}>
+                Submit
+            </Button>
           </fieldset>
         </form>
       );
