@@ -9,6 +9,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import getMinutes from 'date-fns/getMinutes'
 import getHours from 'date-fns/getHours'
+import getUnixTime from 'date-fns/getUnixTime'
 import { KeyboardDatePicker, KeyboardTimePicker } from "@material-ui/pickers";
 import axios from 'axios';
 
@@ -51,7 +52,7 @@ export default class AddTalkForm extends React.Component {
 
     handleDate(event) {
       console.log(event);
-      let date_s = new Date(event.target.value).getTime()/1000;
+      let date_s = getUnixTime(event);
       this.setState({date: date_s});
     }
 
