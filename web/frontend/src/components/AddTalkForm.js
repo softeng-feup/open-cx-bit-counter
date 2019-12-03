@@ -1,19 +1,38 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import getMinutes from 'date-fns/getMinutes'
+import getHours from 'date-fns/getHours'
+import getUnixTime from 'date-fns/getUnixTime'
+import { KeyboardDatePicker, KeyboardTimePicker } from "@material-ui/pickers";
 import axios from 'axios';
-import CloseButton from '@material-ui/core/Button';
 
 export default class AddTalkForm extends React.Component {
     constructor(props) {
       super(props);
+      
       const { setOpen } = props;
 
-      this.state = {title: '',
-                    speaker: '',
-                    date: '',
-                    start: '',
-                    end: '',
-                    room: ''};
-  
+      this.state = {
+        title: '',
+        speaker: '',
+        date: '',
+        start: '',
+        end: '',
+        room: '',
+        open: false
+      };
+      
+      this.handleClose = () => {
+        setOpen(false);
+      };
+
       this.handleTitle = this.handleTitle.bind(this);
       this.handleSpeaker = this.handleSpeaker.bind(this);
       this.handleDate = this.handleDate.bind(this);
@@ -21,34 +40,36 @@ export default class AddTalkForm extends React.Component {
       this.handleEnd = this.handleEnd.bind(this);
       this.handleRoom = this.handleRoom.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
-
-      this.handleClose = () => {
-        setOpen(false);
-      };
     }
   
     handleTitle(event) {
       this.setState({title: event.target.value});
     }
+
     handleSpeaker(event) {
       this.setState({speaker: event.target.value});
     }
+
     handleDate(event) {
-      let date_s = new Date(event.target.value).getTime()/1000;
+      console.log(event);
+      let date_s = getUnixTime(event);
       this.setState({date: date_s});
     }
+
     handleStart(event) {
-      let start_time = event.target.value;
-      let aux = start_time.split(':');
-      start_time = (aux[0] * 3600 + aux[1] * 60 + this.state.date)*1000;
+      let hours = getHours(event);
+      let minutes = getMinutes(event);
+      let start_time = (hours * 3600 + minutes * 60 + this.state.date)*1000;
       this.setState({start: start_time});
     }
+
     handleEnd(event) {
-      let end_time = event.target.value;
-      let aux = end_time.split(':');
-      end_time = (aux[0] * 3600 + aux[1] * 60 + this.state.date)*1000;
+      let hours = getHours(event);
+      let minutes = getMinutes(event);
+      let end_time = (hours * 3600 + minutes * 60 + this.state.date)*1000;
       this.setState({end: end_time});
     }
+
     handleRoom(event) {
       this.setState({room: event.target.value});
     }
@@ -79,39 +100,75 @@ export default class AddTalkForm extends React.Component {
   
     render() {
       return (
-        <form onSubmit={this.handleSubmit} >
-          <CloseButton className="close-button" onClick={this.handleClose} >
-            <legend>X</legend>
-          </CloseButton>
-          <fieldset>
-            <legend>Add a talk</legend>
-            <label>
-              Title:
-              <input type="text" title={this.state.title} onChange={this.handleTitle}/>
-            </label>
-            <label>
-              Speaker:
-              <input type="text" speaker={this.state.speaker} onChange={this.handleSpeaker}/>
-            </label>
-            <label>
-              Date:
-              <input type="date" date={this.state.date} onChange={this.handleDate}/>
-            </label>
-            <label>
-              Start:
-              <input type="time" start={this.state.start} onChange={this.handleStart}/>
-            </label>
-            <label>
-              End:
-              <input type="time" end={this.state.end} onChange={this.handleEnd}/>
-            </label>
-            <label>
-              Room:
-              <input type="text" room={this.state.room} onChange={this.handleRoom}/>
-            </label>
-            <input type="submit" value="Submit" />
-          </fieldset>
-        </form>
-      );
-    }
+        <Dialog open={true} onClose={this.handleClose} aria-labelledby="form-diaglog-title">
+          <DialogTitle id="fomr-dialog-title">
+            Add a Talk
+          </DialogTitle>
+          <form onSubmit={this.handleSubmit}>
+          <DialogContent>
+            <TextField 
+              autoFocus 
+              margin="normal"
+              required={true}
+              id="Title" label="Title" 
+              value={this.title} onChange={this.handleTitle} 
+              type="string" fullWidth 
+            />
+            <TextField 
+              margin="normal"
+              required={true}
+              id="Speaker" label="Speaker" 
+              value={this.speaker} onChange={this.handleSpeaker} 
+              type="string" fullWidth 
+            />
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                margin="dense" 
+                required={true}
+                disablePast={true} 
+                format="dd/MM/yyyy" 
+                id="Date" label="Date" 
+                value={null} onChange={date => this.handleDate(date)} 
+                fullWidth 
+              />
+              <KeyboardTimePicker 
+                margin="dense" 
+                required={true}
+                size="small"
+                clearable 
+                ampm={false} 
+                id="Start" label="Start" 
+                value={null} onChange={date => this.handleStart(date)} 
+                fullWidth 
+                />
+              <KeyboardTimePicker 
+                margin="dense" 
+                required={true} 
+                size="small"             
+                clearable 
+                ampm={false} 
+                id="End" label="End" 
+                value={null} onChange={date => this.handleEnd(date)} 
+                fullWidth 
+                />
+            </MuiPickersUtilsProvider>
+            <TextField 
+              margin="normal" 
+              required={true}
+              size="small"
+              id="Room" label="Room" 
+              type="string" 
+              value={this.room} onChange={this.handleRoom} 
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button type="submit" label="submit" color="primary">
+              Submit
+            </Button>
+          </DialogActions>
+          </form>
+        </Dialog>
+    );
+  }
 }

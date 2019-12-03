@@ -134,7 +134,7 @@ class Statistics extends React.Component {
           <div className={classes.root}>
               <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                  <Typography component="th" scope="row" style={{fontSize:'24px'}}><b>{this.expansionTitle}</b></Typography>
+                  <Typography scope="row" style={{fontSize:'24px'}}><b>{this.expansionTitle}</b></Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
 
