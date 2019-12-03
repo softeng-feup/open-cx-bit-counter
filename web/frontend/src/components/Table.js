@@ -114,7 +114,7 @@ class Table extends React.Component {
             {talkArray.map(talk => (
               <ExpansionPanel expanded={this.state.panels[talk._id]} onChange={this.handleChange.bind(this,talk._id)}>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography component="th" scope="row" style={{ fontSize: '24px' }}><b>{talk.title}</b></Typography>
+                  <Typography scope="row" style={{ fontSize: '24px' }}><b>{talk.title}</b></Typography>
                 </ExpansionPanelSummary>
                 <Button className="delete-button" onClick={this.handleDelete.bind(this, talk)}>Delete</Button>
                 <ExpansionPanelDetails>
