@@ -72,7 +72,7 @@ class Table extends React.Component {
     let params = {
       id: talk._id
     }
-    axios.post('http://127.0.0.1:6200/api/talk/delete', null, {params})
+    axios.post('http://api.feupbitcounter.info/api/talk/delete', null, {params})
       .then((response) => {
         console.log(response);
       })

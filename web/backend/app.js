@@ -18,18 +18,24 @@ mongoose.connect('mongodb://mongodb')
         process.exit(1);
     });
 
-// Routes and Backend Functionalities
-var routes = require('./src/routes/routes');
 
-// App Instance
 var app = express();
+
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.use(express.static('public'));
-app.use(cors());
+app.options(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+// Routes and Backend Functionalities
+var routes = require('./src/routes/routes');
 app.use(basePath, routes);
 
-// Execute App
+
 app.listen(port, () => {
   console.log('Backend running on Port: ',port);
 });
