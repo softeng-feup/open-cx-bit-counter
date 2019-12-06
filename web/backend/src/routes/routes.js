@@ -2,7 +2,7 @@ const router =require('express').Router();
 
 const main = require('../main/room');
 const talk = require('../main/talk');
-
+//const admin = require('../main/admin');
 
 
 
@@ -172,11 +172,29 @@ router.route('/api/talk/list').get(function(req,res){
  * @apiError (404) {String} message - error message
  */
 router.route('/api/talk/delete').post(function(req,res){
-    console.log("Delete request");
-    console.log(req.query);
     let {id} = req.query;
-    console.log(id);
     talk.deleteTalk(id)
+    .then(function(result) {
+        res.json(result);
+    })
+})
+
+/**
+ * 
+ * @api {Post} /api/admin/validate - Change to admin mode
+ * @apiName AdminMode
+ * @apiGroup admin
+ * @apiDescription This route is responsible for changing to admin mode
+ * 
+ * @apiParam  {String} key - The admin key
+ * 
+ * @apiSuccess (200) {Number} code - code result
+ * 
+ * @apiError (404) {String} message - error message
+ */
+router.route('/api/admin/validate').post(function(req,res){
+    let {key} = req.query;
+    admin.authenticate(key)
     .then(function(result) {
         res.json(result);
     })
