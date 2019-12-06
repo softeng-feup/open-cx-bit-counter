@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import CloseButton from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -34,23 +33,26 @@ export default class AdminKey extends React.Component {
   render() {
     return (
       <Dialog open={true} onClose={this.handleClose} aria-labelledby="form-diaglog-title">
-          <form onSubmit={this.handleSubmit}>
-            <DialogContent>
-              <TextField
-                autoFocus
-                margin="normal"
-                required={true}
-                id="Key" label="Key"
-                value={this.key} onChange={this.handleKey}
-                type="string" fullWidth
-              />
-              <DialogActions>
-                <Button type="submit" label="submit" color="primary">
-                  Submit
-                </Button>
-              </DialogActions>
-            </DialogContent>
-          </form>
+        <DialogTitle id="fomr-dialog-title">
+          Insert admin key
+        </DialogTitle>
+        <form onSubmit={this.handleSubmit}>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="normal"
+              required={true}
+              id="Key" label="Key"
+              value={this.key} onChange={this.handleKey}
+              type="string" fullWidth
+            />
+            <DialogActions>
+              <Button type="submit" label="submit" color="primary">
+                Submit
+              </Button>
+            </DialogActions>
+          </DialogContent>
+        </form>
       </Dialog>
       );
   }
