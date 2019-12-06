@@ -2,7 +2,7 @@ const router =require('express').Router();
 
 const main = require('../main/room');
 const talk = require('../main/talk');
-//const admin = require('../main/admin');
+const admin = require('../main/admin');
 
 
 
@@ -115,17 +115,22 @@ router.route('/api/room/update').post(function(req,res){
  * 
  * @apiError (404) {Number} code - the updated talk
  * @apiError (404) {String} message - error message
+ * @apiError (403) {String} message - without permission error
  */
 router.route('/api/talk/create').post(function(req,res){
+    let {key} = req.query;
     let {title} = req.query;
     let {speaker} = req.query;
     let {room} = req.query;
     let {start} = req.query;
     let {end} = req.query;
-    talk.createTalk(title, speaker, room, start, end)
-    .then(function(result) {
-        res.json(result);
-    })
+    if (admin.authenticate(key)) {
+        talk.createTalk(title, speaker, room, start, end)
+        .then(function(result) {
+            res.json(result);
+        })
+    }
+    else res.json(403);
 })
 
 
@@ -170,13 +175,18 @@ router.route('/api/talk/list').get(function(req,res){
  * 
  * @apiError (404) {Number} code - the updated talk
  * @apiError (404) {String} message - error message
+ * @apiError (403) {String} message - without permission error
  */
 router.route('/api/talk/delete').post(function(req,res){
+    let {key} = req.query;
     let {id} = req.query;
-    talk.deleteTalk(id)
-    .then(function(result) {
-        res.json(result);
-    })
+    if (admin.authenticate(key)) {
+        talk.deleteTalk(id)
+        .then(function(result) {
+            res.json(result);
+        })
+    }
+    else res.json(403);
 })
 
 /**
