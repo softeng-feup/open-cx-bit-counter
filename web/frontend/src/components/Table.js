@@ -68,9 +68,10 @@ class Table extends React.Component {
     });
   };
 
-  handleDelete(talk){
+  handleDelete(talk,key){
     let params = {
-      id: talk._id
+      id: talk._id,
+      key: key
     }
     axios.post('http://127.0.0.1:6200/api/talk/delete', null, {params})
       .then((response) => {
@@ -116,7 +117,7 @@ class Table extends React.Component {
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography component="th" scope="row" style={{ fontSize: '24px' }}><b>{talk.title}</b></Typography>
                 </ExpansionPanelSummary>
-                <Button className="delete-button" variant="contained" color="primary" onClick={this.handleDelete.bind(this, talk)}>Delete</Button>
+                <Button className="delete-button" variant="contained" color="primary" onClick={this.handleDelete.bind(this, talk, this.props.key)}>Delete</Button>
                 <ExpansionPanelDetails>
                   <div className="col-md-12" style={{ display: 'flex' }}>
                     <div className="col-md-6">

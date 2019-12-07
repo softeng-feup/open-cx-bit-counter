@@ -24,7 +24,6 @@ export default class Home extends Component {
 
   }
 
-
   onChange = date => {
     this.setState({ date })
   }
@@ -126,7 +125,7 @@ export default class Home extends Component {
         </Box>
 
         <Box boxShadow={10} className="rooms-container">
-          <Table talkArray={talkArray}/>
+          <Table talkArray={talkArray} key={this.props.key}/>
         </Box>
         {talkArray.length != 0 ? (
           <Box boxShadow={10} className="statistics-container">

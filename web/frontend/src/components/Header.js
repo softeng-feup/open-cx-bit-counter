@@ -33,7 +33,7 @@ export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [openAdmin, setOpenAdmin] = React.useState(false);
-
+  
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -97,7 +97,7 @@ function SimpleDialog(props) {
       open={open}
     >
       <DialogTitle id="simple-dialog">
-        <AddTalk setOpen={setOpen}/>
+        <AddTalk setOpen={setOpen} key={this.props.key}/>
       </DialogTitle>
     </Dialog>
   );
@@ -116,7 +116,7 @@ function AdminDialog(props) {
       open={openAdmin}
     >
       <DialogTitle id="admin-dialog">
-        <AdminKey setOpenAdmin={setOpenAdmin}/>
+        <AdminKey setOpenAdmin={setOpenAdmin} key={this.props.key}/>
       </DialogTitle>
     </Dialog>
   );

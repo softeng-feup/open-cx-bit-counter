@@ -29,10 +29,13 @@ export default class AdminKey extends React.Component {
   
     axios.post('http://127.0.0.1:6200/api/admin/validate', null, {params})
     .then((response) => {
+      alert('Admin key validated');
+      this.props.key = this.state.key;
       console.log(response);
     })
     .catch(error => {
-    console.log(error.message);
+      alert('Invalid key');
+      console.log(error.message);
     });
   }
 

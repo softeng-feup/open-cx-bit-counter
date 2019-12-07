@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -12,15 +12,15 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-
-
 function App() {
+  var key = '';
   return (
     <>
-      <Header />
+      <Header key={key}/>
       <div className="container main-container">
         <Router>
-          <Route path="/" component={Home} />
+          <Route path='/'
+              render={(props) => <Home {...props} key={key} />}/>
         </Router>
       </div>
       <Footer />
