@@ -1,30 +1,50 @@
 const Admin = require('../models/Admin');
-const crypto = require('express-session');
+const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
   generateKey: function() {
     return new Promise(function (resolve, reject) {
+        Admin
+        .findById(0)
+        .remove() 
+        .exec(function () {});
 
+        let generatedKey = "";
         crypto.randomBytes(10, function(err, buffer){
             if(err){
                 reject(err);
+                return;
             }
             else {
                 generatedKey = buffer.toString('base64');
             }
         })
         
-        bcrypt.hash(generatedKey, salt, function(err, hash) {
+        bcrypt.hash(generatedKey, 10, function(err, hash) {
+            if(err){
+                reject(err);
+                return;
+            }
             admin = new Admin({
                 id: 0,
                 key: hash
             });
 
-            admin.save().
-                exec(function () {
-                resolve({
-                  code: 200
-                })
+            admin.save(function (error, talk) {
+                if (error) {
+                  reject({
+                    code: 409,
+                    message: 'Duplicate Data',
+                  });
+                  return;
+                }
+                else {
+                    resolve({
+                        code: 200
+                    });
+                    return;
+                }
             });
         });
     });
@@ -33,20 +53,22 @@ module.exports = {
     return new Promise(function (resolve, reject) {
         Admin
             .find({ id: 0 })
-            .exec(function (err, hash) {
+            .exec(function (err, row) {
+                console.log(row.key + "," + key);
                 bcrypt.compare(key,hash,function(err,res){
                     if(err){ 
-                        console.log(error)
+                        console.log(err);
                         reject({
                             code: 403,
                             message: 'Invalid admin key'
                         });
+                        return;
                     }
                     
-                    generateToken();
                     resolve({
                         code: 200
-                    })
+                    });
+                    return;
                 })
             });
     });

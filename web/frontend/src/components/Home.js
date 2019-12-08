@@ -17,9 +17,12 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
 
+    console.log(props);
+
     this.state = {
       daysArray: [],
-      date: new Date()
+      date: new Date(),
+      key: this.props.key
     };
 
   }
@@ -110,6 +113,7 @@ export default class Home extends Component {
       }
     }
 
+    console.log("home" + this.state.key);
     
     return (
       <>
@@ -125,7 +129,7 @@ export default class Home extends Component {
         </Box>
 
         <Box boxShadow={10} className="rooms-container">
-          <Table talkArray={talkArray} key={this.props.key}/>
+          <Table talkArray={talkArray} key={this.state.key}/>
         </Box>
         {talkArray.length != 0 ? (
           <Box boxShadow={10} className="statistics-container">

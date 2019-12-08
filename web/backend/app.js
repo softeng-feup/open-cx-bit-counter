@@ -8,10 +8,13 @@ var cors = require('cors');
 var basePath = '/';
 var port = 6200;
 
+
+const admin = require('./src/main/admin');
 // Connection to DB
 mongoose.connect('mongodb://mongodb')
     .then(() => {
       console.log('Backend Started');
+      admin.generateKey();
     })
     .catch(err => {
         console.error('Backend error:', err.stack);

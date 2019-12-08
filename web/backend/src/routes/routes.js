@@ -124,7 +124,8 @@ router.route('/api/talk/create').post(function(req,res){
     let {room} = req.query;
     let {start} = req.query;
     let {end} = req.query;
-    if (admin.authenticate(key)) {
+    console.log(key);
+    if (admin.authenticateKey(key)) {
         talk.createTalk(title, speaker, room, start, end)
         .then(function(result) {
             res.json(result);
@@ -180,7 +181,8 @@ router.route('/api/talk/list').get(function(req,res){
 router.route('/api/talk/delete').post(function(req,res){
     let {key} = req.query;
     let {id} = req.query;
-    if (admin.authenticate(key)) {
+    console.log(key);
+    if (admin.authenticateKey(key)) {
         talk.deleteTalk(id)
         .then(function(result) {
             res.json(result);
@@ -204,7 +206,8 @@ router.route('/api/talk/delete').post(function(req,res){
  */
 router.route('/api/admin/validate').post(function(req,res){
     let {key} = req.query;
-    admin.authenticate(key)
+    console.log(key);
+    admin.authenticateKey(key)
     .then(function(result) {
         res.json(result);
     })

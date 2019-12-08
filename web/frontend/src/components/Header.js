@@ -97,7 +97,7 @@ function SimpleDialog(props) {
       open={open}
     >
       <DialogTitle id="simple-dialog">
-        <AddTalk setOpen={setOpen} key={this.props.key}/>
+        <AddTalk setOpen={setOpen} key={props.key}/>
       </DialogTitle>
     </Dialog>
   );
@@ -116,7 +116,7 @@ function AdminDialog(props) {
       open={openAdmin}
     >
       <DialogTitle id="admin-dialog">
-        <AdminKey setOpenAdmin={setOpenAdmin} key={this.props.key}/>
+        <AdminKey setOpenAdmin={setOpenAdmin} key={props.key}/>
       </DialogTitle>
     </Dialog>
   );
