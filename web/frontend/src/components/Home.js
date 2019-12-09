@@ -17,12 +17,12 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
 
-    console.log(props);
+    console.log("Home",this.props);
 
     this.state = {
       daysArray: [],
       date: new Date(),
-      key: this.props.key
+      keyObject: this.props.keyObject
     };
 
   }
@@ -102,7 +102,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { daysArray, date } = this.state;
+    const { daysArray, date, keyObject } = this.state;
 
     let talkArray = [];
     
@@ -113,7 +113,7 @@ export default class Home extends Component {
       }
     }
 
-    console.log("home" + this.state.key);
+    console.log("home", this.state.keyObject);
     
     return (
       <>
@@ -129,7 +129,7 @@ export default class Home extends Component {
         </Box>
 
         <Box boxShadow={10} className="rooms-container">
-          <Table talkArray={talkArray} key={this.state.key}/>
+          <Table talkArray={talkArray} keyObject={this.state.keyObject}/>
         </Box>
         {talkArray.length != 0 ? (
           <Box boxShadow={10} className="statistics-container">

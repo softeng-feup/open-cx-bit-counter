@@ -4,9 +4,6 @@ const main = require('../main/room');
 const talk = require('../main/talk');
 const admin = require('../main/admin');
 
-
-
-
 /**
  * 
  * @api {Get} /api/room/list list rooms

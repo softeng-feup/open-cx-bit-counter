@@ -13,14 +13,23 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 
 function App() {
-  var key = '';
+  let handleKeyChanger = function (newKey) {
+    this.adminKey = newKey;
+  }
+  var adminKeyObject = {
+    key: '',
+    keyHandler: handleKeyChanger
+  };
+
+  adminKeyObject.keyHandler.bind(adminKeyObject);
+
   return (
     <>
-      <Header key={key}/>
+      <Header keyObject={adminKeyObject}/>
       <div className="container main-container">
         <Router>
           <Route path='/'
-              render={(props) => <Home {...props} key={key} />}/>
+              render={(props) => <Home {...props} keyObject={adminKeyObject} />}/>
         </Router>
       </div>
       <Footer />

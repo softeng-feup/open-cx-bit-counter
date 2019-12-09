@@ -27,7 +27,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
+  console.log(props);
+
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -67,7 +69,7 @@ export default function ButtonAppBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-            <MenuItem onClick={handleClickPop}>Add talks</MenuItem>
+            <MenuItem onClick={handleClickPop} >Add talks</MenuItem>
           </Menu>
           <Typography variant="h6" className={classes.title}>
             News
@@ -75,11 +77,11 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             BIT Counter
           </Typography>
-          <Button color="inherit" aria-haspopup="true" onClick={handleClickAdmin}>Admin</Button>
+          <Button color="inherit" aria-haspopup="true" onClick={handleClickAdmin} >Admin</Button>
         </Toolbar>
       </AppBar>
-      <SimpleDialog open={open} setOpen={setOpen}/>
-      <AdminDialog openAdmin={openAdmin} setOpenAdmin={setOpenAdmin}/>
+      <SimpleDialog open={open} setOpen={setOpen} adminKey={props.keyObject}/>
+      <AdminDialog openAdmin={openAdmin} setOpenAdmin={setOpenAdmin} keyHandler={props.keyObject.keyHandler}/>
     </div>
   );
 }
@@ -89,7 +91,10 @@ SimpleDialog.propTypes = {
 };
 
 function SimpleDialog(props) {
-  const { open, setOpen } = props;
+  const { open, setOpen, adminKey } = props;
+
+  console.log("Addtalk",props);
+  console.log(adminKey)
 
   return (
     <Dialog
@@ -97,7 +102,7 @@ function SimpleDialog(props) {
       open={open}
     >
       <DialogTitle id="simple-dialog">
-        <AddTalk setOpen={setOpen} key={props.key}/>
+        <AddTalk setOpen={setOpen} key={adminKey}/>
       </DialogTitle>
     </Dialog>
   );
@@ -108,7 +113,9 @@ AdminDialog.propTypes = {
 };
 
 function AdminDialog(props) {
-  const { openAdmin, setOpenAdmin } = props;
+  const { openAdmin, setOpenAdmin, keyHandler } = props;
+
+  console.log("admindiag",keyHandler);
 
   return (
     <Dialog
@@ -116,7 +123,7 @@ function AdminDialog(props) {
       open={openAdmin}
     >
       <DialogTitle id="admin-dialog">
-        <AdminKey setOpenAdmin={setOpenAdmin} key={props.key}/>
+        <AdminKey setOpenAdmin={setOpenAdmin} keyHandler={keyHandler}/>
       </DialogTitle>
     </Dialog>
   );

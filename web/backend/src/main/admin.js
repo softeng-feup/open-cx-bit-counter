@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
   generateKey: function() {
+      console.log("CALLED GENERATE")
     return new Promise(function (resolve, reject) {
         Admin
         .findById(0)
@@ -21,7 +22,7 @@ module.exports = {
             }
         })
         
-        bcrypt.hash(generatedKey, 10, function(err, hash) {
+        bcrypt.hash(generatedKey, 5, function(err, hash) {
             if(err){
                 reject(err);
                 return;
