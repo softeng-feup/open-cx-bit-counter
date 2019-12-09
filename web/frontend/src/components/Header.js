@@ -75,7 +75,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             BIT Counter
           </Typography>
-          <Button color="inherit" aria-haspopup="true" onClick={handleClickAdmin}>Admin</Button>
+          <Button color="inherit" aria-haspopup="true" onClick={handleClickAdmin}>Insert Admin Key</Button>
         </Toolbar>
       </AppBar>
       <SimpleDialog open={open} setOpen={setOpen}/>
