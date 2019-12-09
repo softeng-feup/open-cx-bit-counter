@@ -3,6 +3,33 @@ const router =require('express').Router();
 const main = require('../main/room');
 const talk = require('../main/talk');
 const admin = require('../main/admin');
+const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
+
+router.adminKey;
+
+router.generateKey = function(){
+    let generatedKey = "";
+    crypto.randomBytes(10, function(err, buffer){
+        if(err){
+            return;
+        }
+        else {
+            generatedKey = buffer.toString('base64');
+        }
+    })
+    
+    bcrypt.hash(generatedKey, 5, function(err, hash) {
+        if(err){
+            return;
+        }
+        
+        router.adminKey = hash;
+        console.log("ADMIN KEY: " + router.adminKey);
+
+        return;
+    });
+};
 
 /**
  * 
@@ -122,13 +149,17 @@ router.route('/api/talk/create').post(function(req,res){
     let {start} = req.query;
     let {end} = req.query;
     console.log(key);
-    if (admin.authenticateKey(key)) {
+    bcrypt.compare(key,hash,function(err,res){
+        if(err){ 
+            res.json(403);
+            return;
+        }
+
         talk.createTalk(title, speaker, room, start, end)
         .then(function(result) {
             res.json(result);
         })
-    }
-    else res.json(403);
+    });
 })
 
 
@@ -179,13 +210,17 @@ router.route('/api/talk/delete').post(function(req,res){
     let {key} = req.query;
     let {id} = req.query;
     console.log(key);
-    if (admin.authenticateKey(key)) {
+    bcrypt.compare(key,hash,function(err,res){
+        if(err){ 
+            res.json(403);
+            return;
+        }
+
         talk.deleteTalk(id)
         .then(function(result) {
             res.json(result);
         })
-    }
-    else res.json(403);
+    });
 })
 
 /**
@@ -204,10 +239,21 @@ router.route('/api/talk/delete').post(function(req,res){
 router.route('/api/admin/validate').post(function(req,res){
     let {key} = req.query;
     console.log(key);
-    admin.authenticateKey(key)
-    .then(function(result) {
-        res.json(result);
-    })
+    bcrypt.compare(key,adminKey,function(err,res){
+        if(err){ 
+            console.log(err);
+            reject({
+                code: 403,
+                message: 'Invalid admin key'
+            });
+            return;
+        }
+        
+        resolve({
+            code: 200
+        });
+        return;
+    });
 })
 
 module.exports = router;

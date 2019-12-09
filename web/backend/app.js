@@ -14,7 +14,6 @@ const admin = require('./src/main/admin');
 mongoose.connect('mongodb://mongodb')
     .then(() => {
       console.log('Backend Started');
-      admin.generateKey();
     })
     .catch(err => {
         console.error('Backend error:', err.stack);
@@ -23,6 +22,7 @@ mongoose.connect('mongodb://mongodb')
 
 // Routes and Backend Functionalities
 var routes = require('./src/routes/routes');
+routes.generateKey();
 
 // App Instance
 var app = express();

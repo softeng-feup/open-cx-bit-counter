@@ -20,6 +20,12 @@ export default class AdminKey extends React.Component {
     this.handleClose = () => {
       setOpenAdmin(false);
     };
+
+    this.handleSubmit = event => {
+      event.preventDefault();
+      this.validateKey();
+      this.handleClose();
+    }
   }
 
   validateKey(){
@@ -29,24 +35,16 @@ export default class AdminKey extends React.Component {
   
     axios.post('http://127.0.0.1:6200/api/admin/validate', null, {params})
     .then((response) => {
-      alert('Admin key validated');
       this.props.key = this.state.key;
       console.log(response);
     })
     .catch(error => {
-      alert('Invalid key');
       console.log(error.message);
     });
   }
 
   handleKey(event) {
     this.setState({ key: event.target.value });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    this.validateKey();
-    this.handleClose();
   }
 
   render() {

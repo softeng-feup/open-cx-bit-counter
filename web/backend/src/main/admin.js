@@ -56,6 +56,8 @@ module.exports = {
             .find({ id: 0 })
             .exec(function (err, row) {
                 console.log(row.key + "," + key);
+            })
+            .then(() => {
                 bcrypt.compare(key,hash,function(err,res){
                     if(err){ 
                         console.log(err);
@@ -70,7 +72,10 @@ module.exports = {
                         code: 200
                     });
                     return;
-                })
+                });
+            })
+            .catch(err => {
+                console.log(err.message);
             });
     });
   }
