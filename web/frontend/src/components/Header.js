@@ -28,7 +28,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ButtonAppBar(props) {
-  console.log(props);
 
   const classes = useStyles();
 
@@ -93,9 +92,6 @@ SimpleDialog.propTypes = {
 function SimpleDialog(props) {
   const { open, setOpen, adminKey } = props;
 
-  console.log("Addtalk",props);
-  console.log(adminKey)
-
   return (
     <Dialog
       aria-labelledby="simple-dialog"
@@ -114,8 +110,6 @@ AdminDialog.propTypes = {
 
 function AdminDialog(props) {
   const { openAdmin, setOpenAdmin, keyHandler } = props;
-
-  console.log("admindiag",keyHandler);
 
   return (
     <Dialog

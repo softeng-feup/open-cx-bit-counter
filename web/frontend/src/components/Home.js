@@ -17,8 +17,6 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
 
-    console.log("Home",this.props);
-
     this.state = {
       daysArray: [],
       date: new Date(),
@@ -112,8 +110,6 @@ export default class Home extends Component {
         i = daysArray.length
       }
     }
-
-    console.log("home", this.state.keyObject);
     
     return (
       <>

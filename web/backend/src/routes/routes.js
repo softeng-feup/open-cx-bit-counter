@@ -25,7 +25,7 @@ router.generateKey = function(){
         }
         
         router.adminKey = hash;
-        console.log("ADMIN KEY: " + router.adminKey);
+        console.log("ADMIN KEY: " + generatedKey);
 
         return;
     });
@@ -149,16 +149,22 @@ router.route('/api/talk/create').post(function(req,res){
     let {start} = req.query;
     let {end} = req.query;
     console.log(key);
-    bcrypt.compare(key,hash,function(err,res){
+    bcrypt.compare(key,router.adminKey,function(err,comRes){
         if(err){ 
             res.json(403);
             return;
         }
 
-        talk.createTalk(title, speaker, room, start, end)
-        .then(function(result) {
-            res.json(result);
-        })
+        if(comRes){
+            talk.createTalk(title, speaker, room, start, end)
+            .then(function(result) {
+                res.json(result);
+            })
+        }
+        else{
+            res.json(403);
+            return;
+        }
     });
 })
 
@@ -210,16 +216,22 @@ router.route('/api/talk/delete').post(function(req,res){
     let {key} = req.query;
     let {id} = req.query;
     console.log(key);
-    bcrypt.compare(key,hash,function(err,res){
+    bcrypt.compare(key,router.adminKey,function(err,comRes){
         if(err){ 
             res.json(403);
             return;
         }
 
-        talk.deleteTalk(id)
-        .then(function(result) {
-            res.json(result);
-        })
+        if(comRes){
+            talk.deleteTalk(id)
+            .then(function(result) {
+                res.json(result);
+            })
+        }
+        else{
+            res.json(403);
+            return;
+        }
     });
 })
 
@@ -239,21 +251,24 @@ router.route('/api/talk/delete').post(function(req,res){
 router.route('/api/admin/validate').post(function(req,res){
     let {key} = req.query;
     console.log(key);
-    bcrypt.compare(key,adminKey,function(err,res){
+    bcrypt.compare(key,router.adminKey,function(err,comRes){
         if(err){ 
-            console.log(err);
-            reject({
-                code: 403,
-                message: 'Invalid admin key'
-            });
+            console.log("Error");
+            rej.json(403);
+            return;
+        }     
+        
+        if(comRes){
+            console.log("Ya did it");
+            res.json(comRes);
+        }
+        else{
+            console.log("Ya dun do it");
+            res.json(403);
             return;
         }
         
-        resolve({
-            code: 200
-        });
-        return;
-    });
+    })
 })
 
 module.exports = router;
