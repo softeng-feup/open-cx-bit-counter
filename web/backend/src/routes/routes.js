@@ -252,13 +252,14 @@ router.route('/api/admin/validate').post(function(req,res){
     let {key} = req.query;
     console.log(key);
     console.log(router.adminKey);
-    bcrypt.compare(key,router.adminKey)
-    .then((comRes, err) =>{
+    bcrypt.compare(key,router.adminKey, function(err, comRes) {
         if(err){ 
             console.log("Error");
             rej.json(403);
             return;
         }     
+        console.log('COMRES:');
+        console.log(comRes);
         
         if(comRes){
             console.log("Ya did it");
@@ -270,8 +271,7 @@ router.route('/api/admin/validate').post(function(req,res){
             return;
         }
         
-    })
-    .catch((err)=>console.error(err));
+    });
 })
 
 module.exports = router;
