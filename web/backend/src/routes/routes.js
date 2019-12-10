@@ -16,19 +16,18 @@ router.generateKey = function(){
         }
         else {
             generatedKey = buffer.toString('base64');
+            bcrypt.hash(generatedKey, 5, function(err, hash) {
+                if(err){
+                    return;
+                }
+                
+                router.adminKey = hash;
+                console.log("ADMIN KEY: " + generatedKey);
+        
+                return;
+            });
         }
     })
-    
-    bcrypt.hash(generatedKey, 5, function(err, hash) {
-        if(err){
-            return;
-        }
-        
-        router.adminKey = hash;
-        console.log("ADMIN KEY: " + generatedKey);
-
-        return;
-    });
 };
 
 /**
