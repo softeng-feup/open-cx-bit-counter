@@ -2,14 +2,13 @@ const router =require('express').Router();
 
 const main = require('../main/room');
 const talk = require('../main/talk');
-const admin = require('../main/admin');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 
 router.adminKey;
 
 router.generateKey = function(){
-    let generatedKey = "";
+    let generatedKey = '';
     crypto.randomBytes(10, function(err, buffer){
         if(err){
             return;
@@ -250,12 +249,15 @@ router.route('/api/talk/delete').post(function(req,res){
 router.route('/api/admin/validate').post(function(req,res){
     let {key} = req.query;
     console.log(key);
-    bcrypt.compare(key,router.adminKey,function(err,comRes){
+    console.log(router.adminKey);
+    bcrypt.compare(key,router.adminKey, function(err, comRes) {
         if(err){ 
             console.log("Error");
             rej.json(403);
             return;
         }     
+        console.log('COMRES:');
+        console.log(comRes);
         
         if(comRes){
             console.log("Ya did it");
@@ -267,7 +269,7 @@ router.route('/api/admin/validate').post(function(req,res){
             return;
         }
         
-    })
+    });
 })
 
 module.exports = router;
