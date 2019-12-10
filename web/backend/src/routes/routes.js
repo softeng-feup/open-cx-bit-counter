@@ -2,14 +2,13 @@ const router =require('express').Router();
 
 const main = require('../main/room');
 const talk = require('../main/talk');
-const admin = require('../main/admin');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 
 router.adminKey;
 
 router.generateKey = function(){
-    let generatedKey = "";
+    let generatedKey = '';
     crypto.randomBytes(10, function(err, buffer){
         if(err){
             return;
@@ -25,7 +24,8 @@ router.generateKey = function(){
         }
         
         router.adminKey = hash;
-        console.log("ADMIN KEY: " + generatedKey);
+        console.log("ADMIN KEY: " + router.adminKey);
+        console.log("GENERATED KEY: " + generatedKey);
 
         return;
     });
@@ -251,7 +251,9 @@ router.route('/api/talk/delete').post(function(req,res){
 router.route('/api/admin/validate').post(function(req,res){
     let {key} = req.query;
     console.log(key);
-    bcrypt.compare(key,router.adminKey,function(err,comRes){
+    console.log(router.adminKey);
+    bcrypt.compare(key,router.adminKey)
+    .then((comRes, err) =>{
         if(err){ 
             console.log("Error");
             rej.json(403);
@@ -269,6 +271,7 @@ router.route('/api/admin/validate').post(function(req,res){
         }
         
     })
+    .catch((err)=>console.error(err));
 })
 
 module.exports = router;

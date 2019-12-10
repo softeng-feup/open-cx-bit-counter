@@ -9,7 +9,6 @@ var basePath = '/';
 var port = 6200;
 
 
-const admin = require('./src/main/admin');
 // Connection to DB
 mongoose.connect('mongodb://mongodb')
     .then(() => {
