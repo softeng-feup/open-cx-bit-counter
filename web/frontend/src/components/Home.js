@@ -20,7 +20,7 @@ export default class Home extends Component {
     this.state = {
       daysArray: [],
       date: new Date(),
-      keyObject: this.props.keyObject
+      keyGetter: this.props.keyGetter
     };
 
   }
@@ -100,7 +100,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { daysArray, date, keyObject } = this.state;
+    const { daysArray, date } = this.state;
 
     let talkArray = [];
     
@@ -125,7 +125,7 @@ export default class Home extends Component {
         </Box>
 
         <Box boxShadow={10} className="rooms-container">
-          <Table talkArray={talkArray} keyObject={this.state.keyObject}/>
+          <Table talkArray={talkArray} keyGetter={this.state.keyGetter}/>
         </Box>
         {talkArray.length != 0 ? (
           <Box boxShadow={10} className="statistics-container">

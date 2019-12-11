@@ -79,7 +79,7 @@ export default function ButtonAppBar(props) {
           <Button color="inherit" aria-haspopup="true" onClick={handleClickAdmin}>Insert Admin Key</Button>
         </Toolbar>
       </AppBar>
-      <SimpleDialog open={open} setOpen={setOpen} adminKey={props.keyObject}/>
+      <SimpleDialog open={open} setOpen={setOpen} keyGetter={props.keyObject.keyGetter}/>
       <AdminDialog openAdmin={openAdmin} setOpenAdmin={setOpenAdmin} keyHandler={props.keyObject.keyHandler}/>
     </div>
   );
@@ -90,15 +90,15 @@ SimpleDialog.propTypes = {
 };
 
 function SimpleDialog(props) {
-  const { open, setOpen, adminKey } = props;
-
+  const { open, setOpen} = props;
+  console.log(props.keyGetter);
   return (
     <Dialog
       aria-labelledby="simple-dialog"
       open={open}
     >
       <DialogTitle id="simple-dialog">
-        <AddTalk setOpen={setOpen} key={adminKey}/>
+        <AddTalk setOpen={setOpen} keyGetter={props.keyGetter}/>
       </DialogTitle>
     </Dialog>
   );

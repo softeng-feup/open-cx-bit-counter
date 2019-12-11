@@ -12,7 +12,8 @@ export default class AddTalkForm extends React.Component {
                     date: '',
                     start: '',
                     end: '',
-                    room: ''};
+                    room: '',
+                    keyGetter: this.props.keyGetter};
   
       this.handleTitle = this.handleTitle.bind(this);
       this.handleSpeaker = this.handleSpeaker.bind(this);
@@ -60,9 +61,9 @@ export default class AddTalkForm extends React.Component {
         room: this.state.room,
         start: this.state.start,
         end: this.state.end,
-        key: this.props.key
+        key: this.state.keyGetter()
       }
-    
+      console.log(this.state.keyGetter());
       axios.post('http://127.0.0.1:6200/api/talk/create', null, {params})
       .then((response) => {
         console.log(response);

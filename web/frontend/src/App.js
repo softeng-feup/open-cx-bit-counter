@@ -13,15 +13,19 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 
 function App() {
-  let handleKeyChanger = function (newKey) {
-    this.adminKey = newKey;
-  }
   var adminKeyObject = {
-    key: '',
-    keyHandler: handleKeyChanger
+    adminKey: '',
+    keyGetter: function () {
+      return this.adminKey;
+    },
+    keyHandler: function (newKey) {
+      this.adminKey = newKey;
+      console.log(this.keyGetter());
+    }
   };
 
-  adminKeyObject.keyHandler.bind(adminKeyObject);
+  adminKeyObject.keyHandler = adminKeyObject.keyHandler.bind(adminKeyObject);
+  adminKeyObject.keyGetter = adminKeyObject.keyGetter.bind(adminKeyObject);
 
   return (
     <>
@@ -29,7 +33,7 @@ function App() {
       <div className="container main-container">
         <Router>
           <Route path='/'
-              render={(props) => <Home {...props} keyObject={adminKeyObject} />}/>
+              render={(props) => <Home {...props} keyGetter={adminKeyObject.keyGetter} />}/>
         </Router>
       </div>
       <Footer />

@@ -57,7 +57,7 @@ class Table extends React.Component {
       talkArray: this.props.talkArray,
       date: new Date(),
       panels: {},
-      keyObject: this.props.keyObject
+      keyGetter: this.props.keyGetter
     };
 
   }
@@ -72,8 +72,9 @@ class Table extends React.Component {
   handleDelete(talk){
     let params = {
       id: talk._id,
-      key: this.state.keyObject.key
+      key: this.state.keyGetter()
     }
+    console.log(this.state.keyGetter());
     axios.post('http://127.0.0.1:6200/api/talk/delete', null, {params})
       .then((response) => {
         console.log(response);

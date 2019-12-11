@@ -13,7 +13,8 @@ export default class AdminKey extends React.Component {
     const { setOpenAdmin } = props;
 
     this.state = { key: '',
-                   openAdmin: false};
+                    keyHandler: props.keyHandler,
+                    openAdmin: false};
 
     this.handleKey = this.handleKey.bind(this);
 
@@ -35,7 +36,7 @@ export default class AdminKey extends React.Component {
   
     axios.post('http://127.0.0.1:6200/api/admin/validate', null, {params})
     .then((response) => {
-      this.props.key = this.state.key;
+      this.state.keyHandler(this.state.key); 
       console.log(response);
     })
     .catch(error => {
