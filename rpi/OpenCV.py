@@ -14,6 +14,10 @@ frames = []
 ROOM_NAME = 'B350'
 faces = []
 
+iteration = 0
+maxValue = 0
+
+
 
 class ImageGrabber(threading.Thread):
     def __init__(self, ID):
@@ -45,9 +49,10 @@ time.sleep(5)
 
 # send to the database
 
-
 def printit():
 
+  global iteration
+  global maxValue
   im = frames[0]
     # Get user supplied values
   cascPath = "haar-cascade-files-master/haarcascade_frontalface_alt.xml"
@@ -75,11 +80,22 @@ def printit():
 
   # cv2.imshow("Faces found", image)
   status = cv2.imwrite('saved.jpg', image)
-  print ("Image written to file-system : ", status)
-  # cv2.waitKey(0)
-  r = requests.post('http://127.0.0.1:6200/api/room/update?name=' + ROOM_NAME + '&occupation=' + str(len(faces)))
-  print(r.status_code, r.reason, len(faces))
-  threading.Timer(60.0, printit).start()
+  
+  numberOfFaces = len(faces)
+  iteration += 1
+  print(numberOfFaces)
+
+  if(numberOfFaces > maxValue):
+    maxValue = numberOfFaces
+    print('new max' + str(maxValue))
+  if(iteration == 12):
+    print('saving to db' + str(maxValue))
+    maxValue = 0
+    iteration = 0
+    requests.post('http://127.0.0.1:6200/api/room/update?name=' + ROOM_NAME + '&occupation=' + str(maxValue))
+    
+  
+  threading.Timer(5.0, printit).start()
 
 printit()
 

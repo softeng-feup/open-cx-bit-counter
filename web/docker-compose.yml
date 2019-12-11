@@ -1,27 +1,36 @@
-version: '3'
+version: "3"
 
 services:
-
   mongodb:
     image: "mongo"
     ports:
-     - "27017:27017"
+      - "27017:27017"
+    environment:
+      - VIRTUAL_PORT=27017
 
   backend:
     build: ./backend/
+    expose:
+      - 6200
     ports:
-      - '6200:6200'
+      - "6200:6200"
     volumes:
       - ./backend/src:/app/src
     environment:
       - NODE_ENV=development
+      - VIRTUAL_HOST=api.feupbitcounter.info
+      - VIRTUAL_PORT=6200
     depends_on:
       - mongodb
-      
+
+
+
   frontend:
     build: ./frontend/
+    expose:
+      - 3000
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
       - ./frontend/src:/app/src
       - ./frontend/public:/app/public
@@ -29,3 +38,24 @@ services:
       - backend
     environment:
       - NODE_ENV=development
+      - VIRTUAL_HOST=feupbitcounter.info
+      - VIRTUAL_PORT=3000
+     
+
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    depends_on:
+      - backend
+      - frontend
+      - mongodb
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  whoami:
+    image: jwilder/whoami
+    environment:
+      - VIRTUAL_HOST=whoami.local
+

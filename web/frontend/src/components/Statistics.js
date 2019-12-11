@@ -52,7 +52,7 @@ class Statistics extends React.Component {
     let max = -1;
     if(this.props.type === "talk") {
 
-      this.expansionTitle = "Best Talk of the Day";
+      this.expansionTitle = "Most Popular Talk of the Day";
 
       for (let i = 0; i < this.props.talkArray.length; i++) {
         let maxAux =  Math.max(...this.props.talkArray[i].occupation_list.map(s => s.value));
@@ -86,12 +86,14 @@ class Statistics extends React.Component {
     }
 
     if (this.props.type === "all") {
-      this.expansionTitle = "Best talk overall";
+      this.expansionTitle = "Most Popular Talk";
+      
+      let maxAux;
       for(let i = 0; i < this.props.daysArray.length; i++) {
         let talkArray = this.props.daysArray[i].talk;
-
+      
         for(let j = 0; j < talkArray.length; j++) {
-          let maxAux =  Math.max(...talkArray[j].occupation_list.map(s => s.value));
+          maxAux =  Math.max(...talkArray[j].occupation_list.map(s => s.value));
           
           if(maxAux >= max) {
             max = maxAux;
@@ -109,12 +111,13 @@ class Statistics extends React.Component {
 
             continue;
           }
-
-          if(maxAux == -Infinity) {
+        
+          if(maxAux == -Infinity && max == -1) {
             this.room = talkArray[j].room;
             this.speaker = talkArray[j].speaker;
             this.title = talkArray[j].title;
-            this.timeAtMax = this.props.daysArray[i].date;
+            this.timeAtMax = this.
+            props.daysArray[i].date;
           }
         }
       }
@@ -131,7 +134,7 @@ class Statistics extends React.Component {
           <div className={classes.root}>
               <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                  <Typography component="th" scope="row" style={{fontSize:'24px'}}><b>{this.expansionTitle}</b></Typography>
+                  <Typography scope="row" style={{fontSize:'24px'}}><b>{this.expansionTitle}</b></Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
 

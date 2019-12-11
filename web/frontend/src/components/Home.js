@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import Calendar from 'react-calendar';
-import Card from '@material-ui/core/Card';
-import { makeStyles } from '@material-ui/core/styles';
-
-import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 
 import axios from 'axios';
@@ -30,7 +26,7 @@ export default class Home extends Component {
   }
 
   updateTalkList(){
-    axios.get('http://127.0.0.1:6200/api/room/list')
+    axios.get('http://api.feupbitcounter.info/api/room/list',{ crossdomain: true })
     .then((res) => {
       const { room } = res.data;
       let daysArray = [];

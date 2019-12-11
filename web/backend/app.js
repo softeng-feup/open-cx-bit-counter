@@ -19,19 +19,25 @@ mongoose.connect('mongodb://mongodb')
         process.exit(1);
     });
 
+
+var app = express();
+
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+app.use(express.static('public'));
+app.options(cors());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 // Routes and Backend Functionalities
 var routes = require('./src/routes/routes');
 routes.generateKey();
-
-// App Instance
-var app = express();
-app.use(express.static('public'));
-app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
 app.use(basePath, routes);
 
-// Execute App
+
 app.listen(port, () => {
   console.log('Backend running on Port: ',port);
 });
