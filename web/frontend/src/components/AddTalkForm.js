@@ -7,8 +7,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import getMinutes from 'date-fns/getMinutes'
-import getHours from 'date-fns/getHours'
 import getUnixTime from 'date-fns/getUnixTime'
 import { KeyboardDatePicker, KeyboardTimePicker } from "@material-ui/pickers";
 import axios from 'axios';
@@ -22,9 +20,9 @@ export default class AddTalkForm extends React.Component {
       this.state = {
         title: '',
         speaker: '',
-        date: '',
-        start: '',
-        end: '',
+        date: null,
+        start: null,
+        end: null,
         room: '',
         open: false,
         keyGetter: this.props.keyGetter
@@ -52,22 +50,17 @@ export default class AddTalkForm extends React.Component {
     }
 
     handleDate(event) {
-      console.log(event);
-      let date_s = getUnixTime(event);
+      let date_s = getUnixTime(event)*1000;
       this.setState({date: date_s});
     }
 
     handleStart(event) {
-      let hours = getHours(event);
-      let minutes = getMinutes(event);
-      let start_time = (hours * 3600 + minutes * 60 + this.state.date)*1000;
+      let start_time = getUnixTime(event)*1000;
       this.setState({start: start_time});
     }
 
     handleEnd(event) {
-      let hours = getHours(event);
-      let minutes = getMinutes(event);
-      let end_time = (hours * 3600 + minutes * 60 + this.state.date)*1000;
+      let end_time = getUnixTime(event)*1000;
       this.setState({end: end_time});
     }
 
@@ -85,7 +78,7 @@ export default class AddTalkForm extends React.Component {
         key: this.state.keyGetter()
       }
     
-      axios.post('http://api.feupbitcounter.info/api/talk/create', null, {params})
+      axios.post('http://api.feupbitcounter.info/api/talk/create', null, {params}) 
       .then((response) => {
         console.log(response);
       })
@@ -109,6 +102,7 @@ export default class AddTalkForm extends React.Component {
           <form onSubmit={this.handleSubmit}>
           <DialogContent>
             <TextField 
+              autoComplete="off"
               autoFocus 
               margin="normal"
               required={true}
@@ -117,6 +111,7 @@ export default class AddTalkForm extends React.Component {
               type="string" fullWidth 
             />
             <TextField 
+              autoComplete="off"
               margin="normal"
               required={true}
               id="Speaker" label="Speaker" 
@@ -130,7 +125,7 @@ export default class AddTalkForm extends React.Component {
                 disablePast={true} 
                 format="dd/MM/yyyy" 
                 id="Date" label="Date" 
-                value={null} onChange={date => this.handleDate(date)} 
+                value={this.state.date} onChange={this.handleDate} 
                 fullWidth 
               />
               <KeyboardTimePicker 
@@ -140,7 +135,7 @@ export default class AddTalkForm extends React.Component {
                 clearable 
                 ampm={false} 
                 id="Start" label="Start" 
-                value={null} onChange={date => this.handleStart(date)} 
+                value={this.state.start} onChange={this.handleStart} 
                 fullWidth 
                 />
               <KeyboardTimePicker 
@@ -150,11 +145,12 @@ export default class AddTalkForm extends React.Component {
                 clearable 
                 ampm={false} 
                 id="End" label="End" 
-                value={null} onChange={date => this.handleEnd(date)} 
+                value={this.state.end} onChange={this.handleEnd} 
                 fullWidth 
                 />
             </MuiPickersUtilsProvider>
-            <TextField 
+            <TextField
+              autoComplete="off"
               margin="normal" 
               required={true}
               size="small"
