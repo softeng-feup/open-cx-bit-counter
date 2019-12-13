@@ -100,6 +100,7 @@ export default class AddTalkForm extends React.Component {
           <form onSubmit={this.handleSubmit}>
           <DialogContent>
             <TextField 
+              autoComplete="off"
               autoFocus 
               margin="normal"
               required={true}
@@ -108,6 +109,7 @@ export default class AddTalkForm extends React.Component {
               type="string" fullWidth 
             />
             <TextField 
+              autoComplete="off"
               margin="normal"
               required={true}
               id="Speaker" label="Speaker" 
@@ -145,7 +147,8 @@ export default class AddTalkForm extends React.Component {
                 fullWidth 
                 />
             </MuiPickersUtilsProvider>
-            <TextField 
+            <TextField
+              autoComplete="off"
               margin="normal" 
               required={true}
               size="small"
