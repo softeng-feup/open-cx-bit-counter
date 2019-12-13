@@ -22,9 +22,9 @@ export default class AddTalkForm extends React.Component {
       this.state = {
         title: '',
         speaker: '',
-        date: '',
-        start: '',
-        end: '',
+        date: null,
+        start: null,
+        end: null,
         room: '',
         open: false
       };
@@ -51,8 +51,7 @@ export default class AddTalkForm extends React.Component {
     }
 
     handleDate(event) {
-      console.log(event);
-      let date_s = getUnixTime(event);
+      let date_s = getUnixTime(event) *1000;
       this.setState({date: date_s});
     }
 
@@ -128,7 +127,7 @@ export default class AddTalkForm extends React.Component {
                 disablePast={true} 
                 format="dd/MM/yyyy" 
                 id="Date" label="Date" 
-                value={null} onChange={date => this.handleDate(date)} 
+                value={this.state.date} onChange={this.handleDate} 
                 fullWidth 
               />
               <KeyboardTimePicker 
@@ -138,7 +137,7 @@ export default class AddTalkForm extends React.Component {
                 clearable 
                 ampm={false} 
                 id="Start" label="Start" 
-                value={null} onChange={date => this.handleStart(date)} 
+                value={this.state.start} onChange={this.handleStart} 
                 fullWidth 
                 />
               <KeyboardTimePicker 
@@ -148,7 +147,7 @@ export default class AddTalkForm extends React.Component {
                 clearable 
                 ampm={false} 
                 id="End" label="End" 
-                value={null} onChange={date => this.handleEnd(date)} 
+                value={this.state.end} onChange={this.handleEnd} 
                 fullWidth 
                 />
             </MuiPickersUtilsProvider>
