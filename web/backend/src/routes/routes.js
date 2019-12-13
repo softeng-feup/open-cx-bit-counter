@@ -2,10 +2,32 @@ const router =require('express').Router();
 
 const main = require('../main/room');
 const talk = require('../main/talk');
+const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 
+router.adminKey;
 
-
-
+router.generateKey = function(){
+    let generatedKey = '';
+    crypto.randomBytes(10, function(err, buffer){
+        if(err){
+            return;
+        }
+        else {
+            generatedKey = buffer.toString('base64');
+            bcrypt.hash(generatedKey, 5, function(err, hash) {
+                if(err){
+                    return;
+                }
+                
+                router.adminKey = hash;
+                console.log("ADMIN KEY: " + generatedKey);
+        
+                return;
+            });
+        }
+    })
+};
 
 /**
  * 
@@ -115,17 +137,33 @@ router.route('/api/room/update').post(function(req,res){
  * 
  * @apiError (404) {Number} code - the updated talk
  * @apiError (404) {String} message - error message
+ * @apiError (403) {String} message - without permission error
  */
 router.route('/api/talk/create').post(function(req,res){
+    let {key} = req.query;
     let {title} = req.query;
     let {speaker} = req.query;
     let {room} = req.query;
     let {start} = req.query;
     let {end} = req.query;
-    talk.createTalk(title, speaker, room, start, end)
-    .then(function(result) {
-        res.json(result);
-    })
+    console.log(key);
+    bcrypt.compare(key,router.adminKey,function(err,comRes){
+        if(err){ 
+            res.json(403);
+            return;
+        }
+
+        if(comRes){
+            talk.createTalk(title, speaker, room, start, end)
+            .then(function(result) {
+                res.json(result);
+            })
+        }
+        else{
+            res.json(403);
+            return;
+        }
+    });
 })
 
 
@@ -170,16 +208,68 @@ router.route('/api/talk/list').get(function(req,res){
  * 
  * @apiError (404) {Number} code - the updated talk
  * @apiError (404) {String} message - error message
+ * @apiError (403) {String} message - without permission error
  */
 router.route('/api/talk/delete').post(function(req,res){
-    console.log("Delete request");
-    console.log(req.query);
+    let {key} = req.query;
     let {id} = req.query;
-    console.log(id);
-    talk.deleteTalk(id)
-    .then(function(result) {
-        res.json(result);
-    })
+    console.log(key);
+    bcrypt.compare(key,router.adminKey,function(err,comRes){
+        if(err){ 
+            res.json(403);
+            return;
+        }
+
+        if(comRes){
+            talk.deleteTalk(id)
+            .then(function(result) {
+                res.json(result);
+            })
+        }
+        else{
+            res.json(403);
+            return;
+        }
+    });
+})
+
+/**
+ * 
+ * @api {Post} /api/admin/validate - Change to admin mode
+ * @apiName AdminMode
+ * @apiGroup admin
+ * @apiDescription This route is responsible for changing to admin mode
+ * 
+ * @apiParam  {String} key - The admin key
+ * 
+ * @apiSuccess (200) {Number} code - code result
+ * 
+ * @apiError (404) {String} message - error message
+ */
+router.route('/api/admin/validate').post(function(req,res){
+    let {key} = req.query;
+    console.log(key);
+    console.log(router.adminKey);
+    bcrypt.compare(key,router.adminKey, function(err, comRes) {
+        if(err){ 
+            console.log("Error");
+            rej.json(403);
+            return;
+        }     
+        console.log('COMRES:');
+        console.log(comRes);
+        
+        if(comRes){
+            console.log("Ya did it");
+            res.json(comRes);
+        }
+        else{
+            console.log("Ya dun do it");
+            res.json(403);
+            return;
+        }
+        
+    });
 })
 
 module.exports = router;

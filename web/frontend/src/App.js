@@ -12,15 +12,28 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-
-
 function App() {
+  var adminKeyObject = {
+    adminKey: '',
+    keyGetter: function () {
+      return this.adminKey;
+    },
+    keyHandler: function (newKey) {
+      this.adminKey = newKey;
+      console.log(this.keyGetter());
+    }
+  };
+
+  adminKeyObject.keyHandler = adminKeyObject.keyHandler.bind(adminKeyObject);
+  adminKeyObject.keyGetter = adminKeyObject.keyGetter.bind(adminKeyObject);
+
   return (
     <>
-      <Header />
+      <Header keyObject={adminKeyObject}/>
       <div className="container main-container">
         <Router>
-          <Route path="/" component={Home} />
+          <Route path='/'
+              render={(props) => <Home {...props} keyGetter={adminKeyObject.keyGetter} />}/>
         </Router>
       </div>
       <Footer />

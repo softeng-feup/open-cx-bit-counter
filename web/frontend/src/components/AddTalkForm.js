@@ -7,8 +7,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import getMinutes from 'date-fns/getMinutes'
-import getHours from 'date-fns/getHours'
 import getUnixTime from 'date-fns/getUnixTime'
 import { KeyboardDatePicker, KeyboardTimePicker } from "@material-ui/pickers";
 import axios from 'axios';
@@ -26,7 +24,8 @@ export default class AddTalkForm extends React.Component {
         start: null,
         end: null,
         room: '',
-        open: false
+        open: false,
+        keyGetter: this.props.keyGetter
       };
       
       this.handleClose = () => {
@@ -51,21 +50,17 @@ export default class AddTalkForm extends React.Component {
     }
 
     handleDate(event) {
-      let date_s = getUnixTime(event) *1000;
+      let date_s = getUnixTime(event)*1000;
       this.setState({date: date_s});
     }
 
     handleStart(event) {
-      let hours = getHours(event);
-      let minutes = getMinutes(event);
-      let start_time = (hours * 3600 + minutes * 60 + this.state.date)*1000;
+      let start_time = getUnixTime(event)*1000;
       this.setState({start: start_time});
     }
 
     handleEnd(event) {
-      let hours = getHours(event);
-      let minutes = getMinutes(event);
-      let end_time = (hours * 3600 + minutes * 60 + this.state.date)*1000;
+      let end_time = getUnixTime(event)*1000;
       this.setState({end: end_time});
     }
 
@@ -79,10 +74,11 @@ export default class AddTalkForm extends React.Component {
         speaker: this.state.speaker,
         room: this.state.room,
         start: this.state.start,
-        end: this.state.end
+        end: this.state.end,
+        key: this.state.keyGetter()
       }
     
-      axios.post('http://api.feupbitcounter.info/api/talk/create', null, {params})
+      axios.post('http://api.feupbitcounter.info/api/talk/create', null, {params}) 
       .then((response) => {
         console.log(response);
       })
@@ -106,6 +102,7 @@ export default class AddTalkForm extends React.Component {
           <form onSubmit={this.handleSubmit}>
           <DialogContent>
             <TextField 
+              autoComplete="off"
               autoFocus 
               margin="normal"
               required={true}
@@ -114,6 +111,7 @@ export default class AddTalkForm extends React.Component {
               type="string" fullWidth 
             />
             <TextField 
+              autoComplete="off"
               margin="normal"
               required={true}
               id="Speaker" label="Speaker" 
@@ -151,7 +149,8 @@ export default class AddTalkForm extends React.Component {
                 fullWidth 
                 />
             </MuiPickersUtilsProvider>
-            <TextField 
+            <TextField
+              autoComplete="off"
               margin="normal" 
               required={true}
               size="small"

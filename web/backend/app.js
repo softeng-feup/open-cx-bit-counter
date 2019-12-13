@@ -8,6 +8,7 @@ var cors = require('cors');
 var basePath = '/';
 var port = 6200;
 
+
 // Connection to DB
 mongoose.connect('mongodb://mongodb')
     .then(() => {
@@ -33,6 +34,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 // Routes and Backend Functionalities
 var routes = require('./src/routes/routes');
+routes.generateKey();
 app.use(basePath, routes);
 
 

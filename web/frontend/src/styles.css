@@ -25,3 +25,11 @@
 .delete-button {
   float:right;
 }
+
+.submit-button {
+  float:right;
+}
+
+#key_text {
+  padding: 0.2em;
+}

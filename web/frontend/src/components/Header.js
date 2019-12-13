@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import AddTalk from './AddTalkForm';
+import AdminKey from './AdminKey';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,14 +27,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
+
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
-
+  const [openAdmin, setOpenAdmin] = React.useState(false);
+  
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleClickAdmin = () => {
+    setOpenAdmin(true);
   };
 
   const handleClickPop = () => {
@@ -44,13 +51,14 @@ export default function ButtonAppBar() {
   const handleClose = () => {
     setAnchorEl(null);
     setOpen(false);
+    setOpenAdmin(false);
   };
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
+          <IconButton id="menu" edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
             <MenuIcon aria-controls="main-menu" aria-haspopup="true" />
           </IconButton>
           <Menu
@@ -60,7 +68,7 @@ export default function ButtonAppBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-            <MenuItem onClick={handleClickPop}>Add talks</MenuItem>
+            <MenuItem onClick={handleClickPop} >Add talks</MenuItem>
           </Menu>
           <Typography variant="h6" className={classes.title}>
             News
@@ -68,10 +76,11 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             BIT Counter
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" aria-haspopup="true" onClick={handleClickAdmin}>Insert Admin Key</Button>
         </Toolbar>
       </AppBar>
-      <SimpleDialog open={open} setOpen={setOpen}/>
+      <SimpleDialog open={open} setOpen={setOpen} keyGetter={props.keyObject.keyGetter}/>
+      <AdminDialog openAdmin={openAdmin} setOpenAdmin={setOpenAdmin} keyHandler={props.keyObject.keyHandler}/>
     </div>
   );
 }
@@ -81,15 +90,34 @@ SimpleDialog.propTypes = {
 };
 
 function SimpleDialog(props) {
-  const { open, setOpen } = props;
+  const { open, setOpen} = props;
+  console.log(props.keyGetter);
+  return (
+    <Dialog
+      aria-labelledby="simple-dialog"
+      open={open}
+    >
+      <DialogTitle id="simple-dialog">
+        <AddTalk setOpen={setOpen} keyGetter={props.keyGetter}/>
+      </DialogTitle>
+    </Dialog>
+  );
+}
+
+AdminDialog.propTypes = {
+  setOpenAdmin: PropTypes.func.isRequired
+};
+
+function AdminDialog(props) {
+  const { openAdmin, setOpenAdmin, keyHandler } = props;
 
   return (
     <Dialog
-      aria-labelledby="simple-dialog-title"
-      open={open}
+      aria-labelledby="admin-dialog"
+      open={openAdmin}
     >
-      <DialogTitle id="simple-dialog-title">
-        <AddTalk setOpen={setOpen}/>
+      <DialogTitle id="admin-dialog">
+        <AdminKey setOpenAdmin={setOpenAdmin} keyHandler={keyHandler}/>
       </DialogTitle>
     </Dialog>
   );
