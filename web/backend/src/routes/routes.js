@@ -2,19 +2,19 @@ const router =require('express').Router();
 
 const main = require('../main/room');
 const talk = require('../main/talk');
-const crypto = require('crypto');
+//const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 
 router.adminKey;
 
 router.generateKey = function(){
-    let generatedKey = '';
-    crypto.randomBytes(10, function(err, buffer){
+    let generatedKey = 'myBit@dminKey01';
+    /*crypto.randomBytes(10, function(err, buffer){
         if(err){
             return;
         }
         else {
-            generatedKey = buffer.toString('base64');
+            generatedKey = buffer.toString('base64');*/
             bcrypt.hash(generatedKey, 5, function(err, hash) {
                 if(err){
                     return;
@@ -25,8 +25,8 @@ router.generateKey = function(){
         
                 return;
             });
-        }
-    })
+        //}
+    //})
 };
 
 /**
