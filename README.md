@@ -13,8 +13,6 @@
 Web app capable of giving information to both the organization and participants on wether the room is full or not. If it isn't full it's also possible to say how many people are in the session.
 The goal is to increase the number of participants in talks and decrease the number of empty seats.  
 
----
-
 ## Elevator Pitch
 We want to know how full a room is during a talk. To accomplish this we use image recognition to count people's head and so we get the number of attendees. With this data we can know our target audience better and be more efective in the marketing campaign of the upcoming edition.  
 
@@ -48,7 +46,6 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 **Description:** The conference organizers want to know which talks had the most atendees, which talk was most popular that day.  
   
 ### User Stories  
-
 [Trello](https://trello.com/b/AaikinSY/bit-counter)  
 
 - **Schedule**
@@ -72,13 +69,17 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 ![Talk graph mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Talk%20Graph%20Mockup.png "Talk graph Mockup")  
 ![Most popular talk mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Most%20Popular%20Talk%20Mockup.png "Most popular talk Mockup")
 
+### Acceptance tests
+Before deploying the website the project was tested and made using Docker. This way it was possible to easily test and develop new features without the need to deploy them into the real website. On the other hand, this approach also made work easier for everyone as it allowed everyone to work independently; it also prevent bugs from occuring when certain features weren't completely implemented.
+
 ### Domain model
-![Domain analysis](docs/domain/domain_diagram.png "Domain Model Diagram")
+![Domain analysis](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/domain_diagram.png "Domain Model Diagram")
 
 ---
 
 ## Architecture and Design
 
+### Logical architecture
 The architecture must adapt to a simple web app, meaning it will need a simple scheme where it uses these layers: frontend, backend and database.
 To achieve that we will be using an Architecture with a Layered Pattern.
 On top we will, however, add a diferent layer for the counting software/hardware.
@@ -91,4 +92,16 @@ Our layers will be:
 - Business logic layer (domain layer)
 - Data access layer (database layer)(database)
 
-![](https://i.imgur.com/KE9heEx.png) 
+### Physical architecture 
+To develop the presentation layer, front-end, we used React and various utilities from MaterialUI.  
+The application layer consists of a simple Python program which uses the library OpenCV to achieve its facial recognition cabalities. This program is intendent to be run on a Raspberry Pi.  
+
+The communication between the application and the database is made using HTTP Requests.
+
+![Physical Architecute](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/physical.png "Physical architecture UML")
+
+### Prototype
+We approach our project from a bottom up approach, we started by developing a simple React website, and at the same time exploring with OpenCV.  
+Then as the project moved along the website started to grow in features to accomodate the new user-stories. The ability to add talks was implemented.  
+When data from the application started to come in, a graph was added to each talk to show the change in occupation over time.  
+Lastly an admin key was implemented to make sure only the conference organizers could add/remove talks. At this time the website also went live.
