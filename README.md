@@ -49,28 +49,59 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 [Trello](https://trello.com/b/AaikinSY/bit-counter)  
 
 - **Schedule**
-  - As an organizer, I want to know the talks schedule, so that I can identify which rooms are being used and indicate the talks rooms to participants.  
-  - As an organizer, I want to know the talks schedule, so that I know which rooms will be used on that day and don’t induce participants in error. 
-  - As an organizer, I want to be able to add new talks to the database, so that users can see them.
-  - As an organizer, I want to be able to remove a talk from the system, so that it stops being available to users.
+  - As an organizer I want to know the schedule of the talks to identify the rooms being used and display them, to the participants.  
+  - As an organizer I want to know the schedule of the talks and which rooms they are happening so as to not give wrong information to the atendees.  
+  - As an oragnizer I want to add new talks to the database which should be made availabe to the users.
+  - As an organizer I want to remove talks from the database so they are no longer available to the users.  
 - **Room Occupation**
-  - As an organizer, I want to know the most affluent talk, so that I can repeat it or deepen more the theme on the next edition.
-  - As an organizer, I want to see a chart with the room’s occupation over time, so that I know the biggest moments of occupation.  
-  - As an organizer, I want to have access to all talks’ data, in order to conclude more precisely the affluence and the popularity of the conference.
-  - As an organizer, I want to know which talk has more affluence on each day, so that I can repeat it or deepen more the theme on the next edition..    
-  - As an organizer, I want to know the room’s occupation throughout the talk, so that I can predict more precisely the required seats to the future edition.
-  - As a conference participant, I want to know the number of available seats on a talk, so that I know if I can attend.
+  - As an organzier I want to know the most popular talk of all, so I can know which theme I can invest for the next edition of the conference.
+  - As an organizer I want to have a graphic displaying the room occupation over time so I can know the various points with high occupation.
+  - As an orgaznizer I want to have access to all the data from the talks to know precisely the popularity of the conference.
+  - As an organizer I want to know the most popular talk of the day, so I can know which theme I can invest for the next edition of the conference.
+  - As an orgaznizer I want to knwo the occupation of a room over time to better prepare the next conference.
+  - As an atendee I want to knwo the number of available seats at a talk to know with there is any seat for me.
 - **Extra features**
-  - As an organizer, I want to have the possibility of logging in with an administrator key, so that I can manage talks’ data.
-  - As a user, I want to access the site with a browser, so that I can see the rooms’ occupation, to know if I have an empty seat on that talk.
+  - As an organizer I want to enter with a passcode and be able to manage the talks.
+  - As a user I want to access the website form a browser and know the room occupation on a given talk.
 
 ### Mockups
 ![Homepage mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Homepage%20Mockup.png "Homepage Mockup")  
 ![Talk graph mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Talk%20Graph%20Mockup.png "Talk graph Mockup")  
 ![Most popular talk mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Most%20Popular%20Talk%20Mockup.png "Most popular talk Mockup")
 
-### Acceptance tests
-Before deploying the website the project was tested and made using Docker. This way it was possible to easily test and develop new features without the need to deploy them into the real website. On the other hand, this approach also made work easier for everyone as it allowed everyone to work independently; it also prevent bugs from occuring when certain features weren't completely implemented.
+### Acceptance testsn
+- **Pre-condition:** Organizer access home page.
+- **Test steps:** Clicks on a day in the calendar; clicks on a talk occuring that day, if there is any
+- **Expected results:** On the talk tab it is displayed the room where it is happening, and when it is starting and ending.  
+<br/>
+- **Pre-condition:** Organizer access home page.
+- **Test steps:** Clicks on the hamburguer menu, then Add Talks; and fills the form.
+- **Expected results:** The new talk will be displayed on the designated day, when it is selecting on the calendar.  
+<br/>
+- **Pre-condition:** Organizer access home page.
+- **Test steps:** Clicks the day of the talk to be removed; selects that talk from the ones happening that day; clicks on the delete button.
+- **Expected results:** The removed talk will not appear on that day talk list.  
+<br/>
+- **Pre-condition:** Organizer access home page.
+- **Test steps:** On the home page click on tha banner "Most Popular Talk"
+- **Expected results:** If there is any talk on the database the one with the highest occupation at a given time will be displayed.  
+<br/>
+- **Pre-condition:** Organizer access home page.
+- **Test steps:** Select a day in the calendar with talks happening or talks that have finished; then select one of those talks.
+- **Expected results:** Displays a graphic of the occupation over time, if there is data for it.  
+<br/>
+- **Pre-condition:** Organizer access home page.
+- **Test steps:** Select the day we wish to know the most popular talk; then click on the banner "Most popular talk of the day".
+- **Expected results:** The data from the most popular talk from that day will be displayed.  
+<br/>
+- **Pre-condition:** Normal user access home page.
+- **Test steps:** Selects the day of the talk; clicks on the talk from the list and sees the occupation graphic.
+- **Expected results:** A normal user, without any priveleges, should be able to see the occupation graphic.  
+<br/>
+- **Pre-condition:** Organizer access home page.
+- **Test steps:** Click on Login; then insert the admin key
+- **Expected results:** Before inserting the admin key it should not be possible to add new talks, after the authentication that should not be the case.
+
 
 ### Domain model
 ![Domain analysis](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/domain_diagram.png "Domain Model Diagram")
