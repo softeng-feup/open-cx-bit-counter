@@ -49,20 +49,20 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 [Trello](https://trello.com/b/AaikinSY/bit-counter)  
 
 - **Schedule**
-  - Como organizador pretendo saber o horario das palestras para identificar as salas que estao a ser usadas e indicar ao participante as salas com palestras.  
-  - Como organizador predendo saber o calendario das palestras para saber as salas que vão ser usadas naquele dia e assim não induzir o participante em erro.  
-  - Como organizador pretendo conseguir adicionar palestras novas à base de dados para serem visualizadas pelos utilizadores.  
-  - Como organizador pretendo conseguir remover uma palestra do sistema,  para que esta deixe de estar disponível para os utilizadores.
+  - As an organizer, I want to know the talks schedule, so that I can identify which rooms are being used and indicate the talks rooms to participants.  
+  - As an organizer, I want to know the talks schedule, so that I know which rooms will be used on that day and don’t induce participants in error. 
+  - As an organizer, I want to be able to add new talks to the database, so that users can see them.
+  - As an organizer, I want to be able to remove a talk from the system, so that it stops being available to users.
 - **Room Occupation**
-  - Como organizador pretendo saber qual a palestra com mais afluência entre todas de forma a repetir ou aprofundar mais o tema na edição seguinte.
-  - Como organizador pretendo ver um gráfico com a ocupação de uma talk ao longo do tempo de modo a saber maiores momentos de ocupação  
-  - Como organizador pretendo ter acesso aos dados de todas as palestras de forma a conseguir concluir de forma mais precisa a afluência e popularidade da conferência.
-  - Como organizador pretendo saber qual a palestra com mais afluência em cada dia de forma a repetir ou aprofundar mais o tema na edição seguinte.    
-  - Como organizador pretendo saber a utilização da sala ao longo da palestra, de forma a ter informação para preparar uma melhor edição futura.
-  - Como participante da conferência, eu pretendo saber o número de lugares disponíveis numa palestra para saber se posso comparecer.  
+  - As an organizer, I want to know the most affluent talk, so that I can repeat it or deepen more the theme on the next edition.
+  - As an organizer, I want to see a chart with the room’s occupation over time, so that I know the biggest moments of occupation.  
+  - As an organizer, I want to have access to all talks’ data, in order to conclude more precisely the affluence and the popularity of the conference.
+  - As an organizer, I want to know which talk has more affluence on each day, so that I can repeat it or deepen more the theme on the next edition..    
+  - As an organizer, I want to know the room’s occupation throughout the talk, so that I can predict more precisely the required seats to the future edition.
+  - As a conference participant, I want to know the number of available seats on a talk, so that I know if I can attend.
 - **Extra features**
-  - Como organizador pretendo ter a possibilidade de entrar com uma palavra-passe para poder gerir dados das palestas.
-  - Como utilizador quero aceder a partir de um browser ao site para ver a ocupação da salas para saber se tenho lugar naquela palestra.
+  - As an organizer, I want to have the possibility of logging in with an administrator key, so that I can manage talks’ data.
+  - As a user, I want to access the site with a browser, so that I can see the rooms’ occupation, to know if I have an empty seat on that talk.
 
 ### Mockups
 ![Homepage mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Homepage%20Mockup.png "Homepage Mockup")  
