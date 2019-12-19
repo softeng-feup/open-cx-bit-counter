@@ -51,7 +51,6 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 #### Related to: Schedule
 - As an organizer I want to know the schedule of the talks to identify the rooms being used and display them, to the participants.  
 - As an organizer I want to know the schedule of the talks and which rooms they are happening so as to not give wrong information to the atendees.  
-  
   **Pre-condition:** Organizer access home page.  
   **Test steps:** Clicks on a day in the calendar; clicks on a talk occuring that day, if there is any  
   **Expected results:** On the talk tab it is displayed the room where it is happening, and when it is starting and ending  
@@ -73,8 +72,7 @@ We want to know how full a room is during a talk. To accomplish this we use imag
   **Expected results:** If there is any talk on the database the one with the highest occupation at a given time will be displayed.  
 
 - As an organizer I want to have a graphic displaying the room occupation over time so I can know the various points with high occupation.
-- As an orgaznizer I want to have access to all the data from the talks to know precisely the popularity of the conference.  
-  
+- As an orgaznizer I want to have access to all the data from the talks to know precisely the popularity of the conference. 
   **Pre-condition:** Organizer access home page.  
   **Test steps:** Select a day in the calendar with talks happening or talks that have finished; then select one of those talks.  
   **Expected results:** Displays a graphic of the occupation over time, if there is data for it.  
