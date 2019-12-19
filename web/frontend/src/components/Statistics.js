@@ -54,8 +54,9 @@ class Statistics extends React.Component {
 
       this.expansionTitle = "Most Popular Talk of the Day";
 
+      let maxAux;
       for (let i = 0; i < this.props.talkArray.length; i++) {
-        let maxAux =  Math.max(...this.props.talkArray[i].occupation_list.map(s => s.value));
+        maxAux =  Math.max(...this.props.talkArray[i].occupation_list.map(s => s.value));
         if(maxAux >= max) {
           max = maxAux;
           this.max = maxAux
@@ -75,7 +76,7 @@ class Statistics extends React.Component {
           continue;
         }
 
-        if(maxAux == -Infinity) {
+        if(maxAux == -Infinity && max == -1) {
           this.room = this.props.talkArray[i].room;
           this.speaker = this.props.talkArray[i].speaker;
           this.title = this.props.talkArray[i].title;
