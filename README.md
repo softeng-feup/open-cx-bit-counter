@@ -52,9 +52,8 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 - As an organizer I want to know the schedule of the talks to identify the rooms being used and display them, to the participants.  
 - As an organizer I want to know the schedule of the talks and which rooms they are happening so as to not give wrong information to the atendees.  
   **Pre-condition:** Organizer access home page.  
-  **Test steps:** Clicks on a day in the calendar; clicks on a talk occuring that day, if there is any  
-  **Expected results:** On the talk tab it is displayed the room where it is happening, and when it is starting and ending  
-
+  **Test steps:** Clicks on a day in the calendar; clicks on a talk occuring that day, if there is any.  
+  **Expected results:** On the talk tab it is displayed the room where it is happening, and when it is starting and ending.  
 - As an oragnizer I want to add new talks to the database which should be made availabe to the users.  
   **Pre-condition:** Organizer access home page.  
   **Test steps:** Clicks on the hamburguer menu, then Add Talks; and fills the form.  
@@ -68,7 +67,7 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 #### Related to: Room Occupation
 - As an organzier I want to know the most popular talk of all, so I can know which theme I can invest for the next edition of the conference.  
   **Pre-condition:** Organizer access home page.  
-  **Test steps:** On the home page click on tha banner "Most Popular Talk"  
+  **Test steps:** On the home page click on tha banner "Most Popular Talk".  
   **Expected results:** If there is any talk on the database the one with the highest occupation at a given time will be displayed.  
 
 - As an organizer I want to have a graphic displaying the room occupation over time so I can know the various points with high occupation.
@@ -84,7 +83,7 @@ We want to know how full a room is during a talk. To accomplish this we use imag
   **Expected results:** The data from the most popular talk from that day will be displayed.  
 
 - As an orgaznizer I want to know the occupation of a room over time to better prepare the next conference.
-- As an atendee I want to know the number of available seats at a talk to know with there is any seat for me.  
+- As an atendee I want to know the number of available seats at a talk to know if there is any seat for me.  
   **Pre-condition:** Normal user access home page.  
   **Test steps:** Selects the day of the talk; clicks on the talk from the list and sees the occupation graphic.  
   **Expected results:** A normal user, without any priveleges, should be able to see the occupation graphic.
@@ -92,7 +91,7 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 #### Other User Stories
 - As an organizer I want to enter with a passcode and be able to manage the talks.    
   **Pre-condition:** Organizer access home page.  
-  **Test steps:** Click on Login; then insert the admin key  
+  **Test steps:** Click on Login; then insert the admin key.  
   **Expected results:** Before inserting the admin key it should not be possible to add new talks, after the authentication that should not be the case.  
 
 - As a user I want to access the website form a browser and know the room occupation on a given talk.
