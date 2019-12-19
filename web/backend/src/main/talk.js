@@ -3,6 +3,15 @@ const Room = require('../models/Room');
 
 
 module.exports = {
+  clearTalks: function () {
+    return new Promise(function (resolve, reject) {
+      Talk.remove({}).then(() =>  {
+        resolve({code: 200})
+      }).catch((error) => {
+        reject({code: 200, error})
+      });
+    })
+  },
   createTalk: function (title, speaker, room, start, end) {
     return new Promise(function (resolve, reject) {
 
@@ -22,7 +31,6 @@ module.exports = {
         }
         Room.findOneAndUpdate({ name: room }, { $push: { talk: talk } }, { new: true, upsert: true, useFindAndModify: false }, (error, talk) => {
           if (error) {
-            console.log(error)
             reject({
               code: 403,
               message: 'Could not fetch data',
@@ -54,7 +62,6 @@ module.exports = {
       Talk
         .find()
         .exec(function (err, talkList) {
-          console.log(talkList)
           resolve({
             code: 200,
             talk: talkList

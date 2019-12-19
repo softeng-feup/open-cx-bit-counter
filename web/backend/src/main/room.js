@@ -3,6 +3,15 @@ const Talk = require('../models/Talk');
 
 
 module.exports = {
+  clearRooms: function () {
+    return new Promise(function (resolve, reject) {
+      Room.remove({}).then(() =>  {
+        resolve({code: 200})
+      }).catch((error) => {
+        reject({code: 200, error})
+      });
+    })
+  },
   createRoom: function (name, maxOccupation) {
     return new Promise(function (resolve, reject) {
       new Room({ name, maxOccupation }).save(function (err, room) {
@@ -17,6 +26,7 @@ module.exports = {
         .populate('talk', null, null, { sort: { 'start': -1 } })
         .exec(function (err, roomList) {
           resolve(roomList)
+
         });
     })
   },

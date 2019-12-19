@@ -44,7 +44,7 @@ router.generateKey = function(){
  * @apiSuccess (200) {Number} code - code result
  * 
  */
-router.route('/api/room/list').get(function(req,res){
+router.route('/api/room/list').get(/* istanbul ignore next */function(req,res){
     let {name} = req.query;
     if(name !== undefined){
         main.findRoomByName(name)
@@ -79,7 +79,7 @@ router.route('/api/room/list').get(function(req,res){
  * @apiSuccess (200) {Number} code - code result
  * 
  */
-router.route('/api/room/create').post(function(req,res){
+router.route('/api/room/create').post(/* istanbul ignore next */function(req,res){
     let { name, maxOccupation } = req.query;
 
     main.createRoom(name)
@@ -107,7 +107,7 @@ router.route('/api/room/create').post(function(req,res){
  * @apiError (404) {Number} code - the updated talk
  * @apiError (404) {String} message - error message
  */
-router.route('/api/room/update').post(function(req,res){
+router.route('/api/room/update').post(/* istanbul ignore next */function(req,res){
     let {name} = req.query;
     let {occupation} = req.query;
     main.updateRoomOccupation(name, occupation)
@@ -139,7 +139,7 @@ router.route('/api/room/update').post(function(req,res){
  * @apiError (404) {String} message - error message
  * @apiError (403) {String} message - without permission error
  */
-router.route('/api/talk/create').post(function(req,res){
+router.route('/api/talk/create').post(/* istanbul ignore next */function(req,res){
     let {key} = req.query;
     let {title} = req.query;
     let {speaker} = req.query;
@@ -180,7 +180,7 @@ router.route('/api/talk/create').post(function(req,res){
  * @apiError (404) {Number} code - the updated talk
  * @apiError (404) {String} message - error message
  */
-router.route('/api/talk/list').get(function(req,res){
+router.route('/api/talk/list').get(/* istanbul ignore next */function(req,res){
     talk.listAll()
     .then(function(result) {
         res.json({
@@ -210,7 +210,7 @@ router.route('/api/talk/list').get(function(req,res){
  * @apiError (404) {String} message - error message
  * @apiError (403) {String} message - without permission error
  */
-router.route('/api/talk/delete').post(function(req,res){
+router.route('/api/talk/delete').post(/* istanbul ignore next */function(req,res){
     let {key} = req.query;
     let {id} = req.query;
     console.log(key);
@@ -246,7 +246,7 @@ router.route('/api/talk/delete').post(function(req,res){
  * 
  * @apiError (404) {String} message - error message
  */
-router.route('/api/admin/validate').post(function(req,res){
+router.route('/api/admin/validate').post(/* istanbul ignore next */function(req,res){
     let {key} = req.query;
     console.log(key);
     console.log(router.adminKey);
