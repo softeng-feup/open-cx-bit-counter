@@ -83,8 +83,8 @@ We want to know how full a room is during a talk. To accomplish this we use imag
   **Test steps:** Select the day we wish to know the most popular talk; then click on the banner "Most popular talk of the day".  
   **Expected results:** The data from the most popular talk from that day will be displayed.  
 
-- As an orgaznizer I want to knwo the occupation of a room over time to better prepare the next conference.
-- As an atendee I want to knwo the number of available seats at a talk to know with there is any seat for me.  
+- As an orgaznizer I want to know the occupation of a room over time to better prepare the next conference.
+- As an atendee I want to know the number of available seats at a talk to know with there is any seat for me.  
   **Pre-condition:** Normal user access home page.  
   **Test steps:** Selects the day of the talk; clicks on the talk from the list and sees the occupation graphic.  
   **Expected results:** A normal user, without any priveleges, should be able to see the occupation graphic.
