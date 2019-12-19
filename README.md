@@ -73,6 +73,7 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 
 - As an organizer I want to have a graphic displaying the room occupation over time so I can know the various points with high occupation.
 - As an orgaznizer I want to have access to all the data from the talks to know precisely the popularity of the conference.
+
   **Pre-condition:** Organizer access home page.  
   **Test steps:** Select a day in the calendar with talks happening or talks that have finished; then select one of those talks.  
   **Expected results:** Displays a graphic of the occupation over time, if there is data for it.  
