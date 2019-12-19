@@ -10,7 +10,7 @@
 ---
 
 ## Vision  
-Web app capable of giving information to both the organization and participants on wether the room is full or not. If it isn't full it's also possible to say how many people are in the session.
+Web app capable of giving information to both the organization and participants on wether the room is full or not. If it isn't full it's also possible to say how many people are in the session.  
 The goal is to increase the number of participants in talks and decrease the number of empty seats.  
 
 ## Elevator Pitch
@@ -45,64 +45,64 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 **Actor:** Organization  
 **Description:** The conference organizers want to know which talks had the most atendees, which talk was most popular that day.  
   
-### User Stories  
+### User Stories & Acceptance Tests  
 [Trello](https://trello.com/b/AaikinSY/bit-counter)  
 
-- **Schedule**
-  - As an organizer I want to know the schedule of the talks to identify the rooms being used and display them, to the participants.  
-  - As an organizer I want to know the schedule of the talks and which rooms they are happening so as to not give wrong information to the atendees.  
-  - As an oragnizer I want to add new talks to the database which should be made availabe to the users.
-  - As an organizer I want to remove talks from the database so they are no longer available to the users.  
-- **Room Occupation**
-  - As an organzier I want to know the most popular talk of all, so I can know which theme I can invest for the next edition of the conference.
-  - As an organizer I want to have a graphic displaying the room occupation over time so I can know the various points with high occupation.
-  - As an orgaznizer I want to have access to all the data from the talks to know precisely the popularity of the conference.
-  - As an organizer I want to know the most popular talk of the day, so I can know which theme I can invest for the next edition of the conference.
-  - As an orgaznizer I want to knwo the occupation of a room over time to better prepare the next conference.
-  - As an atendee I want to knwo the number of available seats at a talk to know with there is any seat for me.
-- **Extra features**
-  - As an organizer I want to enter with a passcode and be able to manage the talks.
-  - As a user I want to access the website form a browser and know the room occupation on a given talk.
+#### Related to: Schedule
+- As an organizer I want to know the schedule of the talks to identify the rooms being used and display them, to the participants.  
+- As an organizer I want to know the schedule of the talks and which rooms they are happening so as to not give wrong information to the atendees.  
+  
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Clicks on a day in the calendar; clicks on a talk occuring that day, if there is any  
+  **Expected results:** On the talk tab it is displayed the room where it is happening, and when it is starting and ending  
+
+- As an oragnizer I want to add new talks to the database which should be made availabe to the users.  
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Clicks on the hamburguer menu, then Add Talks; and fills the form.  
+  **Expected results:** The new talk will be displayed on the designated day, when it is selecting on the calendar.  
+
+- As an organizer I want to remove talks from the database so they are no longer available to the users.  
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Clicks the day of the talk to be removed; selects that talk from the ones happening that day; clicks on the delete button.  
+  **Expected results:** The removed talk will not appear on that day talk list.
+  
+#### Related to: Room Occupation
+- As an organzier I want to know the most popular talk of all, so I can know which theme I can invest for the next edition of the conference.  
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** On the home page click on tha banner "Most Popular Talk"  
+  **Expected results:** If there is any talk on the database the one with the highest occupation at a given time will be displayed.  
+
+- As an organizer I want to have a graphic displaying the room occupation over time so I can know the various points with high occupation.
+- As an orgaznizer I want to have access to all the data from the talks to know precisely the popularity of the conference.  
+  
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Select a day in the calendar with talks happening or talks that have finished; then select one of those talks.  
+  **Expected results:** Displays a graphic of the occupation over time, if there is data for it.  
+
+- As an organizer I want to know the most popular talk of the day, so I can know which theme I can invest for the next edition of the conference.  
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Select the day we wish to know the most popular talk; then click on the banner "Most popular talk of the day".  
+  **Expected results:** The data from the most popular talk from that day will be displayed.  
+
+- As an orgaznizer I want to knwo the occupation of a room over time to better prepare the next conference.
+- As an atendee I want to knwo the number of available seats at a talk to know with there is any seat for me.  
+  **Pre-condition:** Normal user access home page.  
+  **Test steps:** Selects the day of the talk; clicks on the talk from the list and sees the occupation graphic.  
+  **Expected results:** A normal user, without any priveleges, should be able to see the occupation graphic.
+
+#### Other User Stories
+- As an organizer I want to enter with a passcode and be able to manage the talks.    
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Click on Login; then insert the admin key  
+  **Expected results:** Before inserting the admin key it should not be possible to add new talks, after the authentication that should not be the case.  
+
+- As a user I want to access the website form a browser and know the room occupation on a given talk.
 
 ### Mockups
 ![Homepage mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Homepage%20Mockup.png "Homepage Mockup")  
 ![Talk graph mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Talk%20Graph%20Mockup.png "Talk graph Mockup")  
 ![Most popular talk mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Most%20Popular%20Talk%20Mockup.png "Most popular talk Mockup")
-
-### Acceptance testsn
-- **Pre-condition:** Organizer access home page.
-- **Test steps:** Clicks on a day in the calendar; clicks on a talk occuring that day, if there is any
-- **Expected results:** On the talk tab it is displayed the room where it is happening, and when it is starting and ending.  
-<br/>
-- **Pre-condition:** Organizer access home page.
-- **Test steps:** Clicks on the hamburguer menu, then Add Talks; and fills the form.
-- **Expected results:** The new talk will be displayed on the designated day, when it is selecting on the calendar.  
-<br/>
-- **Pre-condition:** Organizer access home page.
-- **Test steps:** Clicks the day of the talk to be removed; selects that talk from the ones happening that day; clicks on the delete button.
-- **Expected results:** The removed talk will not appear on that day talk list.  
-<br/>
-- **Pre-condition:** Organizer access home page.
-- **Test steps:** On the home page click on tha banner "Most Popular Talk"
-- **Expected results:** If there is any talk on the database the one with the highest occupation at a given time will be displayed.  
-<br/>
-- **Pre-condition:** Organizer access home page.
-- **Test steps:** Select a day in the calendar with talks happening or talks that have finished; then select one of those talks.
-- **Expected results:** Displays a graphic of the occupation over time, if there is data for it.  
-<br/>
-- **Pre-condition:** Organizer access home page.
-- **Test steps:** Select the day we wish to know the most popular talk; then click on the banner "Most popular talk of the day".
-- **Expected results:** The data from the most popular talk from that day will be displayed.  
-<br/>
-- **Pre-condition:** Normal user access home page.
-- **Test steps:** Selects the day of the talk; clicks on the talk from the list and sees the occupation graphic.
-- **Expected results:** A normal user, without any priveleges, should be able to see the occupation graphic.  
-<br/>
-- **Pre-condition:** Organizer access home page.
-- **Test steps:** Click on Login; then insert the admin key
-- **Expected results:** Before inserting the admin key it should not be possible to add new talks, after the authentication that should not be the case.
-
-
+ 
 ### Domain model
 ![Domain analysis](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/domain_diagram.png "Domain Model Diagram")
 
