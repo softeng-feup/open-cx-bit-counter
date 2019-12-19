@@ -9,9 +9,11 @@
     "test-react": "react-scripts test",
     "lint": "eslint  . ",
     "lint:fix": "eslint . --fix",
+    "test": "jest",
+    "test-docker": "jest --detectOpenHandles --collectCoverage --runInBand",
+    "test-coverage": "jest --coverage",
     "pre:push": "set CI=true && npm run test && npm run lint",
-    "pre:commit": "npm run lint && npm run test",
-    "test": "jest "
+    "pre:commit": "npm run lint && npm run test"
   },
   "husky": {
     "hooks": {}
@@ -20,6 +22,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@stryker-mutator/core": "^2.1.0",
+    "@stryker-mutator/html-reporter": "^2.1.0",
+    "@stryker-mutator/javascript-mutator": "^2.1.0",
+    "@stryker-mutator/jest-runner": "^2.1.0",
     "babel-jest": "^24.9.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -28,12 +34,15 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^2.7.0",
     "jest": "^24.9.0",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
+    "@sentry/node": "^5.10.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv-flow": "^3.1.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-plugin-html": "^5.0.5",
     "express": "^4.17.1",
