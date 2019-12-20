@@ -129,6 +129,34 @@ The communication between the application and the database is made using HTTP Re
 
 ![Physical Architecute](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/physical.png "Physical architecture UML")
 
+### Deploy
+
+- Web
+To deploy the web app, first make sure you have [docker-compose](https://docs.docker.com/compose/install/) and [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) installed
+    ```bash
+    cd web #move to web directory
+    sudo docker-compose up --build #build docker image and deploy it
+    ```
+
+    <b>Important! When deploying an admin key will show up, this is the admin key which will allow you to create talks, save it!</b>
+    <br><br>
+- rpi scrypt
+    ```bash
+    cd rpi #move to web directory
+    pip install -r requirements.txt #install the needed packages
+    python3 OpenCV.py #deploy the project 
+    ```
+    the scrypt can be deployed on any system. Depending on what OS you have it might be needed to install addicional packages, the bash code bellow will do everything needed for manjaro, ubuntu and windows (it might work on others, but they have not been tested)
+
+##Tests
+The tests have around 80% coverage and are only for the backend, to run it follow this steps
+
+```bash
+cd web #move to web directory
+./test.sh --build #build test docker image and deploy it
+```
+
+
 ### Prototype
 We approach our project from a bottom up approach, we started by developing a simple React website, and at the same time exploring with OpenCV.  
 Then as the project moved along the website started to grow in features to accomodate the new user-stories. The ability to add talks was implemented.  
