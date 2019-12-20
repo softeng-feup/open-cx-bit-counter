@@ -49,7 +49,6 @@ We want to know how full a room is during a talk. To accomplish this we use imag
 [Trello](https://trello.com/b/AaikinSY/bit-counter)  
 Acceptance tests inside each user story in Trello.
 
-
 ### Mockups
 ![Homepage mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Homepage%20Mockup.png "Homepage Mockup")  
 ![Talk graph mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Talk%20Graph%20Mockup.png "Talk graph Mockup")  
