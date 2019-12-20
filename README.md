@@ -142,21 +142,21 @@ Lastly an admin key was implemented to make sure only the conference organizers 
 ## Deploy
 
 ### Web  
-To deploy the web app, first make sure you have [docker-compose](https://docs.docker.com/compose/install/) and [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) installed  
+To deploy the web app, first make sure you have [docker-compose](https://docs.docker.com/compose/install/) and [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) installed
 
-    ```bash
-    cd web #move to web directory
-    sudo docker-compose up --build #build docker image and deploy it
-    ```
+```bash
+cd web #move to web directory
+sudo docker-compose up --build #build docker image and deploy it
+```
 
 **Important! When deploying an admin key will show up, this is the admin key which will allow you to create talks, save it!**  
 
 ### rpi script
-    ```bash
-    cd rpi #move to web directory
-    pip install -r requirements.txt #install the needed packages
-    python3 OpenCV.py #deploy the project 
-    ```
+```bash
+cd rpi #move to web directory
+pip install -r requirements.txt #install the needed packages
+python3 OpenCV.py #deploy the project 
+```
 The script can be deployed on any system.  
 Depending on what OS you have it might be needed to install addicional packages, the bash code will do everything needed for manjaro, ubuntu and windows (it might work on others, but they have not been tested)
 
