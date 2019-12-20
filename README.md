@@ -48,7 +48,54 @@ We want to know how full a room is during a talk. To accomplish this we use imag
   
 ### User Stories & Acceptance Tests  
 [Trello](https://trello.com/b/AaikinSY/bit-counter)  
-Acceptance tests inside each user story in Trello.
+
+#### Related to: Schedule
+- As an organizer I want to know the schedule of the talks to identify the rooms being used and display them, to the participants.  
+- As an organizer I want to know the schedule of the talks and which rooms they are happening so as to not give wrong information to the atendees.  
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Clicks on a day in the calendar; clicks on a talk occuring that day, if there is any.  
+  **Expected results:** On the talk tab it is displayed the room where it is happening, and when it is starting and ending.  
+- As an oragnizer I want to add new talks to the database which should be made availabe to the users.  
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Clicks on the hamburguer menu, then Add Talks; and fills the form.  
+  **Expected results:** The new talk will be displayed on the designated day, when it is selecting on the calendar.  
+
+- As an organizer I want to remove talks from the database so they are no longer available to the users.  
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Clicks the day of the talk to be removed; selects that talk from the ones happening that day; clicks on the delete button.  
+  **Expected results:** The removed talk will not appear on that day talk list.
+  
+#### Related to: Room Occupation
+- As an organzier I want to know the most popular talk of all, so I can know which theme I can invest for the next edition of the conference.  
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** On the home page click on tha banner "Most Popular Talk".  
+  **Expected results:** If there is any talk on the database the one with the highest occupation at a given time will be displayed.  
+
+- As an organizer I want to have a graphic displaying the room occupation over time so I can know the various points with high occupation.
+- As an orgaznizer I want to have access to all the data from the talks to know precisely the popularity of the conference.
+
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Select a day in the calendar with talks happening or talks that have finished; then select one of those talks.  
+  **Expected results:** Displays a graphic of the occupation over time, if there is data for it.  
+
+- As an organizer I want to know the most popular talk of the day, so I can know which theme I can invest for the next edition of the conference.  
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Select the day we wish to know the most popular talk; then click on the banner "Most popular talk of the day".  
+  **Expected results:** The data from the most popular talk from that day will be displayed.  
+
+- As an orgaznizer I want to know the occupation of a room over time to better prepare the next conference.
+- As an atendee I want to know the number of available seats at a talk to know if there is any seat for me.  
+  **Pre-condition:** Normal user access home page.  
+  **Test steps:** Selects the day of the talk; clicks on the talk from the list and sees the occupation graphic.  
+  **Expected results:** A normal user, without any priveleges, should be able to see the occupation graphic.
+
+#### Other User Stories
+- As an organizer I want to enter with a passcode and be able to manage the talks.    
+  **Pre-condition:** Organizer access home page.  
+  **Test steps:** Click on Login; then insert the admin key.  
+  **Expected results:** Before inserting the admin key it should not be possible to add new talks, after the authentication that should not be the case.  
+
+- As a user I want to access the website form a browser and know the room occupation on a given talk.
 
 ### Mockups
 ![Homepage mockup](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/Homepage%20Mockup.png "Homepage Mockup")  
@@ -82,6 +129,34 @@ The application layer consists of a simple Python program which uses the library
 The communication between the application and the database is made using HTTP Requests.
 
 ![Physical Architecute](https://raw.githubusercontent.com/softeng-feup/open-cx-bit-counter/report/docs/Images/physical.png "Physical architecture UML")
+
+### Deploy
+
+- Web
+To deploy the web app, first make sure you have [docker-compose](https://docs.docker.com/compose/install/) and [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) installed
+    ```bash
+    cd web #move to web directory
+    sudo docker-compose up --build #build docker image and deploy it
+    ```
+
+    <b>Important! When deploying an admin key will show up, this is the admin key which will allow you to create talks, save it!</b>
+    <br><br>
+- rpi scrypt
+    ```bash
+    cd rpi #move to web directory
+    pip install -r requirements.txt #install the needed packages
+    python3 OpenCV.py #deploy the project 
+    ```
+    the scrypt can be deployed on any system. Depending on what OS you have it might be needed to install addicional packages, the bash code bellow will do everything needed for manjaro, ubuntu and windows (it might work on others, but they have not been tested)
+
+##Tests
+The tests have around 80% coverage and are only for the backend, to run it follow this steps
+
+```bash
+cd web #move to web directory
+./test.sh --build #build test docker image and deploy it
+```
+
 
 ### Prototype
 We approach our project from a bottom up approach, we started by developing a simple React website, and at the same time exploring with OpenCV.  
