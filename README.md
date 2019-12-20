@@ -11,7 +11,8 @@
 
 ## Vision  
 Web app capable of giving information to both the organization and participants on wether the room is full or not. If it isn't full it's also possible to say how many people are in the session.  
-The goal is to increase the number of participants in talks and decrease the number of empty seats.  
+With the atendance data it's possible to cater the next conference and make a more engaging and popular conference without unpopular talks. 
+
 
 ## Elevator Pitch
 We want to know how full a room is during a talk. To accomplish this we use image recognition to count people's head and so we get the number of attendees. With this data we can know our target audience better and be more efective in the marketing campaign of the upcoming edition.  
