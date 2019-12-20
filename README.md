@@ -87,3 +87,9 @@ We approach our project from a bottom up approach, we started by developing a si
 Then as the project moved along the website started to grow in features to accomodate the new user-stories. The ability to add talks was implemented.  
 When data from the application started to come in, a graph was added to each talk to show the change in occupation over time.  
 Lastly an admin key was implemented to make sure only the conference organizers could add/remove talks. At this time the website also went live.
+
+### Contribution to open_cx project
+We contributted with two different strands. We added a room model (room.js) and the corresponding routes (rooms/index.js and single.js) to the open_cx_server and three new properties to the talk schema: occupation, occupation_list and a reference to room, in order to prepare the backend to receive a room and the corresponding occupation. We also provided our algorithm to count the number of people on a room, which connects to the backend by a post message (rpi/OpenCV.py).
+Our frontend is available on a directory we created with the name open_cx_bitcounter/frontend as recommended.
+
+
