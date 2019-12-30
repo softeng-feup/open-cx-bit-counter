@@ -90,9 +90,9 @@ def printit():
     print('new max' + str(maxValue))
   if(iteration == 12):
     print('saving to db' + str(maxValue))
+    requests.post('http://127.0.0.1:6200/api/room/update?name=' + ROOM_NAME + '&occupation=' + str(maxValue))
     maxValue = 0
     iteration = 0
-    requests.post('http://127.0.0.1:6200/api/room/update?name=' + ROOM_NAME + '&occupation=' + str(maxValue))
     
   
   threading.Timer(5.0, printit).start()
